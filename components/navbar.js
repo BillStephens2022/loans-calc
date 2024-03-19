@@ -47,17 +47,17 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            {/* <li className={classes.nav_item}>
+            <li className={classes.nav_item}>
               <Link
-                href="/about"
+                href="/LoanCalcs"
                 className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/about" ? classes.active : ""
+                  router.pathname === "/LoanCalcs" ? classes.active : ""
                 }`}
                 onClick={handleLinkClick}
               >
-                About Us
+                Loan Calcs
               </Link>
-            </li> */}
+            </li>
             {/* <li className={classes.nav_item}>
               <Link
                 href="/episodes"
