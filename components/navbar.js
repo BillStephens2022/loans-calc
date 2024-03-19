@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 // import Button from "@/components/buttons/button";
-import classes from "@/components/navbar.module.css";
+import classes from "@/components/Navbar.module.css";
 
 const Navbar = () => {
 //   const { data: session } = useSession();
@@ -49,72 +49,16 @@ const Navbar = () => {
             </li>
             <li className={classes.nav_item}>
               <Link
-                href="/LoanCalcs"
+                href="/Accounting"
                 className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/LoanCalcs" ? classes.active : ""
+                  router.pathname === "/Accounting" ? classes.active : ""
                 }`}
                 onClick={handleLinkClick}
               >
-                Loan Calcs
+                Accounting
               </Link>
             </li>
-            {/* <li className={classes.nav_item}>
-              <Link
-                href="/episodes"
-                className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/episodes" ? classes.active : ""
-                }`}
-                onClick={handleLinkClick}
-              >
-                Episodes
-              </Link>
-            </li> */}
-            {/* <li className={classes.nav_item}>
-              <Link
-                href="/fun"
-                className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/testimonials" ? classes.active : ""
-                }`}
-                onClick={handleLinkClick}
-              >
-                Fun
-              </Link>
-            </li> */}
-            {/* <li className={classes.nav_item}>
-              <Link
-                href="/feedback"
-                className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/feedback" ? classes.active : ""
-                }`}
-                onClick={handleLinkClick}
-              >
-                Feedback
-              </Link>
-            </li> */}
-            {/* {session && (
-              <>
-               <li className={classes.nav_item}>
-               <Link
-                href="/admin"
-                className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/admin" ? classes.active : ""
-                }`}
-                onClick={handleLinkClick}
-              >
-                Admin
-              </Link>
-             </li>
-              <li className={classes.nav_logout_button}>
-                <Button
-                  text="Log Off"
-                  backgroundImage="linear-gradient(135deg, #F5515F 0%,#a1051d 100%)"
-                  onClick={logoutHandler}
-                 
-                /> 
-              </li>
-              
-             </>
-            )} */}
+           
           </ul>
         </nav>
       </div>
