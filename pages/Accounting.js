@@ -20,6 +20,7 @@ const Accounting = () => {
   const { commitment, fundedLoan, upfrontFee } = accountingFormData;
   const unfundedCommitment = commitment - fundedLoan;
   const weightedAverageCost = (1 - upfrontFee / commitment) * 100;
+  const cash = -fundedLoan + upfrontFee;
 
   return (
     <div>
@@ -35,6 +36,7 @@ const Accounting = () => {
           unfundedCommitment={unfundedCommitment}
           upfrontFee={upfrontFee}
           weightedAverageCost={weightedAverageCost}
+          cash={cash}
         />
       )}
     </div>
