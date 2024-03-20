@@ -2,6 +2,7 @@ import { formatAmount } from "@/util/formatting";
 import { JournalEntry } from "@/util/helperClasses";
 import LoanDetailSummary from "@/components/accounting/LoanDetailSummary";
 import JournalEntryTable from "@/components/accounting/JournalEntryTable";
+import OffBalanceSheetTable from "@/components/accounting/OffBalanceSheetTable";
 import classes from "@/components/accounting/LoanDetail.module.css";
 
 const LoanDetail = ({
@@ -94,12 +95,10 @@ const LoanDetail = ({
           creditTotal={creditTotal}
         />
         <h3>Off Balance Sheet</h3>
-        <p>Unfunded Loan Commitment: {formatAmount(unfundedCommitment)}</p>
-        <p>Guarantees/Letters of Credit: {formatAmount(lettersOfCredit)}</p>
-        <p>
-          Total Off Balance Sheet Exposure:{" "}
-          {formatAmount(lettersOfCredit + unfundedCommitment)}
-        </p>
+        <OffBalanceSheetTable
+          unfundedCommitment={unfundedCommitment}
+          lettersOfCredit={lettersOfCredit}
+        />
       </div>
     </div>
   );

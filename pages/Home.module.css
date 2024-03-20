@@ -33,16 +33,16 @@
 
 @keyframes lightingText {
   0% {
-    color: #484848;
+    color: midnightblue;
     text-shadow: none;
   }
   90% {
-    color: #484848;
+    color: white;
     text-shadow: none;
   }
   100% {
-    color: #fff900;
-    text-shadow: 0 0 7px #fff900, 0 0 0 50px #ff6c00;
+    color: darkslateblue;
+    text-shadow: 0 0 7px darkslateblue, 0 0 0 50px lightsteelblue;
   }
 }
 
@@ -111,7 +111,7 @@
     justify-content: center;
     width: 33%;
     height: 15rem;
-    border-radius: 5%;
+    border-radius: 10px;
     border: 5px solid black;
     background-color: slateblue;
     color: white;

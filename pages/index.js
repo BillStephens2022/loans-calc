@@ -36,9 +36,7 @@ const Home = () => {
               <h3>Accounting Examples</h3>
               <p>Enter example loan terms to view simulated journal entries</p>
             </Link>
-        
 
-        
             <Link href="/Fronting" className={classes.featureBox}>
               <h3>Fronting Exposure</h3>
               <h4>Swingline Loan & Issued LC Fronting</h4>

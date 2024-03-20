@@ -38,28 +38,33 @@ const Accounting = () => {
       <div className={classes.accountingFormAndSummaryWrapper}>
         <div className={classes.formContainer}>
           <h2>Loan Example Input Form</h2>
-          
+          {!showLoanDetail && (
+            <div>
+              <p>Enter details below to view</p>
+              <p>associated journal entries</p>
+            </div>
+          )}
+
           <LoanAccountingForm onSubmit={handleFormSubmit} />
         </div>
-       
-          {showLoanDetail && (
-            <LoanDetail
-              commitment={commitment}
-              fundedLoan={fundedLoan}
-              lettersOfCredit={lettersOfCredit}
-              unfundedCommitment={unfundedCommitment}
-              upfrontFee={upfrontFee}
-              loanMark={loanMark}
-              weightedAverageCost={weightedAverageCost}
-              cash={cash}
-              fundedMTM={fundedMTM}
-              unfundedMTM={unfundedMTM}
-              lettersOfCreditMTM={lettersOfCreditMTM}
-            />
-          )}
-        </div>
+
+        {showLoanDetail && (
+          <LoanDetail
+            commitment={commitment}
+            fundedLoan={fundedLoan}
+            lettersOfCredit={lettersOfCredit}
+            unfundedCommitment={unfundedCommitment}
+            upfrontFee={upfrontFee}
+            loanMark={loanMark}
+            weightedAverageCost={weightedAverageCost}
+            cash={cash}
+            fundedMTM={fundedMTM}
+            unfundedMTM={unfundedMTM}
+            lettersOfCreditMTM={lettersOfCreditMTM}
+          />
+        )}
       </div>
-   
+    </div>
   );
 };
 

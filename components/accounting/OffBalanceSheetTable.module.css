@@ -1,0 +1,27 @@
+.offBalanceSheet_table {
+    padding: 5px;
+    border: 5px solid darkslateblue;
+    background-color: darkgray;
+    margin-bottom: 3rem;
+}
+
+.offBalanceSheet_table thead tr th,
+.offBalanceSheet_table tbody tr td {
+    padding: 0.5rem;
+    min-width: 10rem;
+    max-width: 12rem;
+}
+
+.offBalanceSheet_table thead tr {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.offBalanceSheet_table tbody tr {
+    background-color: white;
+    color: darkslateblue;
+}
+
+.offBalanceSheet_table tbody tr td {
+    text-align: right;
+}

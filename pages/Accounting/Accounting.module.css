@@ -29,7 +29,17 @@
 }
 
 .formContainer h2 {
-  margin: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.formContainer div {
+    background-color: darkslateblue;
+    border-radius: 10px;
+}
+
+.formContainer div p {
+    margin: 0.5rem;
+    text-align: center;
 }
 
 .loanDetail_summary {
