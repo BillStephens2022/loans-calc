@@ -15,7 +15,6 @@ const LoanDetail = ({
   unfundedMTM,
   lettersOfCreditMTM
 }) => {
-  console.log("cash", cash);
 
   // create array of journal entries using custom JournalEntry class which has been imported
   // constructor calls for (string account, string highLevelCategory, string category, float amount, boolean isDebit)
@@ -32,8 +31,6 @@ const LoanDetail = ({
     new JournalEntry("LC/Guarantee MTM B/S", lettersOfCreditMTM, unfundedMTM > 0),
     new JournalEntry("LC/Guarantee MTM P&L", -lettersOfCreditMTM, unfundedMTM < 0),
   ];
-
-  journalEntries.forEach((entry) => console.log(entry));
 
   // Calculate totals for debit and credit columns
   const debitTotal = journalEntries.reduce(

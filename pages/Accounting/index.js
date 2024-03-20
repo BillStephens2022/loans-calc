@@ -15,9 +15,7 @@ const Accounting = () => {
   const [showLoanDetail, setShowLoanDetail] = useState(false);
 
   const handleFormSubmit = (formData) => {
-    console.log("formData", formData);
     setAccountingFormData(formData);
-    console.log("accountingFormData", accountingFormData);
     setShowLoanDetail(true);
   };
 
