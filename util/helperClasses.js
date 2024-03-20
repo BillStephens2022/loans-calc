@@ -46,5 +46,41 @@ export class JournalEntry {
     }
     this.amount = amount;
     this.isDebit = isDebit;
+
+    switch (this.account) {
+      case "Cash":
+        this.calculationText = "Funded Loans - Upfront Fees";
+        break;
+      case "Loan Principal":
+        this.calculationText = "Funded Loan Amount";
+        break;
+      case "Loan Discount/Premium":
+        this.calculationText = "Upfront Fee / Commitment * Funded Loan Amount";
+        break;
+      case "Deferred Fees - Unfunded":
+        this.calculationText = "Upfront Fee / Commitment * Unfunded Commitment";
+        break;
+      case "Deferred Fees - LC":
+        this.calculationText = "Upfront Fee / Commitment * Letters Of Credit";
+        break;
+      case "Funded Loan MTM B/S":
+      case "Funded Loan MTM P&L":
+        this.calculationText =
+          "Funded Loan * (Weighted Average Cost - Trader Mark)";
+        break;
+      case "Unfunded Commitment MTM B/S":
+      case "Unfunded Commitment MTM P&L":
+        this.calculationText =
+          "Unfunded Commitment * (Weighted Average Cost - Trader Mark)";
+        break;
+      case "LC/Guarantee MTM B/S":
+      case "LC/Guarantee MTM P&L":
+        this.calculationText =
+          "Unfunded Commitment * (Weighted Average Cost - Trader Mark)";
+        break;
+      default:
+        this.calculationText = "";
+        break;
+    }
   }
 }
