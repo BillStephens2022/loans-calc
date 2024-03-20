@@ -4,11 +4,11 @@ import classes from "@/components/accounting/LoanAccountingForm.module.css";
 
 const LoanAccountingForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    commitment: 0.0,
-    fundedLoan: 0.0,
-    lettersOfCredit: 0.0,
-    upfrontFee: 0.0,
-    loanMark: 0.0
+    commitment: 0.00,
+    fundedLoan: 0.00,
+    lettersOfCredit: 0.00,
+    upfrontFee: 0.00,
+    loanMark: 0.00
   });
 
   const handleInputChange = (event) => {
@@ -26,7 +26,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
       <div className={classes.formControl}>
         <label htmlFor="commitment">Commitment:</label>
         <input
-          type="text"
+          type="number"
           id="commitment"
           name="commitment"
           placeholder="Total Commitment"
@@ -37,7 +37,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
       <div className={classes.formControl}>
         <label htmlFor="fundedLoan">Total funded:</label>
         <input
-          type="text"
+          type="number"
           id="fundedLoan"
           name="fundedLoan"
           value={formData.fundedLoan}
@@ -47,7 +47,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
       <div className={classes.formControl}>
         <label htmlFor="lettersOfCredit">Total Letters of Credit:</label>
         <input
-          type="text"
+          type="number"
           id="lettersOfCredit"
           name="lettersOfCredit"
           value={formData.lettersOfCredit}
@@ -57,7 +57,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
       <div className={classes.formControl}>
         <label htmlFor="upfrontFee">Upfront fee:</label>
         <input
-          type="text"
+          type="number"
           id="upfrontFee"
           name="upfrontFee"
           value={formData.upfrontFee}
@@ -67,9 +67,10 @@ const LoanAccountingForm = ({ onSubmit }) => {
       <div className={classes.formControl}>
         <label htmlFor="loanMark">Loan Mark (i.e. 99.5, 97, etc):</label>
         <input
-          type="text"
+          type="number"
           id="loanMark"
           name="loanMark"
+          step={.01}
           value={formData.loanMark}
           onChange={handleInputChange}
         />
