@@ -17,37 +17,20 @@ const LoanDetail = ({
   console.log("cash", cash);
 
   // create array of journal entries using custom JournalEntry class which has been imported
-  // constructor calls for (string Account, string Account Category, float amount, boolean isDebit)
+  // constructor calls for (string account, string highLevelCategory, string category, float amount, boolean isDebit)
   const journalEntries = [
-    new JournalEntry("Cash", "Assets", cash, cash > 0),
-    new JournalEntry("Loan Principal", "Assets", fundedLoan, true),
-    new JournalEntry(
-      "Loan Discount/Premium",
-      "Assets",
-      (-upfrontFee / commitment) * fundedLoan,
-      upfrontFee < 0
-    ),
-    new JournalEntry(
-      "Deferred Fees",
-      "Liabilities",
-      (-upfrontFee / commitment) * (commitment - fundedLoan),
-      upfrontFee < 0
-    ),
-    new JournalEntry("Funded Loan MTM B/S", "Assets", fundedMTM, fundedMTM > 0),
-    new JournalEntry("Funded Loan MTM P&L", "P&L", -fundedMTM, fundedMTM < 0),
-    new JournalEntry(
-      "Unfunded Commitment MTM B/S",
-      "Liabilities",
-      unfundedMTM,
-      unfundedMTM > 0
-    ),
-    new JournalEntry(
-      "Unfunded Commitment MTM P&L",
-      "P&L",
-      -unfundedMTM,
-      unfundedMTM < 0
-    ),
+    new JournalEntry("Cash", cash, cash > 0),
+    new JournalEntry("Loan Principal", fundedLoan, true),
+    new JournalEntry("Loan Discount/Premium", (-upfrontFee / commitment) * fundedLoan, upfrontFee < 0),
+    new JournalEntry("Deferred Fees - Unfunded", (-upfrontFee / commitment) * (lettersOfCredit), upfrontFee < 0),
+    new JournalEntry("Deferred Fees - LC", (-upfrontFee / commitment) * (unfundedCommitment), upfrontFee < 0),
+    new JournalEntry("Funded Loan MTM B/S", fundedMTM, fundedMTM > 0),
+    new JournalEntry("Funded Loan MTM P&L", -fundedMTM, fundedMTM < 0),
+    new JournalEntry("Unfunded Commitment MTM B/S", unfundedMTM, unfundedMTM > 0),
+    new JournalEntry("Unfunded Commitment MTM P&L", -unfundedMTM, unfundedMTM < 0),
   ];
+
+  journalEntries.forEach((entry) => console.log(entry));
 
   // Calculate totals for debit and credit columns
   const debitTotal = journalEntries.reduce(
@@ -80,7 +63,8 @@ const LoanDetail = ({
           <thead>
             <tr>
               <th className={classes.tableCell}>Account</th>
-              <th className={classes.tableCell}>Account Category</th>
+              <th className={classes.tableCell}>High Level Category</th>
+              <th className={classes.tableCell}>Category</th>
               <th
                 className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}
               >
@@ -97,6 +81,7 @@ const LoanDetail = ({
             {journalEntries.map((entry, index) => (
               <tr key={index}>
                 <td className={classes.tableCell}>{entry.account}</td>
+                <td className={classes.tableCell}>{entry.highLevelCategory}</td>
                 <td className={classes.tableCell}>{entry.category}</td>
                 <td
                   className={`${classes.tableCell} ${classes.tableCellAmounts}`}
@@ -114,6 +99,7 @@ const LoanDetail = ({
               <td className={classes.tableCell}>
                 <strong>Total Debits/(Credits)</strong>
               </td>
+              <td className={classes.tableCell}></td>
               <td className={classes.tableCell}></td>
               <td
                 className={`${classes.tableCell} ${classes.tableCellAmounts}`}
