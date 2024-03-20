@@ -1,0 +1,50 @@
+import { formatAmount } from "@/util/formatting";
+import classes from "@/components/accounting/BalanceSheetSummary.module.css";
+
+const BalanceSheetSummary = ({
+  assetsTotal,
+  liabilitiesTotal,
+  cashTotal,
+  loanMarketValueTotal,
+  commitmentMarketValueTotal,
+  lcMarketValueTotal,
+  mtmPnlTotal,
+  pnlTotal
+}) => {
+  return (
+    <div className={classes.balanceSheetSummary}>
+      <div className={classes.assetsSide}>
+        <h3>Assets</h3>
+        <div>
+          <p>Cash and Cash Equivalents: $ {formatAmount(cashTotal)}</p>
+          <p>Loan Market Value: $ {formatAmount(loanMarketValueTotal)} </p>
+          <h4>
+            <strong>Total Assets: $ {formatAmount(assetsTotal)}</strong>
+          </h4>
+        </div>
+      </div>
+      <div className={classes.liabilitiesSide}>
+        <h3>Liabilities</h3>
+        <div>
+          <h4>Other Liabilities</h4>
+          <p>Commitment - Fair Value: $ {formatAmount(commitmentMarketValueTotal)}</p>
+          <p>Letter Of Credit / Guarantee Fair Value: $ {formatAmount(lcMarketValueTotal)} </p>
+          <p>
+            <strong>Subtotal Other Liabilities: $ {formatAmount(commitmentMarketValueTotal + lcMarketValueTotal)} </strong>
+          </p>
+          <h4>Total Liabilities: $ {formatAmount(liabilitiesTotal)}</h4>
+        </div>
+        <h3>Owner's Equity - P&L</h3>
+        <div>
+          <p>Trading P&L: $ {formatAmount(mtmPnlTotal)} </p>
+          <p>
+            <strong>Total P&L: $ {formatAmount(pnlTotal)}</strong>
+          </p>
+        </div>
+        <h4>Total Liabilities + Owner's Equity: $ {formatAmount(liabilitiesTotal + pnlTotal)}</h4>
+      </div>
+    </div>
+  );
+};
+
+export default BalanceSheetSummary;

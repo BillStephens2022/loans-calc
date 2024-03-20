@@ -3,6 +3,7 @@ import { JournalEntry } from "@/util/helperClasses";
 import LoanDetailSummary from "@/components/accounting/LoanDetailSummary";
 import JournalEntryTable from "@/components/accounting/JournalEntryTable";
 import OffBalanceSheetTable from "@/components/accounting/OffBalanceSheetTable";
+import BalanceSheetSummary from "@/components/accounting/BalanceSheetSummary";
 import classes from "@/components/accounting/LoanDetail.module.css";
 
 const LoanDetail = ({
@@ -72,6 +73,68 @@ const LoanDetail = ({
     0
   );
 
+  const assetsTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.highLevelCategory == "Assets" ? total + entry.amount : total,
+    0
+  );
+
+  const liabilitiesTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.highLevelCategory == "Liabilities" ? total + entry.amount : total,
+    0
+  );
+
+  const pnlTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.highLevelCategory == "P&L"
+        ? total + entry.amount
+        : total,
+    0
+  );
+
+  const cashTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.category == "Cash & Cash Equivalents"
+        ? total + entry.amount
+        : total,
+    0
+  );
+
+  const loanMarketValueTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.category == "Loan Market Value"
+        ? total + entry.amount
+        : total,
+    0
+  );
+
+  const commitmentMarketValueTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.category == "Commitment Market Value"
+        ? total + entry.amount
+        : total,
+    0
+  );
+
+  const lcMarketValueTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.category == "LC/Guarantee Market Value"
+        ? total + entry.amount
+        : total,
+    0
+  );
+
+  const mtmPnlTotal = journalEntries.reduce(
+    (total, entry) =>
+      entry.category == "MTM P&L (unrealized)"
+        ? total + entry.amount
+        : total,
+    0
+  );
+
+  
+
   return (
     <div className={classes.loanDetail_container}>
       <div className={classes.loanDetail_summary}>
@@ -98,6 +161,16 @@ const LoanDetail = ({
         <OffBalanceSheetTable
           unfundedCommitment={unfundedCommitment}
           lettersOfCredit={lettersOfCredit}
+        />
+        <BalanceSheetSummary
+          assetsTotal={assetsTotal}
+          liabilitiesTotal={liabilitiesTotal}
+          cashTotal={cashTotal}
+          loanMarketValueTotal={loanMarketValueTotal}
+          commitmentMarketValueTotal={commitmentMarketValueTotal}
+          lcMarketValueTotal={lcMarketValueTotal}
+          mtmPnlTotal={mtmPnlTotal}
+          pnlTotal={pnlTotal}
         />
       </div>
     </div>

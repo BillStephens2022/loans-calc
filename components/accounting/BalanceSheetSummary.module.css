@@ -1,0 +1,12 @@
+.balanceSheetSummary {
+    display: flex;
+    width: 100%;
+}
+
+.assetsSide {
+  width: 50%;
+}
+
+.liabilitiesSide {
+  width: 50%;
+}
