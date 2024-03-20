@@ -1,4 +1,5 @@
 import { formatAmount } from "@/util/formatting";
+import { JournalEntry } from "@/util/helperClasses";
 import classes from "@/components/accounting/LoanDetail.module.css";
 
 const LoanDetail = ({
@@ -15,50 +16,37 @@ const LoanDetail = ({
 }) => {
   console.log("cash", cash);
 
+  // create array of journal entries using custom JournalEntry class which has been imported
+  // constructor calls for (string Account, string Account Category, float amount, boolean isDebit)
   const journalEntries = [
-    { account: "Cash", category: "Assets", amount: cash, isDebit: cash > 0 },
-    {
-      account: "Loan Principal",
-      category: "Assets",
-      amount: fundedLoan,
-      isDebit: true,
-    },
-    {
-      account: "Loan Discount/Premium",
-      category: "Assets",
-      amount: (-upfrontFee / commitment) * fundedLoan,
-      isDebit: upfrontFee < 0,
-    },
-    {
-      account: "Deferred Fees",
-      category: "Liabilities",
-      amount: (-upfrontFee / commitment) * (commitment - fundedLoan),
-      isDebit: upfrontFee < 0,
-    },
-    {
-      account: "Funded Loan MTM B/S",
-      category: "Assets",
-      amount: fundedMTM,
-      isDebit: fundedMTM > 0,
-    },
-    {
-      account: "Funded Loan MTM P&L",
-      category: "P&L",
-      amount: -fundedMTM,
-      isDebit: fundedMTM < 0,
-    },
-    {
-      account: "Unfunded Commitment MTM B/S",
-      category: "Liabilities",
-      amount: unfundedMTM,
-      isDebit: unfundedMTM > 0,
-    },
-    {
-      account: "Unfunded Commitment MTM P&L",
-      category: "P&L",
-      amount: -unfundedMTM,
-      isDebit: unfundedMTM < 0,
-    },
+    new JournalEntry("Cash", "Assets", cash, cash > 0),
+    new JournalEntry("Loan Principal", "Assets", fundedLoan, true),
+    new JournalEntry(
+      "Loan Discount/Premium",
+      "Assets",
+      (-upfrontFee / commitment) * fundedLoan,
+      upfrontFee < 0
+    ),
+    new JournalEntry(
+      "Deferred Fees",
+      "Liabilities",
+      (-upfrontFee / commitment) * (commitment - fundedLoan),
+      upfrontFee < 0
+    ),
+    new JournalEntry("Funded Loan MTM B/S", "Assets", fundedMTM, fundedMTM > 0),
+    new JournalEntry("Funded Loan MTM P&L", "P&L", -fundedMTM, fundedMTM < 0),
+    new JournalEntry(
+      "Unfunded Commitment MTM B/S",
+      "Liabilities",
+      unfundedMTM,
+      unfundedMTM > 0
+    ),
+    new JournalEntry(
+      "Unfunded Commitment MTM P&L",
+      "P&L",
+      -unfundedMTM,
+      unfundedMTM < 0
+    ),
   ];
 
   // Calculate totals for debit and credit columns
@@ -93,8 +81,16 @@ const LoanDetail = ({
             <tr>
               <th className={classes.tableCell}>Account</th>
               <th className={classes.tableCell}>Account Category</th>
-              <th className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}>Debit</th>
-              <th className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}>Credit</th>
+              <th
+                className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}
+              >
+                Debit
+              </th>
+              <th
+                className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}
+              >
+                Credit
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -102,8 +98,16 @@ const LoanDetail = ({
               <tr key={index}>
                 <td className={classes.tableCell}>{entry.account}</td>
                 <td className={classes.tableCell}>{entry.category}</td>
-                <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>{entry.isDebit ? formatAmount(entry.amount) : ""}</td>
-                <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>{!entry.isDebit ? formatAmount(entry.amount) : ""}</td>
+                <td
+                  className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+                >
+                  {entry.isDebit ? formatAmount(entry.amount) : ""}
+                </td>
+                <td
+                  className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+                >
+                  {!entry.isDebit ? formatAmount(entry.amount) : ""}
+                </td>
               </tr>
             ))}
             <tr>
@@ -111,10 +115,14 @@ const LoanDetail = ({
                 <strong>Total Debits/(Credits)</strong>
               </td>
               <td className={classes.tableCell}></td>
-              <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
                 <strong>{formatAmount(debitTotal)}</strong>
               </td>
-              <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
                 <strong>{formatAmount(creditTotal)}</strong>
               </td>
             </tr>
