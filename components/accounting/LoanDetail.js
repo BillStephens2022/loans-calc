@@ -13,6 +13,7 @@ const LoanDetail = ({
   cash,
   fundedMTM,
   unfundedMTM,
+  lettersOfCreditMTM
 }) => {
   console.log("cash", cash);
 
@@ -22,12 +23,14 @@ const LoanDetail = ({
     new JournalEntry("Cash", cash, cash > 0),
     new JournalEntry("Loan Principal", fundedLoan, true),
     new JournalEntry("Loan Discount/Premium", (-upfrontFee / commitment) * fundedLoan, upfrontFee < 0),
-    new JournalEntry("Deferred Fees - Unfunded", (-upfrontFee / commitment) * (lettersOfCredit), upfrontFee < 0),
-    new JournalEntry("Deferred Fees - LC", (-upfrontFee / commitment) * (unfundedCommitment), upfrontFee < 0),
+    new JournalEntry("Deferred Fees - Unfunded", (-upfrontFee / commitment) * unfundedCommitment, upfrontFee < 0),
+    new JournalEntry("Deferred Fees - LC", (-upfrontFee / commitment) * lettersOfCredit, upfrontFee < 0),
     new JournalEntry("Funded Loan MTM B/S", fundedMTM, fundedMTM > 0),
     new JournalEntry("Funded Loan MTM P&L", -fundedMTM, fundedMTM < 0),
     new JournalEntry("Unfunded Commitment MTM B/S", unfundedMTM, unfundedMTM > 0),
     new JournalEntry("Unfunded Commitment MTM P&L", -unfundedMTM, unfundedMTM < 0),
+    new JournalEntry("LC/Guarantee MTM B/S", lettersOfCreditMTM, unfundedMTM > 0),
+    new JournalEntry("LC/Guarantee MTM P&L", -lettersOfCreditMTM, unfundedMTM < 0),
   ];
 
   journalEntries.forEach((entry) => console.log(entry));

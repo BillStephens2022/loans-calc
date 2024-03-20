@@ -27,7 +27,7 @@ const Accounting = () => {
   const cash = -fundedLoan + upfrontFee;
   const fundedMTM = (loanMark - weightedAverageCost) / 100 * fundedLoan;
   const unfundedMTM = (loanMark - weightedAverageCost) / 100 * unfundedCommitment;
-  
+  const lettersOfCreditMTM = (loanMark - weightedAverageCost) / 100 * lettersOfCredit;
 
   return (
     <div className={classes.accounting_main}>
@@ -48,6 +48,7 @@ const Accounting = () => {
           cash={cash}
           fundedMTM={fundedMTM}
           unfundedMTM={unfundedMTM}
+          lettersOfCreditMTM={lettersOfCreditMTM}
         />
       )}
     </div>
