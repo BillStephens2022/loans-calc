@@ -54,3 +54,8 @@
   background-color: darkslateblue;
   color: white;
 }
+
+.balanceSheetSummary_header {
+    width: 100%;
+    color: white;
+}

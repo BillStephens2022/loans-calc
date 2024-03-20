@@ -1,12 +1,36 @@
 .balanceSheetSummary {
     display: flex;
     width: 100%;
+    margin-bottom: 2rem;
 }
 
+.assetsSide, .liabilitiesSide {
+    padding: 2rem 0.5rem;
+    background-color: whitesmoke;
+    border: 5px solid #484848;
+    color: #484848;
+}
+
+.assetsSide_header, .liabilitiesSide_header {
+    
+    background-color: darkslateblue;
+    color: white;
+    padding: 0.5rem;
+}
 .assetsSide {
   width: 50%;
+  border-right: 2.5px solid #484848;
 }
 
 .liabilitiesSide {
   width: 50%;
+  border-left: 2.5px solid #484848;
+}
+
+.accountBalance {
+    padding-left: 20px;
+}
+
+.subCategory {
+    padding-left: 10px;
 }

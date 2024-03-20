@@ -150,18 +150,7 @@ const LoanDetail = ({
           loanMark={loanMark}
         />
       </div>
-      <div className={classes.loanDetail_journalEntries}>
-        <h2>Journal Entries</h2>
-        <JournalEntryTable
-          journalEntries={journalEntries}
-          debitTotal={debitTotal}
-          creditTotal={creditTotal}
-        />
-        <h3>Off Balance Sheet</h3>
-        <OffBalanceSheetTable
-          unfundedCommitment={unfundedCommitment}
-          lettersOfCredit={lettersOfCredit}
-        />
+      <h2 className={classes.balanceSheetSummary_header}>Balance Sheet Summary</h2>
         <BalanceSheetSummary
           assetsTotal={assetsTotal}
           liabilitiesTotal={liabilitiesTotal}
@@ -172,6 +161,20 @@ const LoanDetail = ({
           mtmPnlTotal={mtmPnlTotal}
           pnlTotal={pnlTotal}
         />
+        <h3>Off Balance Sheet</h3>
+        <OffBalanceSheetTable
+          unfundedCommitment={unfundedCommitment}
+          lettersOfCredit={lettersOfCredit}
+        />
+      <div className={classes.loanDetail_journalEntries}>
+        <h2>Journal Entries</h2>
+        <JournalEntryTable
+          journalEntries={journalEntries}
+          debitTotal={debitTotal}
+          creditTotal={creditTotal}
+        />
+        
+       
       </div>
     </div>
   );
