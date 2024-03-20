@@ -59,9 +59,9 @@ const LoanDetail = ({
         <h2>Journal Entries</h2>
         <h3>Balance Sheet</h3>
 
-        <table className="journalEntry_table">
+        <table className={classes.journalEntry_table}>
           <thead>
-            <tr>
+            <tr className={classes.tableRow_header}>
               <th className={classes.tableCell}>Account</th>
               <th className={classes.tableCell}>High Level Category</th>
               <th className={classes.tableCell}>Category</th>
@@ -79,7 +79,7 @@ const LoanDetail = ({
           </thead>
           <tbody>
             {journalEntries.map((entry, index) => (
-              <tr key={index}>
+              <tr key={index} className={classes.tableRow}>
                 <td className={classes.tableCell}>{entry.account}</td>
                 <td className={classes.tableCell}>{entry.highLevelCategory}</td>
                 <td className={classes.tableCell}>{entry.category}</td>
@@ -95,7 +95,7 @@ const LoanDetail = ({
                 </td>
               </tr>
             ))}
-            <tr>
+            <tr className={classes.tableRow}>
               <td className={classes.tableCell}>
                 <strong>Total Debits/(Credits)</strong>
               </td>
