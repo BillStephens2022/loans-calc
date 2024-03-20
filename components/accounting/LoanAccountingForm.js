@@ -35,7 +35,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
         />
       </div>
       <div className={classes.formControl}>
-        <label htmlFor="fundedLoan">Total funded:</label>
+        <label htmlFor="fundedLoan">Total Funded:</label>
         <input
           type="number"
           id="fundedLoan"
@@ -55,7 +55,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
         />
       </div>
       <div className={classes.formControl}>
-        <label htmlFor="upfrontFee">Upfront fee:</label>
+        <label htmlFor="upfrontFee">Upfront Fee:</label>
         <input
           type="number"
           id="upfrontFee"

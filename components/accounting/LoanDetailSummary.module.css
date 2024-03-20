@@ -1,0 +1,26 @@
+.loanDetail_summary_table {
+    padding: 5px;
+    border: 5px solid darkslateblue;
+    background-color: darkgray;
+}
+
+.loanDetail_summary_table thead tr th,
+.loanDetail_summary_table tbody tr td {
+    padding: 0.5rem;
+    min-width: 7rem;
+    max-width: 12rem;
+}
+
+.loanDetail_summary_table thead tr {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.loanDetail_summary_table tbody tr {
+    background-color: white;
+    color: darkslateblue;
+}
+
+.loanDetail_summary_table tbody tr td {
+    text-align: right;
+}

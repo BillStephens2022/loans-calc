@@ -1,15 +1,45 @@
 .accounting_main {
-    background-color: steelblue;
-    color: white;
-    padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: steelblue;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accounting_header {
+  width: 100%;
+  padding: 3rem 0;
+  background-color: lightsteelblue;
+  text-align: center;
+  margin: 0 0 3rem 0;
+}
+
+.accountingFormAndSummaryWrapper {
+  display: flex;
+  padding: 0 1rem;
 }
 
 .formContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
 }
 
+.formContainer h2 {
+  margin: 0;
+}
+
+.loanDetail_summary {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.loanDetail_summary h2 {
+  margin: 0;
+}
