@@ -1,0 +1,32 @@
+.loanDetail_container {
+    display: flex;
+    padding: 0.5rem;
+}
+
+.loanDetail_summary {
+    flex-direction: column;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.loanDetail_journalEntries {
+    flex-direction: column;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.tableCell {
+    padding: 1rem;
+    text-align: start;
+    border: 2px solid white;
+}
+
+.tableCellAmountHeader {
+    text-align: center;
+}
+
+.tableCellAmounts {
+    text-align: end;
+}
+
+

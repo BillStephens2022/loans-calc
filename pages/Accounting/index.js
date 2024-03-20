@@ -1,10 +1,12 @@
 import { useState } from "react";
 import LoanAccountingForm from "@/components/accounting/LoanAccountingForm";
 import LoanDetail from "@/components/accounting/LoanDetail";
+import classes from "@/pages/Accounting/Accounting.module.css";
 
 const initialFormData = {
   commitment: 0.0,
   fundedLoan: 0.0,
+  lettersOfCredit: 0.0,
   upfrontFee: 0.0,
 };
 
@@ -19,8 +21,8 @@ const Accounting = () => {
     setShowLoanDetail(true);
   };
 
-  const { commitment, fundedLoan, upfrontFee, loanMark } = accountingFormData;
-  const unfundedCommitment = commitment - fundedLoan;
+  const { commitment, fundedLoan, lettersOfCredit, upfrontFee, loanMark } = accountingFormData;
+  const unfundedCommitment = commitment - fundedLoan - lettersOfCredit;
   const weightedAverageCost = (1 - upfrontFee / commitment) * 100;
   const cash = -fundedLoan + upfrontFee;
   const fundedMTM = (loanMark - weightedAverageCost) / 100 * fundedLoan;
@@ -28,7 +30,7 @@ const Accounting = () => {
   
 
   return (
-    <div>
+    <div className={classes.accounting_main}>
       <h1>Loan Journal Entries</h1>
       <h2>Enter Loan Details and submit to see simulated journal entries</h2>
       <div>
@@ -38,6 +40,7 @@ const Accounting = () => {
         <LoanDetail
           commitment={commitment}
           fundedLoan={fundedLoan}
+          lettersOfCredit={lettersOfCredit}
           unfundedCommitment={unfundedCommitment}
           upfrontFee={upfrontFee}
           loanMark={loanMark}

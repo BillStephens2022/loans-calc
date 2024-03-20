@@ -1,9 +1,11 @@
 import { useState } from "react";
+import classes from "@/components/accounting/LoanAccountingForm.module.css";
 
 const LoanAccountingForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     commitment: 0.0,
     fundedLoan: 0.0,
+    lettersOfCredit: 0.0,
     upfrontFee: 0.0,
     loanMark: 0.0
   });
@@ -19,8 +21,8 @@ const LoanAccountingForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className={classes.accountingForm} onSubmit={handleSubmit}>
+      <div className={classes.formControl}>
         <label htmlFor="commitment">Commitment:</label>
         <input
           type="text"
@@ -31,7 +33,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
           onChange={handleInputChange}
         />
       </div>
-      <div>
+      <div className={classes.formControl}>
         <label htmlFor="fundedLoan">Total funded:</label>
         <input
           type="text"
@@ -41,7 +43,17 @@ const LoanAccountingForm = ({ onSubmit }) => {
           onChange={handleInputChange}
         />
       </div>
-      <div>
+      <div className={classes.formControl}>
+        <label htmlFor="lettersOfCredit">Total Letters of Credit:</label>
+        <input
+          type="text"
+          id="lettersOfCredit"
+          name="lettersOfCredit"
+          value={formData.lettersOfCredit}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className={classes.formControl}>
         <label htmlFor="upfrontFee">Upfront fee:</label>
         <input
           type="text"
@@ -51,7 +63,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
           onChange={handleInputChange}
         />
       </div>
-      <div>
+      <div className={classes.formControl}>
         <label htmlFor="loanMark">Loan Mark (i.e. 99.5, 97, etc):</label>
         <input
           type="text"
