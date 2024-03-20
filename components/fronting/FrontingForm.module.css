@@ -1,0 +1,19 @@
+.frontingForm {
+    min-width: 33vw;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.formControl {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.formControl input {
+    margin-left: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}

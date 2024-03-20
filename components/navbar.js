@@ -58,7 +58,17 @@ const Navbar = () => {
                 Accounting
               </Link>
             </li>
-           
+            <li className={classes.nav_item}>
+              <Link
+                href="/Fronting"
+                className={`${classes.nav_item} ${classes.nav_link} ${
+                  router.pathname === "/Fronting" ? classes.active : ""
+                }`}
+                onClick={handleLinkClick}
+              >
+                Fronting Risk
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

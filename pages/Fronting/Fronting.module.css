@@ -1,0 +1,17 @@
+.fronting_main {
+    background-color: steelblue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.fronting_header {
+    color: white;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+}

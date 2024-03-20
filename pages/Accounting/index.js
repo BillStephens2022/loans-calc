@@ -31,8 +31,8 @@ const Accounting = () => {
 
   return (
     <div className={classes.accounting_main}>
-      <h1>Loan Journal Entries</h1>
-      <h2>Enter Loan Details and submit to see simulated journal entries</h2>
+      <h1>Loan Accounting</h1>
+      <h2>Enter Loan Details to view journal entries</h2>
       <div className={classes.formContainer}>
         <LoanAccountingForm onSubmit={handleFormSubmit} />
       </div>
