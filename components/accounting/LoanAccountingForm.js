@@ -5,6 +5,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
     commitment: 0.0,
     fundedLoan: 0.0,
     upfrontFee: 0.0,
+    loanMark: 0.0
   });
 
   const handleInputChange = (event) => {
@@ -25,6 +26,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
           type="text"
           id="commitment"
           name="commitment"
+          placeholder="Total Commitment"
           value={formData.commitment}
           onChange={handleInputChange}
         />
@@ -46,6 +48,16 @@ const LoanAccountingForm = ({ onSubmit }) => {
           id="upfrontFee"
           name="upfrontFee"
           value={formData.upfrontFee}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="loanMark">Loan Mark (i.e. 99.5, 97, etc):</label>
+        <input
+          type="text"
+          id="loanMark"
+          name="loanMark"
+          value={formData.loanMark}
           onChange={handleInputChange}
         />
       </div>

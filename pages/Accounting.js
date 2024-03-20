@@ -13,14 +13,19 @@ const Accounting = () => {
   const [showLoanDetail, setShowLoanDetail] = useState(false);
 
   const handleFormSubmit = (formData) => {
+    console.log("formData", formData);
     setAccountingFormData(formData);
+    console.log("accountingFormData", accountingFormData);
     setShowLoanDetail(true);
   };
 
-  const { commitment, fundedLoan, upfrontFee } = accountingFormData;
+  const { commitment, fundedLoan, upfrontFee, loanMark } = accountingFormData;
   const unfundedCommitment = commitment - fundedLoan;
   const weightedAverageCost = (1 - upfrontFee / commitment) * 100;
   const cash = -fundedLoan + upfrontFee;
+  const fundedMTM = (loanMark - weightedAverageCost) / 100 * fundedLoan;
+  const unfundedMTM = (loanMark - weightedAverageCost) / 100 * unfundedCommitment;
+  
 
   return (
     <div>
@@ -35,8 +40,11 @@ const Accounting = () => {
           fundedLoan={fundedLoan}
           unfundedCommitment={unfundedCommitment}
           upfrontFee={upfrontFee}
+          loanMark={loanMark}
           weightedAverageCost={weightedAverageCost}
           cash={cash}
+          fundedMTM={fundedMTM}
+          unfundedMTM={unfundedMTM}
         />
       )}
     </div>
