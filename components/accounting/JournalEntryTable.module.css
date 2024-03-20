@@ -1,0 +1,34 @@
+.journalEntry_table {
+    padding: 5px;
+    border: 5px solid darkslateblue;
+    background-color: darkgray;
+}
+
+.tableCell {
+    padding: 1rem;
+    text-align: start;
+   
+}
+
+.tableCellAmountHeader {
+    text-align: center;
+}
+
+.tableCellAmounts {
+    text-align: end;
+}
+
+.tableRow:nth-child(even) {
+    background-color: whitesmoke;
+    color: darkslateblue;
+}
+
+.tableRow:nth-child(odd) {
+    background-color: white;
+    color: darkslateblue;
+}
+
+.tableRow_header {
+    background-color: darkslateblue;
+    color: white;
+}
