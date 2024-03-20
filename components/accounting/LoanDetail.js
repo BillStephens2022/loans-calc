@@ -36,7 +36,7 @@ const LoanDetail = ({
       isDebit: upfrontFee < 0,
     },
     {
-      account: "Funded Loan MTM",
+      account: "Funded Loan MTM B/S",
       category: "Assets",
       amount: fundedMTM,
       isDebit: fundedMTM > 0,
@@ -48,8 +48,8 @@ const LoanDetail = ({
       isDebit: fundedMTM < 0,
     },
     {
-      account: "Unfunded Commitment MTM",
-      category: "P&L",
+      account: "Unfunded Commitment MTM B/S",
+      category: "Liabilities",
       amount: unfundedMTM,
       isDebit: unfundedMTM > 0,
     },

@@ -1,5 +1,6 @@
 .accountingForm {
-    width: 33vw;
+    min-width: 33vw;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

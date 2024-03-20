@@ -33,7 +33,7 @@ const Accounting = () => {
     <div className={classes.accounting_main}>
       <h1>Loan Journal Entries</h1>
       <h2>Enter Loan Details and submit to see simulated journal entries</h2>
-      <div>
+      <div className={classes.formContainer}>
         <LoanAccountingForm onSubmit={handleFormSubmit} />
       </div>
       {showLoanDetail && (

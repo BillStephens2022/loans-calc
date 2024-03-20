@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../ui/Button";
 import classes from "@/components/accounting/LoanAccountingForm.module.css";
 
 const LoanAccountingForm = ({ onSubmit }) => {
@@ -72,8 +73,10 @@ const LoanAccountingForm = ({ onSubmit }) => {
           value={formData.loanMark}
           onChange={handleInputChange}
         />
+        </div>
+      <div className={classes.formControl}>
+        <Button type="submit">Submit</Button>
       </div>
-      <button type="submit">Submit</button>
     </form>
   );
 };

@@ -1,0 +1,8 @@
+.button {
+    width: 15rem;
+    background-color: seagreen;
+    color: white;
+    border-radius: 0.5rem;
+    margin: auto;
+    padding: 0.5rem;
+}
