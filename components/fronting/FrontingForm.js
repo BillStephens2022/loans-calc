@@ -5,16 +5,16 @@ import classes from "@/components/fronting/FrontingForm.module.css";
 const initialFormData = {
   borrower: "",
   yourBankName: "",
-  globalCommitment: 100000000,
-  globalFundedLoans: 45000000,
-  globalLettersOfCredit: 22000000,
-  yourBankCommitment: 15000000,
+  globalCommitment: 0.0,
+  globalFundedLoans: 0.0,
+  globalLettersOfCredit: 0.0,
+  yourBankCommitment: 0.0,
   lcIssuer: true,
   swinglineLender: true,
-  swinglineSublimit: 12000000,
-  swinglinesFundedByYourBank: 5000000,
-  lcSublimit: 14000000,
-  lcsIssuedByYourBank: 3000000,
+  swinglineSublimit: 0.0,
+  swinglinesFundedByYourBank: 0.0,
+  lcSublimit: 0.0,
+  lcsIssuedByYourBank: 0.0,
 };
 
 const FrontingForm = ({ onSubmit }) => {
@@ -47,6 +47,10 @@ const FrontingForm = ({ onSubmit }) => {
     console.log(formData);
     onSubmit(formData);
   };
+
+const resetFormValues = () => {
+  setFormData(initialFormData);
+}
 
   return (
     <form className={classes.frontingForm} onSubmit={handleSubmit}>
@@ -111,6 +115,7 @@ const FrontingForm = ({ onSubmit }) => {
       })}
       <div className={classes.formControl}>
         <Button type="submit">Submit</Button>
+        <Button type="button" onClick={resetFormValues}>Reset Values</Button>
       </div>
     </form>
   );
