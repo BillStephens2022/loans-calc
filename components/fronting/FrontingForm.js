@@ -114,8 +114,8 @@ const resetFormValues = () => {
         );
       })}
       <div className={classes.formControl}>
-        <Button type="submit">Submit</Button>
-        <Button type="button" onClick={resetFormValues}>Reset Values</Button>
+        <Button type="submit" className="m_half">Submit</Button>
+        <Button type="button" className="m_half" onClick={resetFormValues}>Reset Values</Button>
       </div>
     </form>
   );
