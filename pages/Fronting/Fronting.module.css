@@ -17,12 +17,3 @@
     justify-content: center;
 }
 
-.frontingExposureList {
-    list-style-type: none;
-}
-
-.frontingExposureListItem {
-    color: white;
-    font-size: 1rem;
-    margin: 1rem;
-}

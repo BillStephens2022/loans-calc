@@ -3,18 +3,18 @@ import Button from "../ui/Button";
 import classes from "@/components/fronting/FrontingForm.module.css";
 
 const initialFormData = {
-  borrower: "",
-  yourBankName: "",
-  globalCommitment: 0.0,
-  globalFundedLoans: 0.0,
-  globalLettersOfCredit: 0.0,
-  yourBankCommitment: 0.0,
+  borrower: "Fenway Park LLC",
+  yourBankName: "Bank of Boston",
+  globalCommitment: 100000000.0,
+  globalFundedLoans: 45000000.0,
+  globalLettersOfCredit: 22000000.0,
+  yourBankCommitment: 18000000.0,
   lcIssuer: true,
   swinglineLender: true,
-  swinglineSublimit: 0.0,
-  swinglinesFundedByYourBank: 0.0,
-  lcSublimit: 0.0,
-  lcsIssuedByYourBank: 0.0,
+  swinglineSublimit: 11000000.0,
+  swinglinesFundedByYourBank: 3000000.0,
+  lcSublimit: 14000000.0,
+  lcsIssuedByYourBank: 4000000.0,
 };
 
 const FrontingForm = ({ onSubmit }) => {
