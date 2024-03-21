@@ -12,6 +12,17 @@
     justify-content: space-between;
 }
 
+.input_span_group {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.input_span_group span {
+    color: white;
+    font-style: italic;
+}
+
 .formControl label {
     color: white;
 }
@@ -20,4 +31,6 @@
     margin-left: 1rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
+    text-align: right;
+    margin-bottom: 0.5rem;
 }

@@ -1,6 +1,6 @@
 .fronting_main {
     background-color: steelblue;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: top;
@@ -15,4 +15,14 @@
 .formContainer {
     display: flex;
     justify-content: center;
+}
+
+.frontingExposureList {
+    list-style-type: none;
+}
+
+.frontingExposureListItem {
+    color: white;
+    font-size: 1rem;
+    margin: 1rem;
 }

@@ -5,16 +5,16 @@ import classes from "@/components/fronting/FrontingForm.module.css";
 const initialFormData = {
   borrower: "",
   yourBankName: "",
-  globalCommitment: 0.0,
-  globalFundedLoans: 0.0,
-  globalLettersOfCredit: 0.0,
-  yourBankCommitment: 0.0,
-  lcIssuer: false,
-  swinglineLender: false,
-  swinglineSublimit: 0.0,
-  swinglinesFundedByYourBank: 0.0,
-  lcSublimit: 0.0,
-  lcsIssuedByYourBank: 0.0,
+  globalCommitment: 100000000,
+  globalFundedLoans: 45000000,
+  globalLettersOfCredit: 22000000,
+  yourBankCommitment: 15000000,
+  lcIssuer: true,
+  swinglineLender: true,
+  swinglineSublimit: 12000000,
+  swinglinesFundedByYourBank: 5000000,
+  lcSublimit: 14000000,
+  lcsIssuedByYourBank: 3000000,
 };
 
 const FrontingForm = ({ onSubmit }) => {
@@ -22,9 +22,18 @@ const FrontingForm = ({ onSubmit }) => {
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-    
-    const newValue = type === "checkbox" ? checked : formatNumberInput(value);
- 
+
+    let newValue = value;
+
+    if (type === "checkbox") {
+      newValue = checked;
+    } else if (name === "borrower" || name === "yourBankName") {
+      newValue = value; // Treat as string, no need to parse
+    } else {
+      // Parse numeric values to remove commas and convert to float
+      newValue = type === "text" ? parseFloat(value.replace(/,/g, "")) : value;
+    }
+
     setFormData({ ...formData, [name]: newValue });
   };
 
@@ -36,14 +45,15 @@ const FrontingForm = ({ onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    // onSubmit(formData);
+    onSubmit(formData);
   };
 
   return (
     <form className={classes.frontingForm} onSubmit={handleSubmit}>
-      {Object.entries(initialFormData).map(([key, value]) => {
-         if (
-          (key === "swinglineSublimit" || key === "swinglinesFundedByYourBank") &&
+      {Object.entries(initialFormData).map(([key, value], index) => {
+        if (
+          (key === "swinglineSublimit" ||
+            key === "swinglinesFundedByYourBank") &&
           !formData.swinglineLender
         ) {
           return null; // Don't render these fields if swinglineLender is not checked
@@ -55,31 +65,50 @@ const FrontingForm = ({ onSubmit }) => {
         ) {
           return null; // Don't render these fields if lcIssuer is not checked
         }
-         return (<div key={key} className={classes.formControl}>
-          <label htmlFor={key}>{key
-              .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase words
-              .replace(/(^|\s)(lc)([a-z])/i, (match, p1, p2, p3) => p1 + 'LC' + p3.toUpperCase()) // Capitalize "lc"
-              .replace(/^\w/, (c) => c.toUpperCase()) // Capitalize first letter
-            }: </label>
-          {typeof value === "boolean" ? (
-            <input
-              type="checkbox"
-              id={key}
-              name={key}
-              checked={formData[key]}
-              onChange={handleInputChange}
-            />
-          ) : (
-            <input
-              type="text"
-              id={key}
-              name={key}
-              value={formData[key]}
-              onChange={handleInputChange}
-            />
-          )}
-        </div>);
-})}
+        return (
+          <div key={key} className={classes.formControl}>
+            <label htmlFor={key}>
+              {
+                key
+                  .replace(/([a-z])([A-Z])/g, "$1 $2") // Add space between camelCase words
+                  .replace(
+                    /(^|\s)(lc)([a-z])/i,
+                    (match, p1, p2, p3) => p1 + "LC" + p3.toUpperCase()
+                  ) // Capitalize "lc"
+                  .replace(/^\w/, (c) => c.toUpperCase()) // Capitalize first letter
+              }
+              :{" "}
+            </label>
+            {typeof value === "boolean" ? (
+              <input
+                type="checkbox"
+                id={key}
+                name={key}
+                checked={formData[key]}
+                onChange={handleInputChange}
+              />
+            ) : (
+              <div className={classes.input_span_group}>
+                <input
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={formData[key]}
+                  onChange={handleInputChange}
+                />
+                {/* rendering formatted values only for boxes that accept numbers, first two input values are for
+                borrower and yourBankName which are strings, so don't need to show formatted value */}
+                {index >= 2 && (
+                  <span className={classes.formattedValueSpan}>
+                    Formatted Value:{" "}
+                    {formatNumberInput(formData[key].toString())}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
       <div className={classes.formControl}>
         <Button type="submit">Submit</Button>
       </div>
