@@ -24,18 +24,29 @@ const FrontingExampleSummary = ({
     <div className={classes.mainContainer}>
       <div className={classes.mainHeader}>
         <h2 className={classes.mainHeaderExample}>Example Summary</h2>
-        <h3 className={classes.headerBank}>Your Bank's Name: {yourBankName}</h3>
-        <h3 className={classes.headerBorrower}>Borrower: {borrower}</h3>
-        {swinglineLender && (
-          <h3 className={classes.headerBorrower}>
-            Swingline Lender: {yourBankName}
-          </h3>
-        )}
-        {lcIssuer && (
-          <h3 className={classes.headerBorrower}>
-            LC Issuing Bank: {yourBankName}
-          </h3>
-        )}
+        <table className={classes.table}>
+            <caption className={classes.tableHeaderRoles}>Roles</caption>
+          <tr className={classes.tableRow}>
+            <td className={classes.tableCell}>Your Bank's Name</td>
+            <td className={classes.tableCell}>{yourBankName}</td>
+          </tr>
+          <tr className={classes.tableRow}>
+            <td className={classes.tableCell}>Borrower</td>
+            <td className={classes.tableCell}>{borrower}</td>
+          </tr>
+          {swinglineLender && (
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Swingline Lender</td>
+              <td className={classes.tableCell}>{yourBankName}</td>
+            </tr>
+          )}
+          {lcIssuer && (
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>LC Issuing Bank</td>
+              <td className={classes.tableCell}>{yourBankName}</td>
+            </tr>
+          )}
+        </table>
       </div>
 
       <table className={classes.table}>
@@ -121,11 +132,6 @@ const FrontingExampleSummary = ({
           </tr>
         </tbody>
       </table>
-
-      <h4>
-        <span>Swingline Lender? {swinglineLender ? "Y " : "N "}</span>
-        <span> LC Issuer? {lcIssuer ? "Y " : "N "}</span>
-      </h4>
 
       <table className={classes.table}>
         <caption className={classes.tableHeader}>
