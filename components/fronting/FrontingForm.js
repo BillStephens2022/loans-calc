@@ -2,85 +2,71 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import classes from "@/components/fronting/FrontingForm.module.css";
 
+const initialFormData = {
+  borrower: "",
+  yourBankName: "",
+  globalCommitment: 0.0,
+  globalFundedLoans: 0.0,
+  globalLettersOfCredit: 0.0,
+  yourBankCommitment: 0.0,
+  lcIssuer: false,
+  swinglineLender: false,
+  swinglineSublimit: 0.0,
+  lcSublimit: 0.0,
+  lcsIssuedByYourBank: 0.0,
+  swinglinesFundedByYourBank: 0.0,
+};
+
 const FrontingForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    borrower: "",
-    yourBankName: "",
-    globalCommitment: 0.0,
-    globalFundedLoans: 0.0,
-    globalLettersOfCredit: 0.0,
-    lcIssuer: false,
-    swinglineLender: false,
-    swinglineSublimit: 0.0,
-    lcSublimit: 0.0,
-    shareOfGlobal: 0.0,
-    issuedLCs: 0.0,
-    fundedSwinglines: 0.0
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: parseFloat(value) });
+    const { name, value, type, checked } = event.target;
+    
+    const newValue = type === "checkbox" ? checked : formatNumberInput(value);
+ 
+    setFormData({ ...formData, [name]: newValue });
+  };
+
+  const formatNumberInput = (value) => {
+    // Regex to add comma separators for thousands
+    return value.replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formData); // passes formData to the parent component (Fronting Page)
+    console.log(formData);
+    // onSubmit(formData);
   };
 
   return (
     <form className={classes.frontingForm} onSubmit={handleSubmit}>
-      <div className={classes.formControl}>
-        <label htmlFor="globalCommitment">Global Commitment:</label>
-        <input
-          type="text"
-          id="globalCommitment"
-          name="globalCommitment"
-          placeholder="Global Commitment"
-          value={formData.globalCommitment}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className={classes.formControl}>
-        <label htmlFor="globalFundedLoans">Global Funded Loans:</label>
-        <input
-          type="text"
-          id="globalFundedLoans"
-          name="globalFundedLoans"
-          value={formData.globalFundedLoans}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className={classes.formControl}>
-        <label htmlFor="globalLettersOfCredit">Global Letters of Credit:</label>
-        <input
-          type="text"
-          id="globalLettersOfCredit"
-          name="globalLettersOfCredit"
-          value={formData.globalLettersOfCredit}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className={classes.formControl}>
-        <label htmlFor="swinglineSublimit">Swingline Sublimit:</label>
-        <input
-          type="text"
-          id="swinglineSublimit"
-          name="swinglineSublimit"
-          value={formData.swinglineSublimit}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className={classes.formControl}>
-        <label htmlFor="lcSublimit">LC Sublimit:</label>
-        <input
-          type="text"
-          id="lcSublimit"
-          name="lcSublimit"
-          value={formData.lcSublimit}
-          onChange={handleInputChange}
-        />
+      {Object.entries(initialFormData).map(([key, value]) => (
+        <div key={key} className={classes.formControl}>
+          <label htmlFor={key}>{key
+              .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase words
+              .replace(/(^|\s)(lc)([a-z])/i, (match, p1, p2, p3) => p1 + 'LC' + p3.toUpperCase()) // Capitalize "lc"
+              .replace(/^\w/, (c) => c.toUpperCase()) // Capitalize first letter
+            }: </label>
+          {typeof value === "boolean" ? (
+            <input
+              type="checkbox"
+              id={key}
+              name={key}
+              checked={formData[key]}
+              onChange={handleInputChange}
+            />
+          ) : (
+            <input
+              type="text"
+              id={key}
+              name={key}
+              value={formData[key]}
+              onChange={handleInputChange}
+            />
+          )}
         </div>
+      ))}
       <div className={classes.formControl}>
         <Button type="submit">Submit</Button>
       </div>
