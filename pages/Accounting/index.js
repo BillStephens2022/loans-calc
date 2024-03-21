@@ -1,9 +1,8 @@
 import { useState } from "react";
 import LoanAccountingForm from "@/components/accounting/LoanAccountingForm";
-import { LoanDetailSummary } from "@/components/accounting/LoanDetailSummary";
-import { JournalEntryTable } from "@/components/accounting/JournalEntryTable";
 import LoanDetail from "@/components/accounting/LoanDetail";
 import classes from "@/pages/Accounting/Accounting.module.css";
+import PageHeader from "@/components/PageHeader";
 
 const initialFormData = {
   commitment: 0.0,
@@ -34,7 +33,7 @@ const Accounting = () => {
 
   return (
     <div className={classes.accounting_main}>
-      <h1 className={classes.accounting_header}>Loan Accounting</h1>
+      <PageHeader>Loan Accounting</PageHeader>
       <div className={classes.accountingFormAndSummaryWrapper}>
         <div className={classes.formContainer}>
           <h2>Loan Example Input Form</h2>

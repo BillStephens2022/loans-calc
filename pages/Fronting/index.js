@@ -1,10 +1,11 @@
+import PageHeader from "@/components/PageHeader";
 import FrontingForm from "@/components/fronting/FrontingForm";
 import classes from "@/pages/Fronting/Fronting.module.css";
 
 const Fronting = () => {
   return (
     <main className={classes.fronting_main}>
-      <h1 className={classes.fronting_header}>Fronting Risk</h1>
+      <PageHeader>Fronting Risk</PageHeader>
       <div className={classes.formContainer}>
         <FrontingForm />
       </div>

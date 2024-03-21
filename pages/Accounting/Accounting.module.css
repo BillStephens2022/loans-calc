@@ -8,14 +8,6 @@
   justify-content: center;
 }
 
-.accounting_header {
-  width: 100%;
-  padding: 3rem 0;
-  background-color: darkslateblue;
-  text-align: center;
-  margin: 0 0 3rem 0;
-}
-
 .accountingFormAndSummaryWrapper {
   display: flex;
   flex-direction: column;
