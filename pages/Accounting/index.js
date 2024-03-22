@@ -5,6 +5,8 @@ import classes from "@/pages/Accounting/Accounting.module.css";
 import PageHeader from "@/components/PageHeader";
 
 const initialFormData = {
+  borrower: "",
+  facility: "",
   commitment: 0.0,
   fundedLoan: 0.0,
   lettersOfCredit: 0.0,
@@ -20,7 +22,7 @@ const Accounting = () => {
     setShowLoanDetail(true);
   };
 
-  const { commitment, fundedLoan, lettersOfCredit, upfrontFee, loanMark } =
+  const { borrower, facility, commitment, fundedLoan, lettersOfCredit, upfrontFee, loanMark } =
     accountingFormData;
   const unfundedCommitment = commitment - fundedLoan - lettersOfCredit;
   const weightedAverageCost = (1 - upfrontFee / commitment) * 100;
@@ -30,6 +32,9 @@ const Accounting = () => {
     ((loanMark - weightedAverageCost) / 100) * unfundedCommitment;
   const lettersOfCreditMTM =
     ((loanMark - weightedAverageCost) / 100) * lettersOfCredit;
+
+  console.log("Borrower from Accounting Page: ", borrower);
+  console.log("Commitment from Accounting Page: ", commitment);
 
   return (
     <div className={classes.accounting_main}>
@@ -49,6 +54,8 @@ const Accounting = () => {
 
         {showLoanDetail && (
           <LoanDetail
+            borrower={borrower}
+            facility={facility}
             commitment={commitment}
             fundedLoan={fundedLoan}
             lettersOfCredit={lettersOfCredit}

@@ -7,6 +7,8 @@ import BalanceSheetSummary from "@/components/accounting/BalanceSheetSummary";
 import classes from "@/components/accounting/LoanDetail.module.css";
 
 const LoanDetail = ({
+  borrower,
+  facility,
   commitment,
   fundedLoan,
   lettersOfCredit,
@@ -141,6 +143,8 @@ const LoanDetail = ({
         <h2>Loan Detail Summary</h2>
         <h3>Your Example:</h3>
         <LoanDetailSummary
+          borrower={borrower}
+          facility={facility}
           commitment={commitment}
           fundedLoan={fundedLoan}
           lettersOfCredit={lettersOfCredit}

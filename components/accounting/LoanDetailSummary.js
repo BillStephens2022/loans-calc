@@ -2,6 +2,8 @@ import { formatAmount } from "@/util/formatting";
 import classes from "@/components/accounting/LoanDetailSummary.module.css";
 
 const LoanDetailSummary = ({
+  borrower,
+  facility,
   commitment,
   fundedLoan,
   lettersOfCredit,
@@ -10,10 +12,14 @@ const LoanDetailSummary = ({
   weightedAverageCost,
   loanMark,
 }) => {
+  console.log("borrower: ", borrower);
+  console.log("facility: ", facility);
   return (
     <table className={classes.loanDetail_summary_table}>
       <thead>
         <tr>
+          <th>Borrower</th>
+          <th>Facility</th>
           <th>Total Commitment</th>
           <th>Funded Loans</th>
           <th>Letters of Credit</th>
@@ -25,6 +31,8 @@ const LoanDetailSummary = ({
       </thead>
       <tbody>
         <tr>
+          <td>{borrower}</td>
+          <td>{facility}</td>
           <td>$ {formatAmount(commitment)}</td>
           <td>$ {formatAmount(fundedLoan)}</td>
           <td>$ {formatAmount(lettersOfCredit)}</td>

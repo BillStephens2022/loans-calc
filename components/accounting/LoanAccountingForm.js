@@ -4,6 +4,8 @@ import classes from "@/components/accounting/LoanAccountingForm.module.css";
 
 const LoanAccountingForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
+    borrower: "",
+    facility: "",
     commitment: 0.00,
     fundedLoan: 0.00,
     lettersOfCredit: 0.00,
@@ -13,7 +15,11 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: parseFloat(value) });
+    
+    // Parse only if the field is a number field
+    const parsedValue = event.target.type === 'number' ? parseFloat(value) : value;
+  
+    setFormData({ ...formData, [name]: parsedValue });
   };
 
   const handleSubmit = (event) => {
@@ -23,6 +29,28 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   return (
     <form className={classes.accountingForm} onSubmit={handleSubmit}>
+      <div className={classes.formControl}>
+        <label htmlFor="borrower">Borrower Name:</label>
+        <input
+          type="text"
+          id="borrower"
+          name="borrower"
+          placeholder="Borrower Name"
+          value={formData.borrower}
+          onChange={handleInputChange}
+        />
+        </div>
+        <div className={classes.formControl}>
+        <label htmlFor="facility">Facility Name:</label>
+        <input
+          type="text"
+          id="facility"
+          name="facility"
+          placeholder="Facility"
+          value={formData.facility}
+          onChange={handleInputChange}
+        />
+      </div>
       <div className={classes.formControl}>
         <label htmlFor="commitment">Commitment:</label>
         <input
