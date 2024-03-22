@@ -1,6 +1,9 @@
-import classes from "@/components/accounting/LoanExamplesTable.module.css";
+
 import { formatAmount } from "@/util/formatting";
 import Button from "../ui/Button";
+import Link from "next/link";
+import classes from "@/components/accounting/LoanExamplesTable.module.css";
+
 
 const LoanExamplesTable = ({ examples }) => {
   return (
@@ -39,7 +42,7 @@ const LoanExamplesTable = ({ examples }) => {
               <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
               <td>{example.loanMark}</td>
               <td>
-                <Button className="width_8">GL Entries</Button>
+                <Link href={`/Accounting/${example._id}`}><Button className="width_8">GL Entries</Button></Link>
               </td>
             </tr>
           );

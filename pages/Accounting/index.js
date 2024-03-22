@@ -58,7 +58,7 @@ const Accounting = ({ loanAccountingExamples }) => {
 
   return (
     <div className={classes.accounting_main}>
-      <PageHeader>Loan Accounting</PageHeader>
+      <PageHeader><h1>Loan Accounting</h1></PageHeader>
       <div className={classes.accountingFormAndSummaryWrapper}>
         <LoanExamplesTable examples={examples} />
         <div className={classes.formContainer}>
