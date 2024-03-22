@@ -29,13 +29,13 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   return (
     <form className={classes.accountingForm} onSubmit={handleSubmit}>
+      <caption className={classes.formTitle}>Loan Example Input Form</caption>
       <div className={classes.formControl}>
         <label htmlFor="borrower">Borrower Name:</label>
         <input
           type="text"
           id="borrower"
           name="borrower"
-          placeholder="Borrower Name"
           value={formData.borrower}
           onChange={handleInputChange}
         />
@@ -46,7 +46,6 @@ const LoanAccountingForm = ({ onSubmit }) => {
           type="text"
           id="facility"
           name="facility"
-          placeholder="Facility Name"
           value={formData.facility}
           onChange={handleInputChange}
         />
@@ -57,7 +56,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
           type="number"
           id="commitment"
           name="commitment"
-          placeholder="Total Commitment"
+          
           value={formData.commitment}
           onChange={handleInputChange}
         />

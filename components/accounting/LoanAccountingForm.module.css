@@ -9,6 +9,16 @@
     background-color: darkslateblue;
 }
 
+.formTitle {
+    padding: 2rem 0;
+    background-color: rgb(154, 167, 180);
+    color: darkslateblue;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    border-radius: 10px;
+}
+
 .formControl {
     margin: 0.5rem 0;
     display: flex;

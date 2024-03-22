@@ -9,11 +9,13 @@ import {
 } from "@/lib/api";
 import classes from "@/pages/Accounting/Accounting.module.css";
 import LoanExamplesTable from "@/components/accounting/LoanExamplesTable";
+import Button from "@/components/ui/Button";
 
 // Accounting Page
 
 const Accounting = ({ loanAccountingExamples }) => {
   const [examples, setExamples] = useState(loanAccountingExamples || {});
+  const [showForm, setShowForm] = useState(false);
 
   const { data: updatedExamples, error } = useSWR(
     "/api/accounting/",
@@ -48,24 +50,22 @@ const Accounting = ({ loanAccountingExamples }) => {
   return (
     <div className={classes.accounting_main}>
       <PageHeader>
-        <h1>Loan Accounting</h1>
+        <h1>Loan Accounting Examples</h1>
       </PageHeader>
+      <div className={classes.formAndButtonContainer}>
+      <Button className="m_1" onClick={() => setShowForm(!showForm)}>{showForm ? "Hide Form" : "Add New Example"}</Button>
+      {showForm && (
+        <div className={classes.formContainer}>
+          <LoanAccountingForm onSubmit={handleFormSubmit} />
+        </div>
+      )}
+      </div>
       <div className={classes.accountingFormAndSummaryWrapper}>
         <LoanExamplesTable
           examples={examples}
           onDelete={handleDeleteExample}
           showButtons={true}
         />
-        <div className={classes.formContainer}>
-          <h2>Loan Example Input Form</h2>
-
-          <div>
-            <p>Enter details below to view</p>
-            <p>associated journal entries</p>
-          </div>
-
-          <LoanAccountingForm onSubmit={handleFormSubmit} />
-        </div>
       </div>
     </div>
   );

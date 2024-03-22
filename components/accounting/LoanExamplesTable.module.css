@@ -3,6 +3,8 @@
     border: 5px solid darkslateblue;
     background-color: darkgray;
     margin-bottom: 2rem;
+    overflow: auto;
+
 }
 
 .loanExamples_table thead tr th,
