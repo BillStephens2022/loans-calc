@@ -1,8 +1,10 @@
 import { useState } from "react";
+import PageHeader from "@/components/PageHeader";
 import LoanAccountingForm from "@/components/accounting/LoanAccountingForm";
 import LoanDetail from "@/components/accounting/LoanDetail";
+import { createLoanAccountingExample, getLoanAccountingExamples } from "@/lib/api";
 import classes from "@/pages/Accounting/Accounting.module.css";
-import PageHeader from "@/components/PageHeader";
+
 
 const initialFormData = {
   borrower: "",
@@ -17,9 +19,10 @@ const Accounting = () => {
   const [accountingFormData, setAccountingFormData] = useState(initialFormData);
   const [showLoanDetail, setShowLoanDetail] = useState(false);
 
-  const handleFormSubmit = (formData) => {
+  const handleFormSubmit = async (formData) => {
     setAccountingFormData(formData);
     setShowLoanDetail(true);
+    await createLoanAccountingExample(formData);
   };
 
   const { borrower, facility, commitment, fundedLoan, lettersOfCredit, upfrontFee, loanMark } =
@@ -32,9 +35,6 @@ const Accounting = () => {
     ((loanMark - weightedAverageCost) / 100) * unfundedCommitment;
   const lettersOfCreditMTM =
     ((loanMark - weightedAverageCost) / 100) * lettersOfCredit;
-
-  console.log("Borrower from Accounting Page: ", borrower);
-  console.log("Commitment from Accounting Page: ", commitment);
 
   return (
     <div className={classes.accounting_main}>
