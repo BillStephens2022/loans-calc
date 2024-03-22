@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useSWR from "swr";
 import PageHeader from "@/components/PageHeader";
 import LoanAccountingForm from "@/components/accounting/LoanAccountingForm";
 import LoanDetail from "@/components/accounting/LoanDetail";
 import { createLoanAccountingExample, getLoanAccountingExamples } from "@/lib/api";
+import { formatAmount } from "@/util/formatting";
 import classes from "@/pages/Accounting/Accounting.module.css";
+import Button from "@/components/ui/Button";
+import LoanExamplesTable from "@/components/accounting/LoanExamplesTable";
 
 
 const initialFormData = {
@@ -15,9 +19,25 @@ const initialFormData = {
   upfrontFee: 0.0,
 };
 
-const Accounting = () => {
+const Accounting = ({ loanAccountingExamples }) => {
   const [accountingFormData, setAccountingFormData] = useState(initialFormData);
   const [showLoanDetail, setShowLoanDetail] = useState(false);
+  const [examples, setExamples] = useState(loanAccountingExamples || {});
+
+  const { data: updatedExamples, error } = useSWR("/api/accounting/", getLoanAccountingExamples, {
+    refreshInterval: 1000,
+  });
+
+  useEffect(() => {
+    if (updatedExamples) {
+      const sortedExamples = updatedExamples.sort((a, b) =>
+      a.borrower.localeCompare(b.borrower)
+    );
+      setExamples(sortedExamples);
+    }
+  }, [updatedExamples]);
+
+  examples?.forEach((example) => console.log(example.borrower));
 
   const handleFormSubmit = async (formData) => {
     setAccountingFormData(formData);
@@ -40,6 +60,7 @@ const Accounting = () => {
     <div className={classes.accounting_main}>
       <PageHeader>Loan Accounting</PageHeader>
       <div className={classes.accountingFormAndSummaryWrapper}>
+        <LoanExamplesTable examples={examples} />
         <div className={classes.formContainer}>
           <h2>Loan Example Input Form</h2>
           {!showLoanDetail && (
@@ -73,5 +94,25 @@ const Accounting = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  let loanAccountingExamples = [];
+
+  try {
+    const loanAccountingExamplesJSON = await getLoanAccountingExamples();
+    loanAccountingExamples = loanAccountingExamplesJSON.sort((a, b) =>
+      a.borrower.localeCompare(b.borrower)
+    );
+  } catch (error) {
+    console.error(error.message);
+  }
+
+  return {
+    props: {
+      loanAccountingExamples,
+    },
+    revalidate: 1200, // Re-generate page every 1200 seconds (20 minutes)
+  };
+}
 
 export default Accounting;

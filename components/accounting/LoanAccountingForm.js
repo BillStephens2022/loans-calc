@@ -46,7 +46,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
           type="text"
           id="facility"
           name="facility"
-          placeholder="Facility"
+          placeholder="Facility Name"
           value={formData.facility}
           onChange={handleInputChange}
         />

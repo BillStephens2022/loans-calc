@@ -1,0 +1,28 @@
+.loanExamples_table {
+    padding: 5px;
+    border: 5px solid darkslateblue;
+    background-color: darkgray;
+}
+
+.loanExamples_table thead tr th,
+.loanExamples_table tbody tr td {
+    padding: 0.5rem;
+    min-width: 7rem;
+    max-width: 12rem;
+}
+
+.loanExamples_table thead tr {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.loanDetail_summary_table tbody tr {
+    background-color: white;
+    color: darkslateblue;
+}
+
+.loanExamples_table tbody tr td {
+    text-align: right;
+    background-color: whitesmoke;
+    color: darkslateblue;
+}
