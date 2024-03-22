@@ -15,7 +15,7 @@ const BalanceSheetSummary = ({
     <div className={classes.balanceSheetSummary}>
        
       <div className={classes.assetsSide}>
-        <h3 className={classes.assetsSide_header}>Assets</h3>
+        <h3 className={classes.assetsSide_header}>Assets - Debit/(Credit)</h3>
         <div>
           <p className={classes.accountBalance}>Cash and Cash Equivalents: $ {formatAmount(cashTotal)}</p>
           <p className={classes.accountBalance}>Loan Market Value: $ {formatAmount(loanMarketValueTotal)} </p>
@@ -25,7 +25,7 @@ const BalanceSheetSummary = ({
         </div>
       </div>
       <div className={classes.liabilitiesSide}>
-        <h3 className={classes.liabilitiesSide_header}>Liabilities</h3>
+        <h3 className={classes.liabilitiesSide_header}>Liabilities - Debit/(Credit)</h3>
         <div>
           <h4 className={classes.subCategory}>Other Liabilities</h4>
           <p className={classes.accountBalance}>Commitment - Fair Value: $ {formatAmount(commitmentMarketValueTotal)}</p>
@@ -35,7 +35,7 @@ const BalanceSheetSummary = ({
           </p>
           <h4>Total Liabilities: $ {formatAmount(liabilitiesTotal)}</h4>
         </div>
-        <h3 className={classes.liabilitiesSide_header}>Owner's Equity - P&L</h3>
+        <h3 className={classes.liabilitiesSide_header}>Owner's Equity - P&L - Debit/(Credit)</h3>
         <div>
           <p className={classes.accountBalance}>Trading P&L: $ {formatAmount(mtmPnlTotal)} </p>
           <p>
@@ -43,6 +43,7 @@ const BalanceSheetSummary = ({
           </p>
         </div>
         <h4>Total Liabilities + Owner's Equity: $ {formatAmount(liabilitiesTotal + pnlTotal)}</h4>
+        <caption className={classes.table_caption}>Note: Losses are Debits (positive), Gains are Credits (negative)</caption>
       </div>
     </div>
   );

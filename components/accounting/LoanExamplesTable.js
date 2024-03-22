@@ -32,6 +32,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
           <th>Upfront Fees</th>
           <th>Weighted Average Cost</th>
           <th>Loan Mark</th>
+          <th>MTM</th>
           {showButtons && <th>View</th>}
           {showButtons && <th>Delete</th>}
         </tr>
@@ -55,6 +56,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
               <td>{formatAmount(example.upfrontFee)}</td>
               <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
               <td>{example.loanMark}</td>
+              <td>{formatAmount(example.commitment * (example.loanMark / 100 - (1 - example.upfrontFee / example.commitment)))}</td>
               {showButtons && (
                 <td>
                   <Link href={`/Accounting/${example._id}`}>

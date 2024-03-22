@@ -11,6 +11,10 @@
   margin-right: 0.5rem;
 }
 
+.table_headers {
+  color: darkslateblue;
+}
+
 .loanDetail_summary h2 {
   margin: 0;
 }

@@ -34,3 +34,10 @@
 .subCategory {
     padding-left: 10px;
 }
+
+.table_caption {
+    display: flex;
+    color: red;
+    font-weight: 900;
+
+}

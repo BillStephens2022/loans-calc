@@ -129,7 +129,7 @@ const LoanDetail = ({
 
   return (
     <div className={classes.loanDetail_container}>
-      <h2>Balance Sheet Summary</h2>
+      <h2 className={classes.table_headers}>Balance Sheet Summary</h2>
       <BalanceSheetSummary
         assetsTotal={assetsTotal}
         liabilitiesTotal={liabilitiesTotal}
@@ -140,13 +140,13 @@ const LoanDetail = ({
         mtmPnlTotal={mtmPnlTotal}
         pnlTotal={pnlTotal}
       />
-      <h3>Off Balance Sheet</h3>
+      <h2 className={classes.table_headers}>Off Balance Sheet</h2>
       <OffBalanceSheetTable
         unfundedCommitment={unfundedCommitment}
         lettersOfCredit={lettersOfCredit}
       />
       <div className={classes.loanDetail_journalEntries}>
-        <h2>Journal Entries</h2>
+        <h2 className={classes.table_headers}>Journal Entries</h2>
         <JournalEntryTable
           journalEntries={journalEntries}
           debitTotal={debitTotal}
