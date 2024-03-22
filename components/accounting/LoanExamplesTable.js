@@ -58,7 +58,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
               {showButtons && (
                 <td>
                   <Link href={`/Accounting/${example._id}`}>
-                    <Button className="width_8">GL Entries</Button>
+                    <Button className="width_8">View Accounting Details</Button>
                   </Link>
                 </td>
               )}

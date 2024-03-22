@@ -1,6 +1,4 @@
-import { formatAmount } from "@/util/formatting";
 import { JournalEntry } from "@/util/helperClasses";
-import LoanDetailSummary from "@/components/accounting/LoanDetailSummary";
 import JournalEntryTable from "@/components/accounting/JournalEntryTable";
 import OffBalanceSheetTable from "@/components/accounting/OffBalanceSheetTable";
 import BalanceSheetSummary from "@/components/accounting/BalanceSheetSummary";
@@ -89,9 +87,7 @@ const LoanDetail = ({
 
   const pnlTotal = journalEntries.reduce(
     (total, entry) =>
-      entry.highLevelCategory == "P&L"
-        ? total + entry.amount
-        : total,
+      entry.highLevelCategory == "P&L" ? total + entry.amount : total,
     0
   );
 
@@ -105,9 +101,7 @@ const LoanDetail = ({
 
   const loanMarketValueTotal = journalEntries.reduce(
     (total, entry) =>
-      entry.category == "Loan Market Value"
-        ? total + entry.amount
-        : total,
+      entry.category == "Loan Market Value" ? total + entry.amount : total,
     0
   );
 
@@ -129,47 +123,28 @@ const LoanDetail = ({
 
   const mtmPnlTotal = journalEntries.reduce(
     (total, entry) =>
-      entry.category == "MTM P&L (unrealized)"
-        ? total + entry.amount
-        : total,
+      entry.category == "MTM P&L (unrealized)" ? total + entry.amount : total,
     0
   );
 
-  
-
   return (
     <div className={classes.loanDetail_container}>
-      <div className={classes.loanDetail_summary}>
-        <h2>Loan Detail Summary</h2>
-        <h3>Your Example:</h3>
-        <LoanDetailSummary
-          borrower={borrower}
-          facility={facility}
-          commitment={commitment}
-          fundedLoan={fundedLoan}
-          lettersOfCredit={lettersOfCredit}
-          unfundedCommitment={unfundedCommitment}
-          upfrontFee={upfrontFee}
-          weightedAverageCost={weightedAverageCost}
-          loanMark={loanMark}
-        />
-      </div>
-      <h2 className={classes.balanceSheetSummary_header}>Balance Sheet Summary</h2>
-        <BalanceSheetSummary
-          assetsTotal={assetsTotal}
-          liabilitiesTotal={liabilitiesTotal}
-          cashTotal={cashTotal}
-          loanMarketValueTotal={loanMarketValueTotal}
-          commitmentMarketValueTotal={commitmentMarketValueTotal}
-          lcMarketValueTotal={lcMarketValueTotal}
-          mtmPnlTotal={mtmPnlTotal}
-          pnlTotal={pnlTotal}
-        />
-        <h3>Off Balance Sheet</h3>
-        <OffBalanceSheetTable
-          unfundedCommitment={unfundedCommitment}
-          lettersOfCredit={lettersOfCredit}
-        />
+      <h2>Balance Sheet Summary</h2>
+      <BalanceSheetSummary
+        assetsTotal={assetsTotal}
+        liabilitiesTotal={liabilitiesTotal}
+        cashTotal={cashTotal}
+        loanMarketValueTotal={loanMarketValueTotal}
+        commitmentMarketValueTotal={commitmentMarketValueTotal}
+        lcMarketValueTotal={lcMarketValueTotal}
+        mtmPnlTotal={mtmPnlTotal}
+        pnlTotal={pnlTotal}
+      />
+      <h3>Off Balance Sheet</h3>
+      <OffBalanceSheetTable
+        unfundedCommitment={unfundedCommitment}
+        lettersOfCredit={lettersOfCredit}
+      />
       <div className={classes.loanDetail_journalEntries}>
         <h2>Journal Entries</h2>
         <JournalEntryTable
@@ -177,8 +152,6 @@ const LoanDetail = ({
           debitTotal={debitTotal}
           creditTotal={creditTotal}
         />
-        
-       
       </div>
     </div>
   );
