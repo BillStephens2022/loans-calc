@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const loanAccountingExampleSchema = new Schema({
+const LoanAccountingExampleSchema = new Schema({
     borrower: { type: String, required: true },
     facility: { type: String, required: true },
     commitment: { type: Number, required: true },
@@ -11,4 +11,4 @@ const loanAccountingExampleSchema = new Schema({
     loanMark: { type: Number, required: true }
 });
 
-export default mongoose.models.LoanAccountingExample || mongoose.model('LoanAccountingExample', loanAccountingExampleSchema);
+export default mongoose.models.LoanAccountingExample || mongoose.model('LoanAccountingExample', LoanAccountingExampleSchema);
