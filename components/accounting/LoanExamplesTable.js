@@ -1,11 +1,24 @@
-
+import { useState } from "react";
 import { formatAmount } from "@/util/formatting";
+import { GoTrash } from "react-icons/go";
 import Button from "../ui/Button";
 import Link from "next/link";
 import classes from "@/components/accounting/LoanExamplesTable.module.css";
 
+const LoanExamplesTable = ({ examples, onDelete }) => {
+  const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing
 
-const LoanExamplesTable = ({ examples }) => {
+  const handleDeleteExample = async (exampleId) => {
+    setLoading(true);
+    try {
+      onDelete(exampleId); // Notify parent component that example was deleted
+    } catch (error) {
+      console.error("Error deleting example:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <table className={classes.loanExamples_table}>
       <thead>
@@ -19,7 +32,8 @@ const LoanExamplesTable = ({ examples }) => {
           <th>Upfront Fees</th>
           <th>Weighted Average Cost</th>
           <th>Loan Mark</th>
-          <th>Action</th>
+          <th>View</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +56,18 @@ const LoanExamplesTable = ({ examples }) => {
               <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
               <td>{example.loanMark}</td>
               <td>
-                <Link href={`/Accounting/${example._id}`}><Button className="width_8">GL Entries</Button></Link>
+                <Link href={`/Accounting/${example._id}`}>
+                  <Button className="width_8">GL Entries</Button>
+                </Link>
+              </td>
+              <td className={classes.deleteCell}>
+                <Button
+                  className="deleteButton"
+                  onClick={() => handleDeleteExample(example._id)}
+                  disabled={loading}
+                >
+                  <GoTrash />
+                </Button>
               </td>
             </tr>
           );

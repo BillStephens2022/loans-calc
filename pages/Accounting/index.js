@@ -3,12 +3,15 @@ import useSWR from "swr";
 import PageHeader from "@/components/PageHeader";
 import LoanAccountingForm from "@/components/accounting/LoanAccountingForm";
 import LoanDetail from "@/components/accounting/LoanDetail";
-import { createLoanAccountingExample, getLoanAccountingExamples } from "@/lib/api";
+import {
+  createLoanAccountingExample,
+  getLoanAccountingExamples,
+  deleteLoanAccountingExampleById,
+} from "@/lib/api";
 import { formatAmount } from "@/util/formatting";
 import classes from "@/pages/Accounting/Accounting.module.css";
 import Button from "@/components/ui/Button";
 import LoanExamplesTable from "@/components/accounting/LoanExamplesTable";
-
 
 const initialFormData = {
   borrower: "",
@@ -24,15 +27,19 @@ const Accounting = ({ loanAccountingExamples }) => {
   const [showLoanDetail, setShowLoanDetail] = useState(false);
   const [examples, setExamples] = useState(loanAccountingExamples || {});
 
-  const { data: updatedExamples, error } = useSWR("/api/accounting/", getLoanAccountingExamples, {
-    refreshInterval: 1000,
-  });
+  const { data: updatedExamples, error } = useSWR(
+    "/api/accounting/",
+    getLoanAccountingExamples,
+    {
+      refreshInterval: 1000,
+    }
+  );
 
   useEffect(() => {
     if (updatedExamples) {
       const sortedExamples = updatedExamples.sort((a, b) =>
-      a.borrower.localeCompare(b.borrower)
-    );
+        a.borrower.localeCompare(b.borrower)
+      );
       setExamples(sortedExamples);
     }
   }, [updatedExamples]);
@@ -45,8 +52,24 @@ const Accounting = ({ loanAccountingExamples }) => {
     await createLoanAccountingExample(formData);
   };
 
-  const { borrower, facility, commitment, fundedLoan, lettersOfCredit, upfrontFee, loanMark } =
-    accountingFormData;
+  const handleDeleteExample = async (exampleId) => {
+    try {
+      await deleteLoanAccountingExampleById(exampleId);
+      setExamples(examples.filter((example) => example._id !== exampleId));
+    } catch (error) {
+      console.error("Error deleting example:", error.message);
+    }
+  };
+
+  const {
+    borrower,
+    facility,
+    commitment,
+    fundedLoan,
+    lettersOfCredit,
+    upfrontFee,
+    loanMark,
+  } = accountingFormData;
   const unfundedCommitment = commitment - fundedLoan - lettersOfCredit;
   const weightedAverageCost = (1 - upfrontFee / commitment) * 100;
   const cash = -fundedLoan + upfrontFee;
@@ -58,9 +81,11 @@ const Accounting = ({ loanAccountingExamples }) => {
 
   return (
     <div className={classes.accounting_main}>
-      <PageHeader><h1>Loan Accounting</h1></PageHeader>
+      <PageHeader>
+        <h1>Loan Accounting</h1>
+      </PageHeader>
       <div className={classes.accountingFormAndSummaryWrapper}>
-        <LoanExamplesTable examples={examples} />
+        <LoanExamplesTable examples={examples} onDelete={handleDeleteExample} />
         <div className={classes.formContainer}>
           <h2>Loan Example Input Form</h2>
           {!showLoanDetail && (

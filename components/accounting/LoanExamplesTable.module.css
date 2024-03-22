@@ -26,3 +26,8 @@
     background-color: whitesmoke;
     color: darkslateblue;
 }
+
+.deleteCell {
+    margin: auto;
+    text-align: center;
+}
