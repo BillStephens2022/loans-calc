@@ -85,7 +85,7 @@ const Accounting = ({ loanAccountingExamples }) => {
         <h1>Loan Accounting</h1>
       </PageHeader>
       <div className={classes.accountingFormAndSummaryWrapper}>
-        <LoanExamplesTable examples={examples} onDelete={handleDeleteExample} />
+        <LoanExamplesTable examples={examples} onDelete={handleDeleteExample} showButtons={true} />
         <div className={classes.formContainer}>
           <h2>Loan Example Input Form</h2>
           {!showLoanDetail && (

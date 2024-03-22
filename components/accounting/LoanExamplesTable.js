@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 import Link from "next/link";
 import classes from "@/components/accounting/LoanExamplesTable.module.css";
 
-const LoanExamplesTable = ({ examples, onDelete }) => {
+const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
   const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing
 
   const handleDeleteExample = async (exampleId) => {
@@ -32,8 +32,8 @@ const LoanExamplesTable = ({ examples, onDelete }) => {
           <th>Upfront Fees</th>
           <th>Weighted Average Cost</th>
           <th>Loan Mark</th>
-          <th>View</th>
-          <th>Delete</th>
+          {showButtons && <th>View</th>}
+          {showButtons && <th>Delete</th>}
         </tr>
       </thead>
       <tbody>
@@ -55,20 +55,24 @@ const LoanExamplesTable = ({ examples, onDelete }) => {
               <td>{formatAmount(example.upfrontFee)}</td>
               <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
               <td>{example.loanMark}</td>
-              <td>
-                <Link href={`/Accounting/${example._id}`}>
-                  <Button className="width_8">GL Entries</Button>
-                </Link>
-              </td>
-              <td className={classes.deleteCell}>
-                <Button
-                  className="deleteButton"
-                  onClick={() => handleDeleteExample(example._id)}
-                  disabled={loading}
-                >
-                  <GoTrash />
-                </Button>
-              </td>
+              {showButtons && (
+                <td>
+                  <Link href={`/Accounting/${example._id}`}>
+                    <Button className="width_8">GL Entries</Button>
+                  </Link>
+                </td>
+              )}
+              {showButtons && (
+                <td className={classes.deleteCell}>
+                  <Button
+                    className="deleteButton"
+                    onClick={() => handleDeleteExample(example._id)}
+                    disabled={loading}
+                  >
+                    <GoTrash />
+                  </Button>
+                </td>
+              )}
             </tr>
           );
         })}

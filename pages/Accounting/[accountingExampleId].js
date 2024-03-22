@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { getLoanAccountingExampleById } from "@/lib/api";
 import PageHeader from "@/components/PageHeader";
 import classes from "@/pages/Accounting/accountingExampleId.module.css";
+import LoanExamplesTable from "@/components/accounting/LoanExamplesTable";
 
 const AccountingExampleDetail = () => {
     const router = useRouter();
@@ -36,10 +37,15 @@ const AccountingExampleDetail = () => {
   return (
     <div>
     <PageHeader>
-        <h1>Example Detail</h1>
-        <h2>{accountingExampleId}</h2>
+        <h1>{example.borrower}</h1>
+        <h2>Loan Accounting Details</h2>
     </PageHeader>
-    <h1>{example.borrower}</h1>
+    <h2>Loan Facility Summary</h2>
+    <main className={classes.main}>
+        <LoanExamplesTable examples={[example]} showButtons={false} />
+
+    </main>
+  
     </div>
   );
 }
