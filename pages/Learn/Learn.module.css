@@ -6,20 +6,35 @@
 }
 
 .aside {
-    width: 20%;
+    width: 10%;
     background-color: darkslateblue;
 }
 
 .contentContainer {
-    width: 80%;
+    width: 90%;
     
 }
 
 .topicsList {
-    list-style: none;
-}
-
-.topic {
-    padding: 1rem;
-    color: white;
-}
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .topic {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-right: none;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .topic:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .topic.active {
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+  }
