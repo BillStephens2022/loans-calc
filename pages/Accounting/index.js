@@ -71,24 +71,24 @@ const Accounting = ({ loanAccountingExamples }) => {
   );
 };
 
-export async function getStaticProps() {
-  let loanAccountingExamples = [];
+// export async function getStaticProps() {
+//   let loanAccountingExamples = [];
 
-  try {
-    const loanAccountingExamplesJSON = await getLoanAccountingExamples();
-    loanAccountingExamples = loanAccountingExamplesJSON.sort((a, b) =>
-      a.borrower.localeCompare(b.borrower)
-    );
-  } catch (error) {
-    console.error(error.message);
-  }
+//   try {
+//     const loanAccountingExamplesJSON = await getLoanAccountingExamples();
+//     loanAccountingExamples = loanAccountingExamplesJSON.sort((a, b) =>
+//       a.borrower.localeCompare(b.borrower)
+//     );
+//   } catch (error) {
+//     console.error(error.message);
+//   }
 
-  return {
-    props: {
-      loanAccountingExamples,
-    },
-    revalidate: 1200, // Re-generate page every 1200 seconds (20 minutes)
-  };
-}
+//   return {
+//     props: {
+//       loanAccountingExamples,
+//     },
+//     revalidate: 1200, // Re-generate page every 1200 seconds (20 minutes)
+//   };
+// }
 
 export default Accounting;
