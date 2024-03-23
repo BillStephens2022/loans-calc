@@ -1,5 +1,5 @@
 import { formatAmount } from "@/util/formatting";
-import classes from "@/components/accounting/BalanceSheetSummary.module.css";
+import classes from "@/components/accounting/balanceSheetSummary.module.css";
 
 const BalanceSheetSummary = ({
   assetsTotal,

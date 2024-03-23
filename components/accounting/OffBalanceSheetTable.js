@@ -1,5 +1,5 @@
 import { formatAmount } from "@/util/formatting";
-import classes from "@/components/accounting/OffBalanceSheetTable.module.css";
+import classes from "@/components/accounting/offBalanceSheetTable.module.css";
 
 const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit }) => {
   return (

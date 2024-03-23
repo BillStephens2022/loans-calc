@@ -1,4 +1,4 @@
-import classes from "@/components/learn/FacilityTypes.module.css";
+import classes from "@/components/learn/facilityTypes.module.css";
 
 const FacilityTypes = () => {
   return (
@@ -59,7 +59,7 @@ const FacilityTypes = () => {
         is no commitment from the lender, uncommitted facilities may offer
         greater flexibility but can also carry higher interest rates or fees.
       </p>
-      
+
     </div>
   );
 };

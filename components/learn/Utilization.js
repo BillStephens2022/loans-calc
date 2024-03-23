@@ -1,4 +1,4 @@
-import classes from "@/components/learn/Utilization.module.css";
+import classes from "@/components/learn/utilization.module.css";
 
 const Utilization = () => {
   return (

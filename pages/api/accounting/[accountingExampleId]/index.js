@@ -1,7 +1,7 @@
 // route: api/accounting/[accountingExampleId]
 
 import dbConnect from "@/lib/db";
-import LoanAccountingExample from "@/models/LoanAccountingExample";
+import LoanAccountingExample from "@/models/loanAccountingExample";
 
 const handler = async (req, res) => {
   await dbConnect();

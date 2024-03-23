@@ -1,10 +1,10 @@
 import { useState } from "react";
-import PageHeader from "@/components/PageHeader";
-import FrontingForm from "@/components/fronting/FrontingForm";
-import Button from "@/components/ui/Button";
+import PageHeader from "@/components/pageHeader";
+import FrontingForm from "@/components/fronting/frontingForm";
+import Button from "@/components/ui/button";
 import { formatAmount } from "@/util/formatting";
-import classes from "@/pages/Fronting/Fronting.module.css";
-import FrontingExampleSummary from "@/components/fronting/FrontingExampleSummary";
+import classes from "@/pages/Fronting/fronting.module.css";
+import FrontingExampleSummary from "@/components/fronting/frontingExampleSummary";
 
 const Fronting = () => {
   const [formData, setFormData] = useState(null);

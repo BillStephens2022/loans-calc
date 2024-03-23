@@ -49,7 +49,7 @@ const Navbar = () => {
             </li>
             <li className={classes.nav_item}>
               <Link
-                href="/Learn"
+                href="/learn"
                 className={`${classes.nav_item} ${classes.nav_link} ${
                   router.pathname === "/Learn" ? classes.active : ""
                 }`}
@@ -60,7 +60,7 @@ const Navbar = () => {
               </li>
             <li className={classes.nav_item}>
               <Link
-                href="/Accounting"
+                href="/accounting"
                 className={`${classes.nav_item} ${classes.nav_link} ${
                   router.pathname === "/Accounting" ? classes.active : ""
                 }`}
@@ -71,7 +71,7 @@ const Navbar = () => {
             </li>
             <li className={classes.nav_item}>
               <Link
-                href="/Fronting"
+                href="/fronting"
                 className={`${classes.nav_item} ${classes.nav_link} ${
                   router.pathname === "/Fronting" ? classes.active : ""
                 }`}

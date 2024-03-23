@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../ui/Button";
-import classes from "@/components/fronting/FrontingForm.module.css";
+import Button from "../ui/button";
+import classes from "@/components/fronting/frontingForm.module.css";
 
 const initialFormData = {
   borrower: "Fenway Park LLC",

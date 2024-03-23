@@ -1,11 +1,11 @@
-// route: /Accounting/[exampleId]
+// route: /accounting/[exampleId]
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getLoanAccountingExampleById } from "@/lib/api";
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "@/components/pageHeader";
 import classes from "@/pages/Accounting/accountingExampleId.module.css";
-import LoanExamplesTable from "@/components/accounting/LoanExamplesTable";
-import LoanDetail from "@/components/accounting/LoanDetail";
+import LoanExamplesTable from "@/components/accounting/loanExamplesTable";
+import LoanDetail from "@/components/accounting/loanDetail";
 
 const AccountingExampleDetail = () => {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import classes from "@/components/fronting/FrontingExampleSummary.module.css";
+import classes from "@/components/fronting/frontingExampleSummary.module.css";
 import { formatAmount } from "@/util/formatting";
 const FrontingExampleSummary = ({
   borrower,

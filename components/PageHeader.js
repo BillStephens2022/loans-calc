@@ -1,4 +1,4 @@
-import classes from "@/components/PageHeader.module.css";
+import classes from "@/components/pageHeader.module.css";
 
 const PageHeader = ({ children }) => {
     return <div className={classes.accounting_header}>{children}</div>;

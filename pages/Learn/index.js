@@ -1,9 +1,9 @@
 import { useState } from "react";
-import PageHeader from "@/components/PageHeader";
-import LoanTypes from "@/components/learn/LoanTypes";
-import FacilityTypes from "@/components/learn/FacilityTypes";
-import Utilization from "@/components/learn/Utilization";
-import classes from "@/pages/Learn/Learn.module.css";
+import PageHeader from "@/components/pageHeader";
+import LoanTypes from "@/components/learn/loanTypes";
+import FacilityTypes from "@/components/learn/facilityTypes";
+import Utilization from "@/components/learn/utilization";
+import classes from "@/pages/Learn/learn.module.css";
 
 const Learn = () => {
   const [topic, setTopic] = useState({ type: "loan", content: <LoanTypes /> });
