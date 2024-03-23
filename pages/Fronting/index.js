@@ -3,7 +3,7 @@ import PageHeader from "@/components/pageHeader";
 import FrontingForm from "@/components/fronting/frontingForm";
 import Button from "@/components/ui/button";
 import { formatAmount } from "@/util/formatting";
-import classes from "@/pages/Fronting/fronting.module.css";
+import classes from "@/pages/fronting/fronting.module.css";
 import FrontingExampleSummary from "@/components/fronting/frontingExampleSummary";
 
 const Fronting = () => {
