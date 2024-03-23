@@ -49,6 +49,17 @@ const Navbar = () => {
             </li>
             <li className={classes.nav_item}>
               <Link
+                href="/Learn"
+                className={`${classes.nav_item} ${classes.nav_link} ${
+                  router.pathname === "/Learn" ? classes.active : ""
+                }`}
+                onClick={handleLinkClick}
+              >
+                Learn
+              </Link>
+              </li>
+            <li className={classes.nav_item}>
+              <Link
                 href="/Accounting"
                 className={`${classes.nav_item} ${classes.nav_link} ${
                   router.pathname === "/Accounting" ? classes.active : ""
