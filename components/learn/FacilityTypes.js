@@ -47,6 +47,19 @@ const FacilityTypes = () => {
         used for financing projects with phased funding requirements or
         uncertain timing of capital needs.
       </p>
+
+      <h3>Uncommitted Facilities</h3>
+      <p>
+        Uncommitted facilities are types of credit arrangements where the lender
+        provides a credit line to the borrower, but is not obligated to extend
+        the funds. In other words, the lender has the discretion to lend or
+        not, depending on the circumstances. These facilities are typically
+        used for short-term financing needs and are less formal compared to
+        committed credit facilities like revolvers or term loans. Since there
+        is no commitment from the lender, uncommitted facilities may offer
+        greater flexibility but can also carry higher interest rates or fees.
+      </p>
+      
     </div>
   );
 };
