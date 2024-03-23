@@ -59,7 +59,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
               <td>{formatAmount(example.commitment * (example.loanMark / 100 - (1 - example.upfrontFee / example.commitment)))}</td>
               {showButtons && (
                 <td>
-                  <Link href={`/Accounting/${example._id}`}>
+                  <Link href={`/accounting/${example._id}`}>
                     <Button className="width_8">View Accounting Details</Button>
                   </Link>
                 </td>

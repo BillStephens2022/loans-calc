@@ -43,7 +43,7 @@ const BalanceSheetSummary = ({
           </p>
         </div>
         <h4>Total Liabilities + Owner's Equity: $ {formatAmount(liabilitiesTotal + pnlTotal)}</h4>
-        <caption className={classes.table_caption}>Note: Losses are Debits (positive), Gains are Credits (negative)</caption>
+        <div className={classes.table_caption}>Note: Losses are Debits (positive), Gains are Credits (negative)</div>
       </div>
     </div>
   );
