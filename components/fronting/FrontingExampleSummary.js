@@ -22,11 +22,14 @@ const FrontingExampleSummary = ({
 }) => {
   return (
     <div className={classes.mainContainer}>
+       <h2 className={classes.mainHeaderExample}>Example Summary</h2>
       <div className={classes.mainHeader}>
-        <h2 className={classes.mainHeaderExample}>Example Summary</h2>
+        
         <table className={classes.table}>
-            <caption className={classes.tableHeaderRoles}>Roles</caption>
-          <tr className={classes.tableRow}>
+        <div className={classes.tableHeaderRoles}>Roles</div>
+          <tbody>
+            
+          <tr className={classes.tableRow}> 
             <td className={classes.tableCell}>Your Bank's Name</td>
             <td className={classes.tableCell}>{yourBankName}</td>
           </tr>
@@ -46,6 +49,7 @@ const FrontingExampleSummary = ({
               <td className={classes.tableCell}>{yourBankName}</td>
             </tr>
           )}
+          </tbody>
         </table>
       </div>
 
