@@ -1,49 +1,40 @@
 import classes from "@/components/learn/Utilization.module.css";
 
 const Utilization = () => {
-    return (
-      <div className={classes.main}>
-        <h2>Utilization</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Commodo viverra
-          maecenas accumsan lacus vel. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Etiam non quam lacus suspendisse faucibus interdum
-          posuere lorem ipsum. Id faucibus nisl tincidunt eget nullam. Massa id
-          neque aliquam vestibulum morbi blandit. Aliquam eleifend mi in nulla
-          posuere. Ultrices neque ornare aenean euismod elementum nisi quis
-          eleifend. In dictum non consectetur a erat nam. Viverra tellus in hac
-          habitasse platea. Integer enim neque volutpat ac. Integer quis auctor
-          elit sed vulputate mi sit amet mauris. In nisl nisi scelerisque eu
-          ultrices vitae auctor eu augue. Netus et malesuada fames ac turpis
-          egestas. Senectus et netus et malesuada fames ac. Morbi enim nunc
-          faucibus a pellentesque sit. In fermentum et sollicitudin ac orci
-          phasellus egestas tellus. Et malesuada fames ac turpis egestas integer
-          eget aliquet nibh. Sagittis id consectetur purus ut faucibus pulvinar.
-          Leo integer malesuada nunc vel risus commodo viverra. Habitasse platea
-          dictumst quisque sagittis purus sit amet volutpat. Vulputate sapien nec
-          sagittis aliquam malesuada bibendum arcu vitae elementum. In arcu cursus
-          euismod quis viverra. Egestas sed tempus urna et pharetra pharetra massa
-          massa. Purus viverra accumsan in nisl nisi scelerisque eu ultrices
-          vitae. Sed nisi lacus sed viverra tellus. Interdum posuere lorem ipsum
-          dolor sit amet consectetur adipiscing. Egestas integer eget aliquet nibh
-          praesent. Sed adipiscing diam donec adipiscing tristique risus nec.
-          Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada
-          bibendum. Nibh mauris cursus mattis molestie a iaculis at erat
-          pellentesque. At tempor commodo ullamcorper a lacus vestibulum.
-          Penatibus et magnis dis parturient montes nascetur ridiculus. A
-          pellentesque sit amet porttitor eget dolor morbi non arcu. Lacus
-          vestibulum sed arcu non odio euismod. Dui accumsan sit amet nulla
-          facilisi morbi tempus iaculis. Nibh cras pulvinar mattis nunc sed
-          blandit. Orci eu lobortis elementum nibh tellus molestie nunc. Platea
-          dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim
-          cras. Donec massa sapien faucibus et molestie. Est ullamcorper eget
-          nulla facilisi etiam. Diam quis enim lobortis scelerisque fermentum dui
-          faucibus in. Massa tempor nec feugiat nisl pretium fusce id velit.
-          Curabitur vitae nunc sed velit.
-        </p>
-      </div>
-    );
-  };
-  
-  export default Utilization;
+  return (
+    <div className={classes.main}>
+      <h1>Loan Faciilty Utilization</h1>
+
+      <h3>Drawn Loans</h3>
+      <p>
+        Drawn loans refer to the portion of a loan facility that has been
+        accessed or utilized by the borrower. When a borrower draws down funds
+        from a loan facility, it becomes a drawn loan. Drawn loans are typically
+        subject to repayment terms, including interest payments and scheduled
+        repayments, as outlined in the loan agreement.
+      </p>
+
+      <h3>Letters of Credit</h3>
+      <p>
+        Letters of credit (LCs) are financial instruments commonly used in
+        international trade to facilitate transactions between buyers and
+        sellers. From the perspective of loan utilization, letters of credit
+        represent a form of contingent liability, where a borrower may utilize
+        the credit facility by obtaining LCs to guarantee payment for goods or
+        services provided by suppliers or vendors.
+      </p>
+
+      <h3>Undrawn Commitments</h3>
+      <p>
+        Undrawn commitments refer to the portion of a loan facility that has
+        been approved but remains untapped by the borrower. Lenders extend
+        undrawn commitments to borrowers as a line of credit or credit limit,
+        allowing them to access funds as needed within specified terms and
+        conditions. Unlike drawn loans, undrawn commitments do not incur
+        interest or require immediate repayment until utilized by the borrower.
+      </p>
+    </div>
+  );
+};
+
+export default Utilization;

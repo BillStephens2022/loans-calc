@@ -3,3 +3,15 @@
     background-color: lightseagreen;
     color: midnightblue;
 }
+
+.main h2 {
+    font-size: 2rem;
+}
+
+.main h3 {
+    font-size: 1.75rem;
+}
+
+.main p {
+    font-size: 1.25rem;
+}

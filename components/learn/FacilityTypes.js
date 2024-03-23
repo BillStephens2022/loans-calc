@@ -1,50 +1,54 @@
 import classes from "@/components/learn/FacilityTypes.module.css";
 
 const FacilityTypes = () => {
-    return (
-      <div className={classes.main}>
-        <h2>Facility Types</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Commodo viverra
-          maecenas accumsan lacus vel. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Etiam non quam lacus suspendisse faucibus interdum
-          posuere lorem ipsum. Id faucibus nisl tincidunt eget nullam. Massa id
-          neque aliquam vestibulum morbi blandit. Aliquam eleifend mi in nulla
-          posuere. Ultrices neque ornare aenean euismod elementum nisi quis
-          eleifend. In dictum non consectetur a erat nam. Viverra tellus in hac
-          habitasse platea. Integer enim neque volutpat ac. Integer quis auctor
-          elit sed vulputate mi sit amet mauris. In nisl nisi scelerisque eu
-          ultrices vitae auctor eu augue. Netus et malesuada fames ac turpis
-          egestas. Senectus et netus et malesuada fames ac. Morbi enim nunc
-          faucibus a pellentesque sit. In fermentum et sollicitudin ac orci
-          phasellus egestas tellus. Et malesuada fames ac turpis egestas integer
-          eget aliquet nibh. Sagittis id consectetur purus ut faucibus pulvinar.
-          Leo integer malesuada nunc vel risus commodo viverra. Habitasse platea
-          dictumst quisque sagittis purus sit amet volutpat. Vulputate sapien nec
-          sagittis aliquam malesuada bibendum arcu vitae elementum. In arcu cursus
-          euismod quis viverra. Egestas sed tempus urna et pharetra pharetra massa
-          massa. Purus viverra accumsan in nisl nisi scelerisque eu ultrices
-          vitae. Sed nisi lacus sed viverra tellus. Interdum posuere lorem ipsum
-          dolor sit amet consectetur adipiscing. Egestas integer eget aliquet nibh
-          praesent. Sed adipiscing diam donec adipiscing tristique risus nec.
-          Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada
-          bibendum. Nibh mauris cursus mattis molestie a iaculis at erat
-          pellentesque. At tempor commodo ullamcorper a lacus vestibulum.
-          Penatibus et magnis dis parturient montes nascetur ridiculus. A
-          pellentesque sit amet porttitor eget dolor morbi non arcu. Lacus
-          vestibulum sed arcu non odio euismod. Dui accumsan sit amet nulla
-          facilisi morbi tempus iaculis. Nibh cras pulvinar mattis nunc sed
-          blandit. Orci eu lobortis elementum nibh tellus molestie nunc. Platea
-          dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim
-          cras. Donec massa sapien faucibus et molestie. Est ullamcorper eget
-          nulla facilisi etiam. Diam quis enim lobortis scelerisque fermentum dui
-          faucibus in. Massa tempor nec feugiat nisl pretium fusce id velit.
-          Curabitur vitae nunc sed velit.
-        </p>
-      </div>
-    );
-  };
-  
-  export default FacilityTypes;
+  return (
+    <div className={classes.main}>
+      <h2>Loan Facility Types in Corporate Financing</h2>
+      <h3>Revolver</h3>
+      <p>
+        A revolver, short for revolving credit facility, is a type of loan that
+        provides a borrower with the flexibility to withdraw, repay, and redraw
+        funds up to a specified credit limit over a predetermined period.
+        Similar to a credit card, a revolver allows borrowers to access funds as
+        needed, making it suitable for managing short-term working capital
+        requirements or financing fluctuating expenses.
+      </p>
 
+      <h3>Term Loan</h3>
+      <p>
+        A term loan is a traditional form of corporate financing where a lender
+        extends a fixed amount of funds to a borrower for a specified period,
+        typically ranging from one to ten years. Unlike a revolver, term loans
+        are repaid in regular installments, often with a fixed or variable
+        interest rate. Term loans are commonly used to finance long-term
+        investments such as equipment purchases, real estate acquisitions, or
+        business expansions.
+      </p>
+
+      <h3>Letter of Credit</h3>
+      <p>
+        A letter of credit (LC) is a financial instrument issued by a bank on
+        behalf of a buyer (applicant) to guarantee payment to a seller
+        (beneficiary) for goods or services provided. In a corporate context,
+        letters of credit serve as a form of trade finance, facilitating
+        international transactions by mitigating the risk of non-payment. By
+        providing assurance of payment, letters of credit help build trust
+        between parties involved in cross-border trade.
+      </p>
+
+      <h3>Delayed Draw Term Loan</h3>
+      <p>
+        A delayed draw term loan is a structured loan facility that allows
+        borrowers to access funds in multiple disbursements over a specified
+        period, known as the drawdown period. Unlike a traditional term loan
+        where the entire loan amount is disbursed upfront, a delayed draw term
+        loan provides flexibility by enabling borrowers to request funds as
+        needed during the drawdown period. This type of facility is commonly
+        used for financing projects with phased funding requirements or
+        uncertain timing of capital needs.
+      </p>
+    </div>
+  );
+};
+
+export default FacilityTypes;
