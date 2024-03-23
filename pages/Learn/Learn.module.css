@@ -10,9 +10,20 @@
     background-color: darkslateblue;
 }
 
+.topicsList_header {
+    background-color: darkslateblue;
+    color: white;
+    padding: 0.5rem;
+    margin: 0 auto 0.5rem auto;
+    text-align: center;
+    text-transform: uppercase;
+    border: 2px solid white;
+    width: 80%;
+    
+}
+
 .contentContainer {
     width: 90%;
-    
 }
 
 .topicsList {

@@ -19,6 +19,7 @@ const Learn = () => {
       </PageHeader>
       <main className={classes.main}>
         <aside className={classes.aside}>
+          <h3 className={classes.topicsList_header}>Topics</h3>
           <ul className={classes.topicsList}>
             <li
               className={`${classes.topic} ${

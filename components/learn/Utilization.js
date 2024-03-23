@@ -3,7 +3,7 @@ import classes from "@/components/learn/Utilization.module.css";
 const Utilization = () => {
   return (
     <div className={classes.main}>
-      <h1>Loan Faciilty Utilization</h1>
+      <h1>Loan Facility Utilization</h1>
 
       <h3>Drawn Loans</h3>
       <p>
