@@ -1,4 +1,4 @@
-import classes from "@/components/learn/loanTypes.module.css";
+import classes from "./loanTypes.module.css";
 
 const LoanTypes = () => {
   return (

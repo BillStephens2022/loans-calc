@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import classes from "@/pages/home.module.css";
+import classes from "./home.module.css";
 
 const Home = () => {
   return (

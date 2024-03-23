@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getLoanAccountingExampleById } from "@/lib/api";
-import PageHeader from "@/components/pageHeader";
-import classes from "@/pages/accounting/accountingExampleId.module.css";
-import LoanExamplesTable from "@/components/accounting/loanExamplesTable";
-import LoanDetail from "@/components/accounting/loanDetail";
+import PageHeader from "../../components/pageHeader"
+import classes from "./accountingExampleId.module.css"
+import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
+import LoanDetail from "../../components/accounting/loanDetail";
 
 const AccountingExampleDetail = () => {
   const router = useRouter();

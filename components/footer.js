@@ -1,6 +1,5 @@
 import Link from "next/link";
-// import { GoPasskeyFill } from "react-icons/go";
-import classes from "@/components/footer.module.css";
+import classes from "./footer.module.css";
 
 const Footer = () => {
   return (

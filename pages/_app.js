@@ -1,7 +1,7 @@
 
 import Head from "next/head";
-import Layout from "@/components/layout";
-import "@/styles/globals.css";
+import Layout from "../components/layout";
+import "../styles/globals.css";
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (

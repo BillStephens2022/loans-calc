@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import PageHeader from "@/components/pageHeader";
-import LoanAccountingForm from "@/components/accounting/loanAccountingForm";
+import PageHeader from "../../components/pageHeader";
+import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
 import {
   createLoanAccountingExample,
   getLoanAccountingExamples,
   deleteLoanAccountingExampleById,
-} from "@/lib/api";
-import classes from "@/pages/accounting/accounting.module.css";
-import LoanExamplesTable from "@/components/accounting/loanExamplesTable";
-import Button from "@/components/ui/button";
+} from "../../lib/api";
+import classes from "./accounting.module.css";
+import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
+import Button from "../../components/ui/button";
 
 // Accounting Page
 

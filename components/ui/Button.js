@@ -1,4 +1,4 @@
-import classes from "@/components/ui/button.module.css";
+import classes from "./button.module.css";
 
 
 

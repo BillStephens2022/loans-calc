@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { formatAmount } from "@/util/formatting";
-import { GoTrash } from "react-icons/go";
-import Button from "../ui/button";
 import Link from "next/link";
-import classes from "@/components/accounting/loanExamplesTable.module.css";
+import { GoTrash } from "react-icons/go";
+import { formatAmount } from "../../util/formatting";
+import Button from "../ui/button";
+import classes from "./loanExamplesTable.module.css";
 
 const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
   const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing

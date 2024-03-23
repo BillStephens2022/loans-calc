@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "@/components/ui/button";
-import classes from "@/components/accounting/loanAccountingForm.module.css";
+import Button from "../ui/button";
+import classes from "./loanAccountingForm.module.css";
 
 const LoanAccountingForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({

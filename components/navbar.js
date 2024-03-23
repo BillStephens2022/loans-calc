@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import classes from "@/components/navbar.module.css";
+import classes from "./navbar.module.css";
 
 const Navbar = () => {
 

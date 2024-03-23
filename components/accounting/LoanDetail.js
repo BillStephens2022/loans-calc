@@ -1,8 +1,8 @@
-import { JournalEntry } from "@/util/helperClasses";
-import JournalEntryTable from "@/components/accounting/journalEntryTable";
-import OffBalanceSheetTable from "@/components/accounting/offBalanceSheetTable";
-import BalanceSheetSummary from "@/components/accounting/balanceSheetSummary";
-import classes from "@/components/accounting/loanDetail.module.css";
+import { JournalEntry } from "../../util/helperClasses";
+import JournalEntryTable from "./journalEntryTable";
+import OffBalanceSheetTable from "./offBalanceSheetTable";
+import BalanceSheetSummary from "./balanceSheetSummary";
+import classes from "./loanDetail.module.css";
 
 const LoanDetail = ({
   borrower,

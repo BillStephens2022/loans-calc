@@ -1,5 +1,5 @@
-import { formatAmount } from "@/util/formatting";
-import classes from "@/components/accounting/journalEntryTable.module.css";
+import { formatAmount } from "../../util/formatting";
+import classes from "./journalEntryTable.module.css";
 
 const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
 

@@ -1,8 +1,8 @@
 // /api/accounting
 // route used for adding new loan accounting examples, getting all loan examples
 
-import dbConnect from "@/lib/db";
-import LoanAccountingExample from "@/models/loanAccountingExample";
+import dbConnect from "../../../lib/db";
+import LoanAccountingExample from "../../../models/loanAccountingExample";
 
 const handler = async (req, res) => {
   await dbConnect();

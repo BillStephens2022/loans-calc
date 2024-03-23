@@ -1,4 +1,4 @@
-import classes from "@/components/learn/facilityTypes.module.css";
+import classes from "./facilityTypes.module.css";
 
 const FacilityTypes = () => {
   return (
