@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import path, { dirname } from "path";
+import path, { __dirname } from "path";
 
 const nextConfig = {
   reactStrictMode: true,
