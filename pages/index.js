@@ -12,25 +12,29 @@ const Home = () => {
       <main className={classes.home_main}>
         <div className={classes.home_header_container}>
           <ul className={classes.home_header_ul}>
-            <li>C</li>
-            <li>O</li>
-            <li>R</li>
-            <li>P</li>
-            <li>O</li>
-            <li>R</li>
-            <li>A</li>
-            <li>T</li>
-            <li>E</li>
-            <li>&nbsp;</li>
-            <li>L</li>
-            <li>O</li>
-            <li>A</li>
-            <li>N</li>
-            <li>S</li>
+            <li className={classes.home_header_li}>C</li>
+            <li className={classes.home_header_li}>O</li>
+            <li className={classes.home_header_li}>R</li>
+            <li className={classes.home_header_li}>P</li>
+            <li className={classes.home_header_li}>O</li>
+            <li className={classes.home_header_li}>R</li>
+            <li className={classes.home_header_li}>A</li>
+            <li className={classes.home_header_li}>T</li>
+            <li className={classes.home_header_li}>E</li>
+            <li className={classes.home_header_li}>&nbsp;</li>
+            <li className={classes.home_header_li}>L</li>
+            <li className={classes.home_header_li}>O</li>
+            <li className={classes.home_header_li}>A</li>
+            <li className={classes.home_header_li}>N</li>
+            <li className={classes.home_header_li}>S</li>
           </ul>
         </div>
         <h2 className={classes.home_subheader}>Accounting & Risk Examples</h2>
         <div className={classes.featuresContainer}>
+        <Link href="/Learn" className={classes.featureBox}>
+              <h3>Learn</h3>
+              <p>Learn about different types of Corporate Loans, their features and the economics.</p>
+            </Link>
           
             <Link href="/Accounting" className={classes.featureBox}>
               <h3>Accounting Examples</h3>
