@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getLoanAccountingExampleById } from "@/lib/api";
 import PageHeader from "@/components/pageHeader";
-import classes from "@/pages/Accounting/accountingExampleId.module.css";
+import classes from "@/pages/accounting/accountingExampleId.module.css";
 import LoanExamplesTable from "@/components/accounting/loanExamplesTable";
 import LoanDetail from "@/components/accounting/loanDetail";
 

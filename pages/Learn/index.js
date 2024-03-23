@@ -3,7 +3,7 @@ import PageHeader from "@/components/pageHeader";
 import LoanTypes from "@/components/learn/loanTypes";
 import FacilityTypes from "@/components/learn/facilityTypes";
 import Utilization from "@/components/learn/utilization";
-import classes from "@/pages/Learn/learn.module.css";
+import classes from "@/pages/learn/learn.module.css";
 
 const Learn = () => {
   const [topic, setTopic] = useState({ type: "loan", content: <LoanTypes /> });

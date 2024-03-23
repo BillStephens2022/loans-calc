@@ -1,13 +1,10 @@
-// import { useSession } from "next-auth/react";
 import { Fragment, useState } from "react";
-// import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-// import Button from "@/components/buttons/button";
-import classes from "@/components/Navbar.module.css";
+import classes from "@/components/navbar.module.css";
 
 const Navbar = () => {
-//   const { data: session } = useSession();
+
   const [isChecked, setIsChecked] = useState(false);
 
   const router = useRouter();
@@ -15,10 +12,6 @@ const Navbar = () => {
   const handleLinkClick = () => {
     setIsChecked(false);
   };
-
-//   const logoutHandler = () => {
-//     signOut();
-//   }
 
   return (
     <Fragment>
@@ -51,7 +44,7 @@ const Navbar = () => {
               <Link
                 href="/learn"
                 className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/Learn" ? classes.active : ""
+                  router.pathname === "/learn" ? classes.active : ""
                 }`}
                 onClick={handleLinkClick}
               >
@@ -62,7 +55,7 @@ const Navbar = () => {
               <Link
                 href="/accounting"
                 className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/Accounting" ? classes.active : ""
+                  router.pathname === "/accounting" ? classes.active : ""
                 }`}
                 onClick={handleLinkClick}
               >
@@ -73,7 +66,7 @@ const Navbar = () => {
               <Link
                 href="/fronting"
                 className={`${classes.nav_item} ${classes.nav_link} ${
-                  router.pathname === "/Fronting" ? classes.active : ""
+                  router.pathname === "/fronting" ? classes.active : ""
                 }`}
                 onClick={handleLinkClick}
               >

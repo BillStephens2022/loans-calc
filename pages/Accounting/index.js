@@ -7,7 +7,7 @@ import {
   getLoanAccountingExamples,
   deleteLoanAccountingExampleById,
 } from "@/lib/api";
-import classes from "@/pages/Accounting/accounting.module.css";
+import classes from "@/pages/accounting/accounting.module.css";
 import LoanExamplesTable from "@/components/accounting/loanExamplesTable";
 import Button from "@/components/ui/button";
 
