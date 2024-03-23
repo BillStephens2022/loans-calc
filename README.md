@@ -1,10 +1,12 @@
 # Loan Accounting & Risk Examples
 
-## *** This is a work in process *** - ultimately will be building backend to handle viewing all entered examples, also will be addding error handling on forms and fine tuning calculations. CSS Styling is still pretty basic and not yet responsive for mobile.  Will also be adding pages to explain various Corporate Loan concepts (descriptions of loan types, loan ecomics, loan features, etc). So....MUCH more to come!
+## *** This is a work in process *** - ultimately will be building backend to handle viewing all entered examples, also will be adding error handling on forms and fine tuning calculations. CSS Styling is still pretty basic and not yet responsive for mobile.  Will also be adding pages to explain various Corporate Loan concepts (descriptions of loan types, loan ecomics, loan features, etc). So....MUCH more to come!
 
 This Corporate Loan Accounting Training application is built using Next.js / React.js.
 
 So far, this is what has been built:
+
+On the Learning page, users can toggle between topics to learn more about corporate loans.
 
 On the Loan Accounting page, users can enter sample loan transaction terms - once entered, journal entries will be generated as well as a balance sheet and off balance sheet view of the entered transaction.
 
@@ -21,6 +23,8 @@ fronting risks based on the underlying loan facility's sublimits.
 
 ### Loan Accounting - User can enter example loan transaction details and the balance sheet, off balance sheet, and similated journal entries will be calculated and rendered on the screen. 
 
+#### Learning Page
+![learning page](/public/screenshot10.png)
 
 #### Loan transaction entry form
 ![loan transaction entry form](/public/screenshot1.png)
