@@ -7,11 +7,15 @@
   justify-content: center;
 }
 
-.accountingFormAndSummaryWrapper {
+.accountingExamplesTableContainer {
   display: flex;
   flex-direction: column;
+  margin: auto;
+  align-items: flex-start;
   padding: 0 1rem;
-  min-height: 75vh;
+  min-height: 70vh;
+  overflow-x: auto; /* Add a horizontal scrollbar when the table overflows */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .formAndButtonContainer {

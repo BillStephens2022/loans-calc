@@ -5,6 +5,7 @@
   border-radius: 0.5rem;
   margin: auto;
   padding: 0.5rem;
+  text-wrap: wrap;
 }
 
 .m_half {
@@ -17,6 +18,18 @@
 
 .width_8 {
   width: 8rem;
+}
+
+
+@media (max-width: 1660px) {
+  .width_8 {
+    width: 5rem;
+  }
+}
+@media (max-width: 1024px) {
+  .width_8 {
+    width: 4rem;
+  }
 }
 
 .deleteButton {

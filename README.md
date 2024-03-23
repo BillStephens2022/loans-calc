@@ -11,6 +11,7 @@ On the Loan Accounting page, users can enter sample loan transaction terms - onc
 On the Fronting page, users can enter sample loan transaction terms - once entered, the application will calculate potential fronting exposure risks based on details entered. This calculates Swingline & Issued LC
 fronting risks based on the underlying loan facility's sublimits.
 
+## Deployed URL: https://corporate-loans.vercel.app/accounting
 
 ## Screenshots of App
 

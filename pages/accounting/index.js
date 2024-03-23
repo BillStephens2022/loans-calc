@@ -60,7 +60,7 @@ const Accounting = ({ loanAccountingExamples }) => {
         </div>
       )}
       </div>
-      <div className={classes.accountingFormAndSummaryWrapper}>
+      <div className={classes.accountingExamplesTableContainer}>
         <LoanExamplesTable
           examples={examples}
           onDelete={handleDeleteExample}

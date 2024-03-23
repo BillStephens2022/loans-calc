@@ -1,36 +1,49 @@
 .loanExamples_table {
-    padding: 5px;
-    border: 5px solid darkslateblue;
-    background-color: darkgray;
-    margin-bottom: 2rem;
-    overflow: auto;
-
+  padding: 5px;
+  border: 5px solid darkslateblue;
+  background-color: darkgray;
+  margin-bottom: 2rem;
 }
 
 .loanExamples_table thead tr th,
 .loanExamples_table tbody tr td {
-    padding: 0.5rem;
-    min-width: 7rem;
-    max-width: 12rem;
+  padding: 0.5rem;
+  min-width: 7rem;
+  max-width: 10rem;
+  text-wrap: wrap;
 }
 
 .loanExamples_table thead tr {
-    background-color: darkslateblue;
-    color: white;
+  background-color: darkslateblue;
+  color: white;
 }
 
 .loanDetail_summary_table tbody tr {
-    background-color: white;
-    color: darkslateblue;
+  background-color: white;
+  color: darkslateblue;
 }
 
 .loanExamples_table tbody tr td {
-    text-align: right;
-    background-color: whitesmoke;
-    color: darkslateblue;
+  text-align: right;
+  background-color: whitesmoke;
+  color: darkslateblue;
 }
 
 .deleteCell {
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
+}
+
+@media (max-width: 1660px) {
+  .loanExamples_table {
+    font-size: 0.75rem;
+  }
+
+  .loanExamples_table thead tr th,
+  .loanExamples_table tbody tr td {
+    padding: 0.5rem;
+    min-width: 5rem;
+    max-width: 7rem;
+    max-height: 6rem;
+  }
 }
