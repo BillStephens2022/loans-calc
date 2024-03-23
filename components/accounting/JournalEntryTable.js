@@ -29,6 +29,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
       </thead>
       <tbody>
         {journalEntries.map((entry, index) => (
+          entry.amount !== 0 && (
           <tr key={index} className={classes.tableRow}>
             <td className={classes.tableCell}>{entry.account}</td>
             <td className={classes.tableCell}>{entry.highLevelCategory}</td>
@@ -41,6 +42,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
             </td>
             <td>{entry.calculationText}</td>
           </tr>
+          )
         ))}
         <tr className={classes.tableRow}>
           <td className={classes.tableCell}>
