@@ -3,7 +3,7 @@ import classes from "./facilityTypes.module.css";
 const FacilityTypes = () => {
   return (
     <div className={classes.main}>
-      <h2>Loan Facility Types in Corporate Financing</h2>
+      <h2>Loan Facility Types</h2>
       <h3>Revolver</h3>
       <p>
         A revolver, short for revolving credit facility, is a type of loan that
