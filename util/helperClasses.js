@@ -3,7 +3,7 @@ const accountCategoryMapping = {
   Cash: ["Assets", "Cash & Cash Equivalents"],
   "Loan Principal": ["Assets", "Loan Market Value"],
   "Loan Discount/Premium": ["Assets", "Loan Market Value"],
-  "Deferred Fees - Unfunded": ["Liabilities", "Commitment Market Value"],
+  "Deferred Fees - Unfunded": ["Liabilities", "Unfunded Commitment Market Value"],
   "Deferred Fees - LC": ["Liabilities", "LC/Guarantee Market Value"],
   "Funded Loan MTM B/S": ["Assets", "Loan Market Value"],
   "Unfunded Commitment MTM B/S": [

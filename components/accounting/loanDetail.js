@@ -107,7 +107,7 @@ const LoanDetail = ({
 
   const commitmentMarketValueTotal = journalEntries.reduce(
     (total, entry) =>
-      entry.category == "Commitment Market Value"
+      entry.category == "Unfunded Commitment Market Value"
         ? total + entry.amount
         : total,
     0
