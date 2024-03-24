@@ -34,3 +34,30 @@
     text-align: right;
     margin-bottom: 0.5rem;
 }
+
+
+
+@media (max-width: 767px) {
+    .frontingForm {
+        width: 90vw;
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .formControl label {
+        font-size: 0.75rem;
+        color: white;
+    }
+
+    .formControl input {
+        margin-left: 0.5rem;
+        padding: 0.35rem;
+        width: 6rem;
+        font-size: 0.75rem;
+    }
+
+    .formattedValueSpan {
+        font-size: 0.5rem;
+    }
+    
+}
