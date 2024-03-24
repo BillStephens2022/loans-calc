@@ -4,6 +4,7 @@ import classes from "./journalEntryTable.module.css";
 const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
 
   return (
+    <div className={classes.journalEntryTableWrapper}>
     <table className={classes.journalEntry_table}>
       <thead>
         <tr className={classes.tableRow_header}>
@@ -60,6 +61,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
         </tr>
       </tbody>
     </table>
+    </div>
   );
 };
 

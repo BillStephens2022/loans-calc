@@ -3,6 +3,7 @@ import classes from "./offBalanceSheetTable.module.css";
 
 const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit }) => {
   return (
+    <div className={classes.offBalanceSheetTableWrapper}>
     <table className={classes.offBalanceSheet_table}>
       <thead>
         <tr>
@@ -25,6 +26,7 @@ const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit }) => {
         </tr>
       </tbody>
     </table>
+    </div>
   );
 };
 
