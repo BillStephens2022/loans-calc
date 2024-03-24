@@ -20,66 +20,76 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
   };
 
   return (
-    <table className={classes.loanExamples_table}>
-      <thead>
-        <tr>
-          <th>Borrower</th>
-          <th>Facility</th>
-          <th>Total Commitment</th>
-          <th>Funded Loans</th>
-          <th>Letters of Credit</th>
-          <th>Unfunded Commitment</th>
-          <th>Upfront Fees</th>
-          <th>Weighted Average Cost</th>
-          <th>Loan Mark</th>
-          <th>MTM</th>
-          {showButtons && <th>View</th>}
-          {showButtons && <th>Delete</th>}
-        </tr>
-      </thead>
-      <tbody>
-        {examples.map((example) => {
-          return (
-            <tr key={example._id}>
-              <td>{example.borrower}</td>
-              <td>{example.facility}</td>
-              <td>{formatAmount(example.commitment)}</td>
-              <td>{formatAmount(example.fundedLoan)}</td>
-              <td>{formatAmount(example.lettersOfCredit)}</td>
-              <td>
-                {formatAmount(
-                  example.commitment -
-                    example.fundedLoan -
-                    example.lettersOfCredit
-                )}
-              </td>
-              <td>{formatAmount(example.upfrontFee)}</td>
-              <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
-              <td>{example.loanMark}</td>
-              <td>{formatAmount(example.commitment * (example.loanMark / 100 - (1 - example.upfrontFee / example.commitment)))}</td>
-              {showButtons && (
-                <td>
-                  <Link href={`/accounting/${example._id}`}>  
-                    <Button className="width_8">View Acctg Details</Button>
-                  </Link>
-                </td>
-              )}
-              {showButtons && (
-                <td className={classes.deleteCell}>
-                  <Button
-                    className="deleteButton"
-                    onClick={() => handleDeleteExample(example._id)}
-                    disabled={loading}
-                  >
-                    <GoTrash />
-                  </Button>
-                </td>
-              )}
+    <div className={classes.tableWrapper}>
+      <div className={classes.scrollableTableWrapper}>
+        <table className={classes.loanExamples_table}>
+          <thead>
+            <tr className={classes.tableHeaderRow}>
+              <th>Borrower</th>
+              <th>Facility</th>
+              <th>Total Commitment</th>
+              <th>Funded Loans</th>
+              <th>Letters of Credit</th>
+              <th>Unfunded Commitment</th>
+              <th>Upfront Fees</th>
+              <th>Weighted Average Cost</th>
+              <th>Loan Mark</th>
+              <th>MTM</th>
+              {showButtons && <th>View Acctg Details</th>}
+              {showButtons && <th>Delete</th>}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {examples.map((example) => {
+              return (
+                <tr key={example._id} className={classes.tableBodyRows}>
+                  <td>{example.borrower}</td>
+                  <td>{example.facility}</td>
+                  <td>{formatAmount(example.commitment)}</td>
+                  <td>{formatAmount(example.fundedLoan)}</td>
+                  <td>{formatAmount(example.lettersOfCredit)}</td>
+                  <td>
+                    {formatAmount(
+                      example.commitment -
+                        example.fundedLoan -
+                        example.lettersOfCredit
+                    )}
+                  </td>
+                  <td>{formatAmount(example.upfrontFee)}</td>
+                  <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
+                  <td>{example.loanMark}</td>
+                  <td>
+                    {formatAmount(
+                      example.commitment *
+                        (example.loanMark / 100 -
+                          (1 - example.upfrontFee / example.commitment))
+                    )}
+                  </td>
+                  {showButtons && (
+                    <td className={classes.viewCell}>
+                      <Link href={`/accounting/${example._id}`}>
+                        <Button className="width_8">View</Button>
+                      </Link>
+                    </td>
+                  )}
+                  {showButtons && (
+                    <td className={classes.deleteCell}>
+                      <Button
+                        className="deleteButton"
+                        onClick={() => handleDeleteExample(example._id)}
+                        disabled={loading}
+                      >
+                        <GoTrash />
+                      </Button>
+                    </td>
+                  )}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

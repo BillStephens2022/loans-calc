@@ -14,8 +14,6 @@
   align-items: flex-start;
   padding: 0 1rem;
   min-height: 70vh;
-  overflow-x: auto; /* Add a horizontal scrollbar when the table overflows */
-  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .formAndButtonContainer {
@@ -42,4 +40,12 @@
 
 .loanDetail_summary h2 {
   margin: 0;
+}
+
+@media (max-width: 1024px) {
+  
+}
+
+@media (max-width: 767px) {
+
 }
