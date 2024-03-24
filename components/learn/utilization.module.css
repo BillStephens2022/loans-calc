@@ -14,6 +14,7 @@
 
 .main p {
     font-size: 1.25rem;
+    line-height: 2;
 }
 
 @media (max-width: 767px) {
@@ -26,5 +27,6 @@
 
     .main p {
         font-size: 0.9rem;
+        line-height: 1.5;
     }
 }

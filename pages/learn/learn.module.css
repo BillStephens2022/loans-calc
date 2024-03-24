@@ -49,6 +49,16 @@
   border-right: 1px solid #ccc;
 }
 
+@media (max-width: 1024px) {
+  .aside {
+    width: 25%;
+  }
+
+  .contentContainer {
+    width: 75%;
+  }
+}
+
 @media (max-width: 767px) {
   .main {
     flex-direction: column;
