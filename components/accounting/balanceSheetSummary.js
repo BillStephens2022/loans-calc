@@ -13,18 +13,28 @@ const BalanceSheetSummary = ({
   accounting
 }) => {
   let loanBookValueDescription;
+  let commitmentBookValueDescription;
+  let lettersOfCreditBookValueDescription;
   switch(accounting) {
     case "HFI":
       loanBookValueDescription = "HFI Loans at Amortized Cost";
+      commitmentBookValueDescription = "HFI Commitments at Amortized Cost";
+      lettersOfCreditBookValueDescription = "Letters of Credit (Guarantees) - nonFVO";
       break;
     case "HFS":
       loanBookValueDescription = "HFS Loans at LOCOM";
+      commitmentBookValueDescription = "HFS Commitments at LOCOM";
+      lettersOfCreditBookValueDescription = "Letters of Credit (Guarantees) - nonFVO";
       break;
     case "FVO":
       loanBookValueDescription = "FVO Loans Market Value";
+      commitmentBookValueDescription = "FVO Commitments Market Value";
+      lettersOfCreditBookValueDescription = "FVO Letters of Credit (Guarantees) Market Value";
       break;
     case "FVTPL":
       loanBookValueDescription = "FVTPL Loans Market Value (Trading)";
+      commitmentBookValueDescription = "FVO Commitments Market Value (Trading)";
+      lettersOfCreditBookValueDescription = "FVO Letters of Credit (Guarantees) Market Value (Trading)";
       break;
     default:
       break;
@@ -48,8 +58,8 @@ const BalanceSheetSummary = ({
         <h3 className={classes.liabilitiesSide_header}>Liabilities - Debit/(Credit)</h3>
         <div>
           <h4 className={classes.subCategory}>Other Liabilities</h4>
-          <p className={classes.accountBalance}>Commitment - Fair Value: $ {formatAmount(commitmentMarketValueTotal)}</p>
-          <p className={classes.accountBalance}>Letter Of Credit / Guarantee Fair Value: $ {formatAmount(lcMarketValueTotal)} </p>
+          <p className={classes.accountBalance}>{commitmentBookValueDescription}: $ {formatAmount(commitmentMarketValueTotal)}</p>
+          <p className={classes.accountBalance}>{lettersOfCreditBookValueDescription}: $ {formatAmount(lcMarketValueTotal)} </p>
           <p className= {classes.subCategory}>
             <strong>Subtotal Other Liabilities: $ {formatAmount(commitmentMarketValueTotal + lcMarketValueTotal)} </strong>
           </p>
