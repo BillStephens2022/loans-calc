@@ -27,6 +27,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
             <tr className={classes.tableHeaderRow}>
               <th>Borrower</th>
               <th>Facility</th>
+              <th>Accounting</th>
               <th>Total Commitment</th>
               <th>Funded Loans</th>
               <th>Letters of Credit</th>
@@ -41,10 +42,18 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
           </thead>
           <tbody>
             {examples.map((example) => {
+              let loanMTM = (example.commitment * (example.loanMark - example.weightedAverageCost)) / 100;
+              if ((example.accounting === "HFS" && loanMTM > 0) || example.accounting === "HFI") {
+                loanMTM = 0;
+              }
+                
+              
+      
               return (
                 <tr key={example._id} className={classes.tableBodyRows}>
                   <td>{example.borrower}</td>
                   <td>{example.facility}</td>
+                  <td>{example.accounting}</td>
                   <td>{formatAmount(example.commitment)}</td>
                   <td>{formatAmount(example.fundedLoan)}</td>
                   <td>{formatAmount(example.lettersOfCredit)}</td>
@@ -59,11 +68,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
                   <td>{example.weightedAverageCost.toFixed(4)}</td>
                   <td>{example.loanMark.toFixed(4)}</td>
                   <td>
-                    {formatAmount(
-                      example.commitment *
-                        ((example.loanMark -
-                          example.weightedAverageCost) / 100)
-                    )}
+                    {formatAmount(loanMTM)}
                   </td>
                   {showButtons && (
                     <td className={classes.viewCell}>
