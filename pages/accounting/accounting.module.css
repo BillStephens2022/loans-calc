@@ -1,10 +1,29 @@
 .accounting_main {
-  background-color: steelblue;
-  color: white;
+  background-color: white;
+  color: darkslateblue;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.instructionHeader {
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-weight: 900;
+  border-radius: 10px;
+  animation: blinker 2s ease-in-out infinite;
+}
+
+@keyframes blinker {
+  0% {
+  
+    color: white;
+  }
+  50% {
+
+    color: slategray;
+  }
 }
 
 .accountingExamplesTableContainer {

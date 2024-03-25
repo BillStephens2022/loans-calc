@@ -21,6 +21,11 @@
   max-height: 2rem;
 }
 
+.tableBodyRows:hover {
+  background-color: chartreuse;
+  cursor: pointer;
+}
+
 
 .tableBodyRows {
   text-align: right;
@@ -33,6 +38,12 @@
   text-align: right;
   background-color: white;
   color: darkslateblue;
+}
+
+.tableBodyRows:hover {
+  background-color: darkslateblue;
+  color: white;
+  cursor: pointer;
 }
 
 

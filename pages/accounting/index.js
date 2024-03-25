@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
+import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
 import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
 import {
@@ -53,6 +54,7 @@ const Accounting = ({ loanAccountingExamples }) => {
         <h1>Loan Accounting Examples</h1>
       </PageHeader>
       <div className={classes.formAndButtonContainer}>
+        <h2 className={classes.instructionHeader}><ImArrowDown />&nbsp;&nbsp;Click a loan below to view accounting details&nbsp;&nbsp;<ImArrowDown /></h2>
       <Button className="m_1" onClick={() => setShowForm(!showForm)}>{showForm ? "Hide Form" : "Add New Example"}</Button>
       {showForm && (
         <div className={classes.formContainer}>
