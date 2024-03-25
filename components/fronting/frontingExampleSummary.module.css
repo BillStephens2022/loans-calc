@@ -13,6 +13,12 @@
   color: darkslateblue;
 }
 
+.tableContainer {
+  overflow: auto;
+  max-width: 98vw;
+}
+
+
 .tableHeaderRoles {
   color: white;
   margin: 0;
@@ -31,7 +37,9 @@
 
 .tableHeader {
   color: white;
-  align-items: left;
+  margin: auto;
+  width: 100%;
+  text-align: center;
   padding: 1rem;
   font-size: 2rem;
   background-color: darkslateblue;
