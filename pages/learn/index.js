@@ -3,6 +3,7 @@ import PageHeader from "../../components/pageHeader";
 import LoanTypes from "../../components/learn/loanTypes";
 import FacilityTypes from "../../components/learn/facilityTypes";
 import Utilization from "../../components/learn/utilization";
+import FeeTypes from "../../components/learn/feeTypes";
 import classes from "./learn.module.css";
 
 const Learn = () => {
@@ -50,6 +51,16 @@ const Learn = () => {
               }
             >
               Utilization
+            </li>
+            <li
+              className={`${classes.topic} ${
+                topic.type === "fees" ? classes.active : ""
+              }`}
+              onClick={() =>
+                handleClick({ type: "fees", content: <FeeTypes /> })
+              }
+            >
+              Fee Types
             </li>
           </ul>
         </aside>
