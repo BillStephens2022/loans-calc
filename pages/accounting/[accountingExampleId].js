@@ -1,11 +1,13 @@
 // route: /accounting/[exampleId]
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { ImArrowLeft } from "react-icons/im";
 import { getLoanAccountingExampleById } from "@/lib/api";
 import PageHeader from "../../components/pageHeader"
 import classes from "./accountingExampleId.module.css"
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import LoanDetail from "../../components/accounting/loanDetail";
+import Link from "next/link";
 
 const AccountingExampleDetail = () => {
   const router = useRouter();
@@ -42,18 +44,28 @@ const AccountingExampleDetail = () => {
     commitment,
     fundedLoan,
     lettersOfCredit,
+    accounting,
+    weightedAverageCost,
     upfrontFee,
     loanMark,
   } = example;
 
+
+
   const unfundedCommitment = commitment - fundedLoan - lettersOfCredit;
-  const weightedAverageCost = (1 - upfrontFee / commitment) * 100;
   const cash = -fundedLoan + upfrontFee;
-  const fundedMTM = ((loanMark - weightedAverageCost) / 100) * fundedLoan;
-  const unfundedMTM =
-    ((loanMark - weightedAverageCost) / 100) * unfundedCommitment;
-  const lettersOfCreditMTM =
-    ((loanMark - weightedAverageCost) / 100) * lettersOfCredit;
+  let loanMTM = commitment * ((loanMark - weightedAverageCost) / 100);
+  if (accounting === "HFS" && loanMTM > 0) {
+    loanMTM = 0;  // apply LOCOM (lower of cost or market) accounting for HFS. MTM can only be negative on HFS loans
+  } 
+  if (accounting === "HFI") {
+    loanMTM = 0;  // HFI loans aren't marked to market, so set to zero
+  }
+
+  // Pro-rate the Loan MTM
+  const fundedMTM = loanMTM / commitment * fundedLoan; // calculate funded portion of Loan MTM
+  const unfundedMTM = loanMTM / commitment * unfundedCommitment; // calculate unfunded portion of Loan MTM
+  const lettersOfCreditMTM = loanMTM / commitment * lettersOfCredit; // calculate letter of credit portion of Loan MTM
 
   return (
     <div>
@@ -61,6 +73,7 @@ const AccountingExampleDetail = () => {
         <h1>{borrower}</h1>
         <h2>Loan Accounting Details</h2>
       </PageHeader>
+      <Link href="/accounting"><p><ImArrowLeft />&nbsp;&nbsp;Back to Examples</p></Link>
       <h2 className={classes.summary_header}>Loan Facility Summary</h2>
       <main className={classes.main}>
         <LoanExamplesTable examples={[example]} showButtons={false} />
@@ -70,6 +83,7 @@ const AccountingExampleDetail = () => {
           commitment={commitment}
           fundedLoan={fundedLoan}
           lettersOfCredit={lettersOfCredit}
+          accounting={accounting}
           unfundedCommitment={unfundedCommitment}
           upfrontFee={upfrontFee}
           loanMark={loanMark}

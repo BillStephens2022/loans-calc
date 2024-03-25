@@ -9,8 +9,28 @@ const BalanceSheetSummary = ({
   commitmentMarketValueTotal,
   lcMarketValueTotal,
   mtmPnlTotal,
-  pnlTotal
+  pnlTotal,
+  accounting
 }) => {
+  let loanBookValueDescription;
+  switch(accounting) {
+    case "HFI":
+      loanBookValueDescription = "HFI Loans at Amortized Cost";
+      break;
+    case "HFS":
+      loanBookValueDescription = "HFS Loans at LOCOM";
+      break;
+    case "FVO":
+      loanBookValueDescription = "FVO Loans Market Value";
+      break;
+    case "FVTPL":
+      loanBookValueDescription = "FVTPL Loans Market Value (Trading)";
+      break;
+    default:
+      break;
+
+  }
+
   return (
     <div className={classes.balanceSheetSummary}>
        
@@ -18,7 +38,7 @@ const BalanceSheetSummary = ({
         <h3 className={classes.assetsSide_header}>Assets - Debit/(Credit)</h3>
         <div>
           <p className={classes.accountBalance}>Cash and Cash Equivalents: $ {formatAmount(cashTotal)}</p>
-          <p className={classes.accountBalance}>Loan Market Value: $ {formatAmount(loanMarketValueTotal)} </p>
+          <p className={classes.accountBalance}>{loanBookValueDescription}: $ {formatAmount(loanMarketValueTotal)} </p>
           <h4>
             <strong>Total Assets: $ {formatAmount(assetsTotal)}</strong>
           </h4>

@@ -10,6 +10,7 @@ const LoanDetail = ({
   commitment,
   fundedLoan,
   lettersOfCredit,
+  accounting,
   loanMark,
   unfundedCommitment,
   upfrontFee,
@@ -20,44 +21,53 @@ const LoanDetail = ({
   lettersOfCreditMTM,
 }) => {
   // create array of journal entries using custom JournalEntry class which has been imported
-  // constructor calls for (string account, string highLevelCategory, string category, float amount, boolean isDebit)
+  // constructor calls for (string account, string accounting, float amount, boolean isDebit)
+ 
+  
   const journalEntries = [
-    new JournalEntry("Cash", cash, cash > 0),
-    new JournalEntry("Loan Principal", fundedLoan, true),
+    new JournalEntry("Cash", accounting, cash, cash > 0),
+    new JournalEntry("Loan Principal", accounting, fundedLoan, true),
     new JournalEntry(
       "Loan Discount/Premium",
+      accounting,
       (-upfrontFee / commitment) * fundedLoan,
       upfrontFee < 0
     ),
     new JournalEntry(
       "Deferred Fees - Unfunded",
+      accounting,
       (-upfrontFee / commitment) * unfundedCommitment,
       upfrontFee < 0
     ),
     new JournalEntry(
       "Deferred Fees - LC",
+      accounting,
       (-upfrontFee / commitment) * lettersOfCredit,
       upfrontFee < 0
     ),
-    new JournalEntry("Funded Loan MTM B/S", fundedMTM, fundedMTM > 0),
-    new JournalEntry("Funded Loan MTM P&L", -fundedMTM, fundedMTM < 0),
+    new JournalEntry("Funded Loan MTM B/S", accounting, fundedMTM, fundedMTM > 0),
+    new JournalEntry("Funded Loan MTM P&L", accounting, -fundedMTM, fundedMTM < 0),
     new JournalEntry(
       "Unfunded Commitment MTM B/S",
+      accounting,
       unfundedMTM,
       unfundedMTM > 0
     ),
     new JournalEntry(
       "Unfunded Commitment MTM P&L",
+      accounting,
       -unfundedMTM,
       unfundedMTM < 0
     ),
     new JournalEntry(
       "LC/Guarantee MTM B/S",
+      accounting,
       lettersOfCreditMTM,
       unfundedMTM > 0
     ),
     new JournalEntry(
       "LC/Guarantee MTM P&L",
+      accounting,
       -lettersOfCreditMTM,
       unfundedMTM < 0
     ),
@@ -139,6 +149,7 @@ const LoanDetail = ({
         lcMarketValueTotal={lcMarketValueTotal}
         mtmPnlTotal={mtmPnlTotal}
         pnlTotal={pnlTotal}
+        accounting={accounting}
       />
       <h2 className={classes.table_headers}>Off Balance Sheet</h2>
       <OffBalanceSheetTable

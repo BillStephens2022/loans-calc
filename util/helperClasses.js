@@ -26,13 +26,15 @@ export class JournalEntry {
    * Create a new journal entry.
    * @constructor
    * @param {string} account - The account name.
+   * @param {string} accounting - The accounting method (e.g. "HFI", "HFS", "FVO", "FVTPL")
    * @param {string} highLevelCategory - The category of the account (e.g., "Assets", "Liabilities", "P&L").
    * @param {string} category - The category of the account (e.g., "Cash & Cash Equivalents", "Loan Market Value", etc).
    * @param {number} amount - The amount of the journal entry.
    * @param {boolean} isDebit - Indicates whether the entry is a debit (true) or credit (false).
    */
-  constructor(account, amount, isDebit) {
+  constructor(account, accounting, amount, isDebit) {
     this.account = account;
+    this.accounting = accounting;
     const mapping = accountCategoryMapping[account];
     if (!mapping) {
       // Handle case where account doesn't match any key in accountCategoryMapping
@@ -51,7 +53,7 @@ export class JournalEntry {
       case "Cash":
         this.calculationText = "Funded Loans - Upfront Fees";
         break;
-      case "Loan Principal":
+      case "HFI Loan Principal" || "HFS Loan Principal" || "FVO Loan Principal" || "FVTPL Loan Principal":
         this.calculationText = "Funded Loan Amount";
         break;
       case "Loan Discount/Premium":
