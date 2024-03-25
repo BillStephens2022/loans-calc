@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from 'next/router';
 import { GoTrash } from "react-icons/go";
 import { formatAmount } from "../../util/formatting";
@@ -9,7 +8,8 @@ import classes from "./loanExamplesTable.module.css";
 const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
   const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing
   const router = useRouter();
-  const handleDeleteExample = async (exampleId) => {
+  const handleDeleteExample = async (exampleId, event) => {
+    event.stopPropagation(); // Stop event propagation to prevent row click event
     setLoading(true);
     try {
       onDelete(exampleId); // Notify parent component that example was deleted
@@ -20,8 +20,12 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
     }
   };
 
-  const handleRowClick = (exampleId) => {
-    router.push(`/accounting/${exampleId}`);
+  const handleRowClick = (exampleId, event) => {
+    if (!event.target.closest('button')) {
+      router.push(`/accounting/${exampleId}`);
+    }
+     
+    
   };
 
   return (
@@ -62,7 +66,7 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
 
               return (
                 
-                  <tr key={example._id} className={classes.tableBodyRows} onClick={() => handleRowClick(example._id)}>
+                  <tr key={example._id} className={classes.tableBodyRows} onClick={(event) => handleRowClick(example._id, event)}>
                     <td>{example.borrower}</td>
                     <td>{example.facility}</td>
                     <td>{example.accounting}</td>
@@ -80,18 +84,11 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
                     <td>{example.weightedAverageCost.toFixed(4)}</td>
                     <td>{example.loanMark.toFixed(4)}</td>
                     <td>{formatAmount(loanMTM)}</td>
-                    {/* {showButtons && (
-                      <td className={classes.viewCell}>
-                        <Link href={`/accounting/${example._id}`}>
-                          <Button className="width_8">View</Button>
-                        </Link>
-                      </td>
-                    )} */}
                     {showButtons && (
                       <td className={classes.deleteCell}>
                         <Button
                           className="deleteButton"
-                          onClick={() => handleDeleteExample(example._id)}
+                          onClick={(event) => handleDeleteExample(example._id, event)}
                           disabled={loading}
                         >
                           <GoTrash />
