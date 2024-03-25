@@ -56,13 +56,13 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
                     )}
                   </td>
                   <td>{formatAmount(example.upfrontFee)}</td>
-                  <td>{(1 - example.upfrontFee / example.commitment) * 100}</td>
-                  <td>{example.loanMark}</td>
+                  <td>{example.weightedAverageCost.toFixed(4)}</td>
+                  <td>{example.loanMark.toFixed(4)}</td>
                   <td>
                     {formatAmount(
                       example.commitment *
-                        (example.loanMark / 100 -
-                          (1 - example.upfrontFee / example.commitment))
+                        ((example.loanMark -
+                          example.weightedAverageCost) / 100)
                     )}
                   </td>
                   {showButtons && (
