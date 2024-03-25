@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PageHeader from "../../components/pageHeader";
 import LoanTypes from "../../components/learn/loanTypes";
+import LoanDocs from "../../components/learn/loanDocs";
 import FacilityTypes from "../../components/learn/facilityTypes";
 import Utilization from "../../components/learn/utilization";
 import FeeTypes from "../../components/learn/feeTypes";
@@ -31,6 +32,16 @@ const Learn = () => {
               }
             >
               Types of Loans
+            </li>
+            <li
+              className={`${classes.topic} ${
+                topic.type === "loanDocs" ? classes.active : ""
+              }`}
+              onClick={() =>
+                handleClick({ type: "loanDocs", content: <LoanDocs /> })
+              }
+            >
+              Loan Docs
             </li>
             <li
               className={`${classes.topic} ${
