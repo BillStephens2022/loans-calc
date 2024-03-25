@@ -2,21 +2,23 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: 3px solid white;
+    border: 8px solid #484848;
     border-radius: 10px;
     padding: 0.5rem;
     margin: 2rem 0;
     background-color: darkslateblue;
+
 }
 
 .formTitle {
-    padding: 2rem 0;
-    background-color: rgb(154, 167, 180);
+    padding: 2rem 1rem;
+    background-color: white;
     color: darkslateblue;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
     border-radius: 10px;
+    text-align: center;
 }
 
 .formControl {
@@ -29,6 +31,22 @@
     margin-left: 1rem;
     padding: 0.5rem 0.75rem 0.5rem 0.5rem;
     border-radius: 0.5rem;
-    width: 6rem;
+    min-width: 10rem;
     text-align: right;
+}
+
+.formControl label {
+    color: white;
+}
+
+.selectInput {
+    padding: 0.5rem 0.25rem;
+    border-radius: 0.5rem;
+    width: 12rem;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.legend {
+    color: white;
 }

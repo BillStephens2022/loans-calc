@@ -70,7 +70,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   return (
     <form className={classes.accountingForm} onSubmit={handleSubmit}>
-      <caption className={classes.formTitle}>Loan Example Input Form</caption>
+      <p className={classes.formTitle}>Loan Example Input Form</p>
       <div className={classes.formControl}>
         <label htmlFor="borrower">Borrower Name:</label>
         <input
@@ -129,17 +129,18 @@ const LoanAccountingForm = ({ onSubmit }) => {
           value={formData.accounting}
           onChange={handleInputChange}
           required
+          className={classes.selectInput}
         >
-          <option value="">Select accounting</option>
-          <option value="HFI">HFI - Held For Investment</option>
-          <option value="HFS">HFS - Held For Sale</option>
-          <option value="FVO">FVO - Fair Value Option</option>
-          <option value="FVTPL">FVTPL - Fair Value Through P&L</option>
+          <option className={classes.option} value="">Select accounting</option>
+          <option className={classes.option} value="HFI">HFI - Held For Investment</option>
+          <option className={classes.option} value="HFS">HFS - Held For Sale</option>
+          <option className={classes.option} value="FVO">FVO - Fair Value Option</option>
+          <option className={classes.option} value="FVTPL">FVTPL - Fair Value Through P&L</option>
         </select>
       </div>
       <div className={classes.formControl}>
         <fieldset>
-          <legend>Purchase / Origination:</legend>
+          <legend className={classes.legend}>Purchase / Origination:</legend>
           <label>
             <input
               type="radio"

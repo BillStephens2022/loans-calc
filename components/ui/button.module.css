@@ -6,6 +6,8 @@
   margin: auto;
   padding: 0.5rem;
   text-wrap: wrap;
+  border: none;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4)
 }
 
 .m_half {
