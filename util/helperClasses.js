@@ -66,17 +66,17 @@ export class JournalEntry {
       case "Funded Loan MTM B/S":
       case "Funded Loan MTM P&L":
         this.calculationText =
-          "Funded Loan * (Weighted Average Cost - Trader Mark)";
+          "Funded Loan * (Trader Mark - Weighted Average Cost)";
         break;
       case "Unfunded Commitment MTM B/S":
       case "Unfunded Commitment MTM P&L":
         this.calculationText =
-          "Unfunded Commitment * (Weighted Average Cost - Trader Mark)";
+          "Unfunded Commitment * (Trader Mark - Weighted Average Cost)";
         break;
       case "LC/Guarantee MTM B/S":
       case "LC/Guarantee MTM P&L":
         this.calculationText =
-          "Unfunded Commitment * (Weighted Average Cost - Trader Mark)";
+          "Unfunded Commitment * (Trader Mark - Weighted Average Cost)";
         break;
       default:
         this.calculationText = "";

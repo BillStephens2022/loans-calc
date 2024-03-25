@@ -16,6 +16,9 @@ const handler = async (req, res) => {
       commitment,
       fundedLoan,
       lettersOfCredit,
+      accounting,
+      isOrigination,
+      weightedAverageCost,
       upfrontFee,
       loanMark,
     } = req.body;
@@ -27,6 +30,9 @@ const handler = async (req, res) => {
         commitment,
         fundedLoan,
         lettersOfCredit,
+        accounting,
+        isOrigination,
+        weightedAverageCost,
         upfrontFee,
         loanMark,
       });

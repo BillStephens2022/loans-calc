@@ -35,6 +35,7 @@ const Accounting = ({ loanAccountingExamples }) => {
   }, [updatedExamples]);
 
   const handleFormSubmit = async (formData) => {
+    console.log("FORM DATA from handleFormSubmit in parent component", formData);
     await createLoanAccountingExample(formData);
   };
 
