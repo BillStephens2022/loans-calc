@@ -21,22 +21,45 @@ const Fronting = () => {
       swinglineSublimit,
       swinglinesFundedByYourBank,
       yourBankCommitment,
+      nonAccrual,
     } = formData;
 
-    const globalAvailability =
-      globalCommitment - globalFundedLoans - globalLettersOfCredit;
+    const globalAvailability = nonAccrual
+      ? 0
+      : globalCommitment - globalFundedLoans - globalLettersOfCredit;
     const hasAvailability = globalAvailability > 0;
     const yourBankPercentShare = yourBankCommitment / globalCommitment;
     const otherLendersShare = 1 - yourBankPercentShare;
     const swinglineSublimitAvailability =
       swinglineSublimit - swinglinesFundedByYourBank;
     const lcSublimitAvailability = lcSublimit - lcsIssuedByYourBank;
+
     const totalSublimitAvailability =
       swinglineSublimitAvailability + lcSublimitAvailability;
 
+    const hasFullSublimitAvailability =
+      globalAvailability >= totalSublimitAvailability;
+    const sublimitOverage = totalSublimitAvailability - globalAvailability;
+    
+    // if availability under sublimits is greater than global facility availability, 
+    // adjust the availability under the sublimits by a pro-rata share of overage
+    const adjustedSwinglineAvailability = hasFullSublimitAvailability
+      ? swinglineSublimitAvailability
+      : swinglineSublimitAvailability -
+        (sublimitOverage / totalSublimitAvailability) *
+          swinglineSublimitAvailability;
+
+    // if availability under sublimits is greater than global facility availability, 
+    // adjust the availability under the sublimits by a pro-rata share of overage
+    const adjustedLCAvailability = hasFullSublimitAvailability
+      ? lcSublimitAvailability
+      : lcSublimitAvailability -
+        (sublimitOverage / totalSublimitAvailability) *
+          lcSublimitAvailability;
+
     const unfundedSwinglineFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
-        ? otherLendersShare * swinglineSublimitAvailability
+        ? otherLendersShare * adjustedSwinglineAvailability
         : 0;
     const fundedSwinglineFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
@@ -44,22 +67,22 @@ const Fronting = () => {
         : 0;
     const unissuedLCFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
-        ? otherLendersShare * lcSublimitAvailability
+        ? otherLendersShare * adjustedLCAvailability
         : 0;
     const issuedLCFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
         ? otherLendersShare * lcsIssuedByYourBank
         : 0;
 
-        return {
-          ...formData,
-          globalAvailability,
-          yourBankPercentShare,
-          unfundedSwinglineFrontingExposure,
-          fundedSwinglineFrontingExposure,
-          unissuedLCFrontingExposure,
-          issuedLCFrontingExposure,
-        };
+    return {
+      ...formData,
+      globalAvailability,
+      yourBankPercentShare,
+      unfundedSwinglineFrontingExposure,
+      fundedSwinglineFrontingExposure,
+      unissuedLCFrontingExposure,
+      issuedLCFrontingExposure,
+    };
   };
 
   const handleFormSubmit = (data) => {
@@ -76,23 +99,27 @@ const Fronting = () => {
 
   return (
     <main className={classes.fronting_main}>
-      <PageHeader><h1 className={classes.pageHeader}>Fronting Risk</h1></PageHeader>
-      
+      <PageHeader>
+        <h1 className={classes.pageHeader}>Fronting Risk</h1>
+      </PageHeader>
+
       <div className={classes.formContainer}>
         {showForm ? (
           <div>
-          <h2 className={classes.fronting_subheader}>
-          Enter details about a loan to calculate potential Fronting Exposure
-        </h2>
-          <FrontingForm onSubmit={handleFormSubmit} />
+            <h2 className={classes.fronting_subheader}>
+              Enter details about a loan to calculate potential Fronting
+              Exposure
+            </h2>
+            <FrontingForm onSubmit={handleFormSubmit} />
           </div>
         ) : (
-          <Button className="addExample" onClick={handleUpdateForm}>Try New Example</Button>
+          <Button className="addExample" onClick={handleUpdateForm}>
+            Try New Example
+          </Button>
         )}
       </div>
       {showFrontingExposure && (
         <div className={classes.frontingExampleContainer}>
-
           {/* Pass the combined props to FrontingExampleSummary */}
           <FrontingExampleSummary {...formData} />
         </div>

@@ -70,7 +70,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   return (
     <form className={classes.accountingForm} onSubmit={handleSubmit}>
-      <p className={classes.formTitle}>Loan Example Input Form</p>
+      <h4 className={classes.formTitle}>Loan Example Input Form</h4>
       <div className={classes.formControl}>
         <label htmlFor="borrower">Borrower Name:</label>
         <input

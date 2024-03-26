@@ -1,5 +1,6 @@
 import classes from "./frontingExampleSummary.module.css";
 import { formatAmount } from "../../util/formatting";
+import { ImArrowDown } from "react-icons/im";
 
 const FrontingExampleSummary = ({
   borrower,
@@ -20,6 +21,7 @@ const FrontingExampleSummary = ({
   fundedSwinglineFrontingExposure,
   unissuedLCFrontingExposure,
   issuedLCFrontingExposure,
+  nonAccrual,
 }) => {
   return (
     <div className={classes.mainContainer}>
@@ -60,9 +62,9 @@ const FrontingExampleSummary = ({
       <div className={classes.tableContainer}>
         <table className={classes.table}>
           <thead>
-              <tr className={classes.tableHeader}>
-                <th colSpan="4">Commitment Breakdown</th>
-              </tr>
+            <tr className={classes.tableHeader}>
+              <th colSpan="4">Commitment Breakdown</th>
+            </tr>
             <tr className={classes.tableRow_header}>
               <th
                 className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}
@@ -276,7 +278,16 @@ const FrontingExampleSummary = ({
           </tbody>
         </table>
       </div>
-      <div className={classes.tableContainer}>
+      <div className={`${classes.tableContainer} ${classes.frontingContainer}`}>
+        {nonAccrual && (
+          <div className={classes.nonAccrualMessage}>
+            <p>
+              Facility is Non-Accrual, therefore no availability for
+              borrowing/fronting.
+            </p>
+            <ImArrowDown />
+          </div>
+        )}
         <table className={classes.table}>
           <thead>
             <tr className={classes.tableHeader}>

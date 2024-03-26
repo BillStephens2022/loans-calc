@@ -18,6 +18,12 @@
   max-width: 98vw;
 }
 
+.frontingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .tableHeaderRoles {
   color: white;
   margin: 0;
@@ -77,6 +83,18 @@
 .tableRow_header {
   background-color: #484848;
   color: white;
+}
+
+
+.nonAccrualMessage {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  width: 33%;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
 @media (max-width: 767px) {

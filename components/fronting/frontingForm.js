@@ -3,18 +3,19 @@ import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
 
 const initialFormData = {
-  borrower: "Fenway Park LLC",
-  yourBankName: "Bank of Boston",
+  borrower: "Vandelay Industries",
+  yourBankName: "Bank of Costanza",
   globalCommitment: 100000000.0,
   globalFundedLoans: 45000000.0,
   globalLettersOfCredit: 22000000.0,
   yourBankCommitment: 18000000.0,
   lcIssuer: true,
   swinglineLender: true,
+  nonAccrual: false,
   swinglineSublimit: 11000000.0,
   swinglinesFundedByYourBank: 3000000.0,
   lcSublimit: 14000000.0,
-  lcsIssuedByYourBank: 4000000.0,
+  lcsIssuedByYourBank: 4000000.0
 };
 
 const FrontingForm = ({ onSubmit }) => {
@@ -54,6 +55,7 @@ const resetFormValues = () => {
 
   return (
     <form className={classes.frontingForm} onSubmit={handleSubmit}>
+      <h4 className={classes.formTitle}>Fronting Example Input Form</h4>
       {Object.entries(initialFormData).map(([key, value], index) => {
         if (
           (key === "swinglineSublimit" ||
