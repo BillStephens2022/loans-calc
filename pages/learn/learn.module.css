@@ -49,10 +49,6 @@
   /* border-radius: 5px 0 0 5px; */
 }
 
-.topic:last-child {
-  /* border-radius: 0 5px 5px 0; */
-}
-
 .topic.active {
   background-color: #fff;
   border-right: 1px solid #ccc;

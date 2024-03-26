@@ -6,7 +6,6 @@ const LoanTypes = () => {
       <h2>Loan Types</h2>
       <div>
         <h3>Corporate Loans</h3>
-        <h4>Understanding Financing Solutions for Businesses</h4>
         <p>
           Corporate loans serve as a cornerstone for businesses seeking
           financial stability and growth. These loans are structured financial

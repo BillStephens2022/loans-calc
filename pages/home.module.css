@@ -127,18 +127,6 @@
   transition: 0.3s ease;
 }
 
-/* .featureBox:nth-child(1) {
-  background-color: lightcoral;
-} */
-
-/* .featureBox:nth-child(2) {
-  background-color: magenta;
-} */
-
-/* .featureBox:nth-child(3) {
-  background-color: lightseagreen;
-} */
-
 @keyframes fadeIn {
   0% {
     transform: scale(0.1);
@@ -266,26 +254,27 @@
 
   .featureBox {
     padding: 0.5rem;
-    width: 12rem;
-    height: 12rem;
+    width: 14rem;
+    height: 14rem;
     margin: 0.5rem;
   }
 
   .featureBox h3 {
     font-size: 0.75rem;
+    letter-spacing: 0.15rem;
     padding: 0;
     margin: 0.25rem;
   }
 
   .featureBox h4 {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     letter-spacing: 0.1rem;
     padding: 0;
     margin: 0.25rem;
   }
 
   .featureBox p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: 700;
     line-height: 1.1rem;
   }

@@ -11,7 +11,9 @@ const FacilityTypes = () => {
         funds up to a specified credit limit over a predetermined period.
         Similar to a credit card, a revolver allows borrowers to access funds as
         needed, making it suitable for managing short-term working capital
-        requirements or financing fluctuating expenses.
+        requirements or financing fluctuating expenses. A revolver can often
+        have multiple loan drawings/contracts under the facility each with its
+        own terms (i.e. interest rates, repayment dates).
       </p>
 
       <h3>Term Loan</h3>
@@ -52,14 +54,13 @@ const FacilityTypes = () => {
       <p>
         Uncommitted facilities are types of credit arrangements where the lender
         provides a credit line to the borrower, but is not obligated to extend
-        the funds. In other words, the lender has the discretion to lend or
-        not, depending on the circumstances. These facilities are typically
-        used for short-term financing needs and are less formal compared to
-        committed credit facilities like revolvers or term loans. Since there
-        is no commitment from the lender, uncommitted facilities may offer
-        greater flexibility but can also carry higher interest rates or fees.
+        the funds. In other words, the lender has the discretion to lend or not,
+        depending on the circumstances. These facilities are typically used for
+        short-term financing needs and are less formal compared to committed
+        credit facilities like revolvers or term loans. Since there is no
+        commitment from the lender, uncommitted facilities may offer greater
+        flexibility but can also carry higher interest rates or fees.
       </p>
-
     </div>
   );
 };

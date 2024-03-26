@@ -45,7 +45,7 @@ const Home = () => {
               <h3>Fronting Exposure</h3>
               <h4>Swingline Loan & Issued LC Fronting</h4>
               <p>
-                Enter example loan terms to view Fronting Exposure Calculations
+                Enter example loan terms to view fronting exposure calculations
               </p>
             </Link>
           
