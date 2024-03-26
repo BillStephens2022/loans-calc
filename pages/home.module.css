@@ -113,9 +113,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25%;
-  width: 25rem;
-  height: 25rem;
+  width: 22rem;
+  height: 22rem;
   border-radius: 50%;
   border: 5px solid black;
   background-color: rgb(25, 25, 112, 0.5);
