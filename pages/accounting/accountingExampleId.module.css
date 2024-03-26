@@ -2,7 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../../public/glossyWhite.avif");
 }
+
+.pageHeader {
+  font-size: 3rem;
+  letter-spacing: 1.1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.subHeader {
+  font-size: 1.5rem;
+  letter-spacing: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 
 .summary_header {
     text-align: center;
@@ -10,10 +26,33 @@
 }
 
 .link {
+  color: #484848;
   text-decoration: none;
+  align-self: flex-start;
+  margin-left: 1rem;
 }
 
 .backLinkText {
   color: #484848;
   text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .pageHeader {
+    font-size: 2.5rem;
+   }
+
+   .subHeader {
+    font-size: 1.3rem;
+   }
+}
+
+@media (max-width: 767px) {
+   .pageHeader {
+    font-size: 1.5em;
+   }
+
+   .subHeader {
+    font-size: 1.1rem;
+   }
 }
