@@ -30,7 +30,8 @@
 }
 
 .contentContainer {
-  max-width: 85%;
+  width: 85%;
+  margin-bottom: 2rem;
 }
 
 .topicsList {
@@ -58,36 +59,41 @@
 }
 
 @media (max-width: 1024px) {
+  .pageHeader {
+    font-size: 2.5rem;
+  }
   .aside {
     width: 25%;
   }
-
   .contentContainer {
-    max-width: 70%;
+    width: 70%;
   }
 }
 
 @media (max-width: 767px) {
+  .pageHeader {
+    font-size: 1.5em;
+  }
   .main {
     flex-direction: column;
+    align-items: center;
   }
-
   .topicsList_header {
     display: none;
   }
-
   .topicsList {
     display: flex;
     flex-wrap: wrap;
   }
-
   .aside {
     width: 100%;
     display: flex;
     flex-direction: row;
   }
-
+  .topic {
+    font-size: 0.75rem;
+  }
   .contentContainer {
-    width: 100%;
+    width: 92%;
   }
 }

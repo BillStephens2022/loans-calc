@@ -11,6 +11,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
           <th className={classes.tableCell}>Account</th>
           <th className={classes.tableCell}>High Level Category</th>
           <th className={classes.tableCell}>Category</th>
+          <th className={classes.tableCell}>Acctg</th>
           <th
             className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}
           >
@@ -35,6 +36,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
             <td className={classes.tableCell}>{entry.account}</td>
             <td className={classes.tableCell}>{entry.highLevelCategory}</td>
             <td className={classes.tableCell}>{entry.category}</td>
+            <td className={classes.tableCell}>{entry.accounting}</td>
             <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>
               {entry.isDebit ? formatAmount(entry.amount) : ""}
             </td>
@@ -57,6 +59,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
           <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>
             <strong>{formatAmount(creditTotal)}</strong>
           </td>
+          <td className={classes.tableCell}></td>
           <td className={classes.tableCell}></td>
         </tr>
       </tbody>

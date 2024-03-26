@@ -1,50 +1,50 @@
 .main {
-    padding: 1rem;
-    background-image: url("../../public/glossyWhite.avif");
-    background-size: cover;
-    margin-left: 1rem;
-    border-radius: 8px;
+  padding: 1rem;
+  background-image: url("../../public/glossyWhite.avif");
+  background-size: cover;
+  margin-left: 1rem;
+  border-radius: 8px;
 }
 
 .main h2 {
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .main h3 {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 
 .main p {
-    font-size: 1.25rem;
-    line-height: 2;
+  font-size: 1.25rem;
+  line-height: 2;
 }
 
 @media (max-width: 1024px) {
-    .main h2 {
-        font-size: 1.75rem;
-    }
-    .main h3 {
-        font-size: 1.35rem;
-    }
-
-    .main p {
-        font-size: 1rem;
-        line-height: 1.5;
-    }
+  .main h2 {
+    font-size: 1.75rem;
+  }
+  .main h3 {
+    font-size: 1.35rem;
+  }
+  .main p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 }
 
 @media (max-width: 767px) {
-    
-    .main h2 {
-        font-size: 1.5rem;
-    }
-    .main h3 {
-        font-size: 1.25rem;
-    }
-
-    .main p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
+  .main {
+    margin-left: 0;
+  }
+  .main h2 {
+    font-size: 1.5rem;
+  }
+  .main h3 {
+    font-size: 1.25rem;
+  }
+  .main p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 }

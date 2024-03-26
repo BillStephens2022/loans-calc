@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-image: url("../../public/glossyWhite.avif");
+  background-size: cover;
 }
 
 .pageHeader {
