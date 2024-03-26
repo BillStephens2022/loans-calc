@@ -112,8 +112,6 @@
   .tableContainer {
    margin: auto;
    margin-left: 1rem;
-   
-   
   }
   .tableHeader {
     font-size: 1.15rem;
@@ -134,5 +132,10 @@
     font-size: 0.75rem;
     padding: 0.25rem;
     max-width: 5rem;
+  }
+
+  .nonAccrualMessage {
+    width: 70%;
+    font-size: 0.75rem;
   }
 }

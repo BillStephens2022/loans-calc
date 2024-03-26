@@ -6,6 +6,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     background-color: #484848;
+    margin: auto;
+    margin-bottom: 2rem;
+    border-radius: 10px;
 }
 
 .formTitle {
@@ -54,9 +57,11 @@
 
 @media (max-width: 767px) {
     .frontingForm {
-        width: 90vw;
+        max-width: 85vw;
         font-size: 1rem;
         padding: 0.5rem;
+        margin: auto;
+        margin-bottom: 2rem;
     }
 
     .formControl label {
