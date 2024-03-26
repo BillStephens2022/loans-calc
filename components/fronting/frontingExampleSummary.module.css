@@ -18,7 +18,6 @@
   max-width: 98vw;
 }
 
-
 .tableHeaderRoles {
   color: white;
   margin: 0;
@@ -78,4 +77,44 @@
 .tableRow_header {
   background-color: #484848;
   color: white;
+}
+
+@media (max-width: 767px) {
+
+  .mainHeaderExample {
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    background-color: white;
+    color: #484848;
+  }
+  
+ 
+  .tableContainer {
+   margin: auto;
+   margin-left: 1rem;
+   
+   
+  }
+  .tableHeader {
+    font-size: 1.15rem;
+    text-align: left;
+  }
+
+  .tableRow_header {
+    font-size: 0.8rem;
+  }
+
+  .tableCell {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    max-width: 7rem;
+  }
+
+  .tableCellAmounts {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    max-width: 5rem;
+  }
 }

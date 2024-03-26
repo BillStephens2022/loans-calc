@@ -14,14 +14,15 @@ const Utilization = () => {
         repayments, as outlined in the loan agreement.
       </p>
 
-      <h3>Letters of Credit</h3>
+      <h3>Standby Letters of Credit</h3>
       <p>
-        Letters of credit (LCs) are financial instruments commonly used in
-        international trade to facilitate transactions between buyers and
-        sellers. From the perspective of loan utilization, letters of credit
-        represent a form of contingent liability, where a borrower may utilize
-        the credit facility by obtaining LCs to guarantee payment for goods or
-        services provided by suppliers or vendors.
+        A standby letter of credit (SBLC) is a financial instrument issued by a
+        bank or financial institution on behalf of a client, typically a company
+        or corporation, to provide assurance of payment to a third party in the
+        event that the client fails to fulfill their contractual obligations. In
+        the context of corporate loan facilities, an SBLC serves as a form of
+        guarantee or backup mechanism for the lender, providing them with a
+        level of security against default or non-payment by the borrower.
       </p>
 
       <h3>Undrawn Commitments</h3>

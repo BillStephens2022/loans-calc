@@ -50,10 +50,14 @@
 
 @media (max-width: 767px) {
    .pageHeader {
+    margin-top: 1.5rem;
     font-size: 1.5em;
+    letter-spacing: 0.8rem;
    }
 
    .subHeader {
-    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.25rem;
    }
 }

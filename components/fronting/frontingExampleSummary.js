@@ -60,9 +60,9 @@ const FrontingExampleSummary = ({
       <div className={classes.tableContainer}>
         <table className={classes.table}>
           <thead>
-            <tr className={classes.tableHeader}>
-              <th colSpan="4">Commitment Breakdown</th>
-            </tr>
+              <tr className={classes.tableHeader}>
+                <th colSpan="4">Commitment Breakdown</th>
+              </tr>
             <tr className={classes.tableRow_header}>
               <th
                 className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}

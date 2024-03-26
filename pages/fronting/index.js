@@ -76,7 +76,7 @@ const Fronting = () => {
 
   return (
     <main className={classes.fronting_main}>
-      <PageHeader><h1>Fronting Risk</h1></PageHeader>
+      <PageHeader><h1 className={classes.pageHeader}>Fronting Risk</h1></PageHeader>
       
       <div className={classes.formContainer}>
         {showForm ? (
@@ -91,7 +91,7 @@ const Fronting = () => {
         )}
       </div>
       {showFrontingExposure && (
-        <div>
+        <div className={classes.frontingExampleContainer}>
 
           {/* Pass the combined props to FrontingExampleSummary */}
           <FrontingExampleSummary {...formData} />

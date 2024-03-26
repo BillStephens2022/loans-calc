@@ -6,3 +6,11 @@
     margin: 0;
     color: white;
   }
+
+  @media (max-width: 767px) {
+    .pageHeader {
+      padding: 0 0;
+    }
+ 
+ }
+ 
