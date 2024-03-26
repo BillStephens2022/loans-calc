@@ -148,6 +148,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
               value="false"
               checked={!formData.isOrigination}
               onChange={handleInputChange}
+              className={classes.radioInput}
             />
             Purchase
           </label>
@@ -158,6 +159,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
               value="true"
               checked={formData.isOrigination}
               onChange={handleInputChange}
+              className={classes.radioInput}
             />
             Origination
           </label>

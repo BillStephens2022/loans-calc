@@ -3,7 +3,6 @@
     background-image: url("../../public/glossyWhite.avif");
     background-size: cover;
     margin-left: 1rem;
-    width: 82vw;
     border-radius: 8px;
 }   
 
@@ -18,6 +17,20 @@
 .main p {
     font-size: 1.25rem;
     line-height: 2;
+}
+
+@media (max-width: 1024px) {
+    .main h2 {
+        font-size: 1.75rem;
+    }
+    .main h3 {
+        font-size: 1.35rem;
+    }
+
+    .main p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
 }
 
 @media (max-width: 767px) {

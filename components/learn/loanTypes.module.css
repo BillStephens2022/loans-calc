@@ -3,14 +3,12 @@
     background-image: url("../../public/glossyWhite.avif");
     background-size: cover;
     margin-left: 1rem;
-
     border-radius: 8px;
 }
 
 .main h2 {
     font-size: 2rem;
     font-weight: bold;
-
 }
 
 .main h3 {

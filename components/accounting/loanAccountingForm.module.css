@@ -2,18 +2,20 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: 8px solid #484848;
+    border: 3px solid white;
     border-radius: 10px;
     padding: 0.5rem;
     margin: 2rem 0;
-    background-color: darkslateblue;
+    background-color: #484848;
 
 }
 
 .formTitle {
-    padding: 2rem 1rem;
+    padding: 0.75rem;
+    width: 80%;
+    margin: 1rem auto 2rem auto;
     background-color: white;
-    color: darkslateblue;
+    color: #484848;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -31,12 +33,16 @@
     margin-left: 1rem;
     padding: 0.5rem 0.75rem 0.5rem 0.5rem;
     border-radius: 0.5rem;
-    min-width: 10rem;
+   
     text-align: right;
 }
 
 .formControl label {
     color: white;
+}
+
+.formControl fieldset {
+    margin: auto;
 }
 
 .selectInput {
@@ -49,4 +55,33 @@
 
 .legend {
     color: white;
+}
+
+.radioInput {
+    max-width: initial;
+}
+
+@media (max-width: 1024px) {
+    .accountingForm {
+        width: 75%; 
+        padding: 1rem;
+    }
+    .formTitle {
+        font-size: 1.3rem;
+    }
+    .selectInput {
+        width: 11.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .accountingForm {
+        width: 90%;
+    }
+    .formTitle {
+        font-size: 1.1rem;
+    }
+    .selectInput {
+        width: 11.5rem;
+    }
 }
