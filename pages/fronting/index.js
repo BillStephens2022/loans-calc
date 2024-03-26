@@ -87,7 +87,7 @@ const Fronting = () => {
           <FrontingForm onSubmit={handleFormSubmit} />
           </div>
         ) : (
-          <Button onClick={handleUpdateForm}>Try a New Example</Button>
+          <Button className="addExample" onClick={handleUpdateForm}>Try New Example</Button>
         )}
       </div>
       {showFrontingExposure && (

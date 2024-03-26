@@ -10,7 +10,7 @@
   padding: 0.5rem 3rem;
   border-radius: 10px;
   background-color: white;
-  color: darkslateblue;
+  color: #484848;
 }
 
 .tableContainer {
@@ -42,13 +42,13 @@
   text-align: center;
   padding: 1rem;
   font-size: 2rem;
-  background-color: darkslateblue;
+  background-color: #484848;
 }
 
 .table {
   padding: 5px;
-  border: 5px solid darkslateblue;
-  background-color: darkslateblue;
+  border: 5px solid #484848;
+  background-color: #484848;
   margin-bottom: 2rem;
 }
 
@@ -67,15 +67,15 @@
 
 .tableRow:nth-child(even) {
   background-color: whitesmoke;
-  color: darkslateblue;
+  color: #484848;
 }
 
 .tableRow:nth-child(odd) {
   background-color: white;
-  color: darkslateblue;
+  color: #484848;
 }
 
 .tableRow_header {
-  background-color: darkslateblue;
+  background-color: #484848;
   color: white;
 }

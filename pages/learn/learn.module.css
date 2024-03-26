@@ -30,7 +30,7 @@
 }
 
 .contentContainer {
-  width: 90%;
+  max-width: 85%;
 }
 
 .topicsList {
@@ -62,8 +62,10 @@
     width: 25%;
   }
 
+
   .contentContainer {
-    width: 75%;
+    
+    max-width: 70%;
   }
 }
 

@@ -12,12 +12,10 @@
   text-transform: uppercase;
 }
 
-
-
 .accounting_main {
   background-image: url("../../public/glossyWhite.avif");
   background-size: cover;
-  color: darkslateblue;
+  color: #484848;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,11 +33,11 @@
 @keyframes blinker {
   0% {
   
-    color: white;
+    opacity: 1;
   }
   50% {
 
-    color: slategray;
+    opacity: 0.5;
   }
 }
 
@@ -79,9 +77,21 @@
 }
 
 @media (max-width: 1024px) {
-  
+  .pageHeader {
+    font-size: 2.5rem;
+   }
+
+   .subHeader {
+    font-size: 1.3rem;
+   }
 }
 
 @media (max-width: 767px) {
+   .pageHeader {
+    font-size: 1.5em;
+   }
 
+   .subHeader {
+    font-size: 1.1rem;
+   }
 }

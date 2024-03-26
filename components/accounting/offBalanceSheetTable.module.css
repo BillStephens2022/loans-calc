@@ -1,6 +1,6 @@
 .offBalanceSheet_table {
   padding: 5px;
-  border: 5px solid darkslateblue;
+  border: 5px solid #484848;
   background-color: darkgray;
   margin-bottom: 3rem;
 }
@@ -18,13 +18,13 @@
 }
 
 .offBalanceSheet_table thead tr {
-  background-color: darkslateblue;
+  background-color: #484848;
   color: white;
 }
 
 .offBalanceSheet_table tbody tr {
   background-color: white;
-  color: darkslateblue;
+  color: #484848;
 }
 
 .offBalanceSheet_table tbody tr td {

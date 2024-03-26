@@ -1,5 +1,6 @@
 .fronting_main {
-    background-color: steelblue;
+    background-image: url("../../public/glossyWhite.avif");
+    background-size: cover;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

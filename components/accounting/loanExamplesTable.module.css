@@ -10,38 +10,32 @@
 
 .loanExamples_table {
   padding: 5px;
-  border: 5px solid darkslateblue;
+  border: 5px solid #484848;
   background-color: darkgray;
   margin-bottom: 2rem;
 }
 
 .tableHeaderRow {
-  background-color: darkslateblue;
+  background-color: #484848;
   color: white;
   max-height: 2rem;
 }
 
-.tableBodyRows:hover {
-  background-color: chartreuse;
-  cursor: pointer;
-}
-
-
 .tableBodyRows {
   text-align: right;
   background-color: whitesmoke;
-  color: darkslateblue;
+  color: #484848;
   max-height: 2rem;
 }
 
 .tableBodyRows:nth-child(even) {
   text-align: right;
   background-color: white;
-  color: darkslateblue;
+  color: #484848;
 }
 
 .tableBodyRows:hover {
-  background-color: darkslateblue;
+  background-color: #484848;
   color: white;
   cursor: pointer;
 }

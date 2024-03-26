@@ -56,7 +56,7 @@ const Accounting = ({ loanAccountingExamples }) => {
       </PageHeader>
       <div className={classes.formAndButtonContainer}>
         <h2 className={classes.instructionHeader}><ImArrowDown />&nbsp;&nbsp;Click a loan below to view accounting details&nbsp;&nbsp;<ImArrowDown /></h2>
-      <Button className="m_1" onClick={() => setShowForm(!showForm)}>{showForm ? "Hide Form" : "Add New Example"}</Button>
+      <Button className="addExample" onClick={() => setShowForm(!showForm)}>{showForm ? "Hide Form" : "Add Example"}</Button>
       {showForm && (
         <div className={classes.formContainer}>
           <LoanAccountingForm onSubmit={handleFormSubmit} />
