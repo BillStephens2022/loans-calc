@@ -89,6 +89,7 @@
 @media (max-width: 767px) {
    .pageHeader {
     font-size: 1.5em;
+    line-height: 1.5;
    }
 
    .subHeader {

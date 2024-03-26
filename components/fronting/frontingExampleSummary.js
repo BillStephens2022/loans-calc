@@ -337,7 +337,7 @@ const FrontingExampleSummary = ({
             </tr>
 
             <tr className={classes.tableRow}>
-              <td>
+              <td className={classes.tableCell}>
                 <strong>Subtotal Issued LC Fronting</strong>
               </td>
               <td
