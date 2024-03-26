@@ -1,11 +1,16 @@
 .main {
     padding: 1rem;
-    background-color: white;
-    color: darkslateblue;
+    background-image: url("../../public/glossyWhite.avif");
+    background-size: cover;
+    margin-left: 1rem;
+    width: 82vw;
+    border-radius: 8px;
 }
 
 .main h2 {
     font-size: 2rem;
+    font-weight: bold;
+
 }
 
 .main h3 {

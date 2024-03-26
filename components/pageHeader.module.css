@@ -1,8 +1,7 @@
-.accounting_header {
+.page_header {
     width: 100%;
     padding: 3rem 0;
     background-image: url("../public/blackTexture.webp");
-    /* background-color: darkslateblue; */
     text-align: center;
     margin: 0 0 3rem 0;
     color: white;

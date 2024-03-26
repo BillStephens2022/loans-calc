@@ -17,7 +17,7 @@ const Learn = () => {
   return (
     <div>
       <PageHeader>
-        <h1>Learn</h1>
+        <h1 className={classes.pageHeader}>Learn</h1>
       </PageHeader>
       <main className={classes.main}>
         <aside className={classes.aside}>
@@ -31,7 +31,7 @@ const Learn = () => {
                 handleClick({ type: "loan", content: <LoanTypes /> })
               }
             >
-              Types of Loans
+              Loan Types
             </li>
             <li
               className={`${classes.topic} ${
