@@ -51,7 +51,8 @@ const Accounting = ({ loanAccountingExamples }) => {
   return (
     <div className={classes.accounting_main}>
       <PageHeader>
-        <h1>Loan Accounting Examples</h1>
+        <h1 className={classes.pageHeader}>Loan Accounting</h1>
+        <h2 className={classes.subHeader}>Examples</h2>
       </PageHeader>
       <div className={classes.formAndButtonContainer}>
         <h2 className={classes.instructionHeader}><ImArrowDown />&nbsp;&nbsp;Click a loan below to view accounting details&nbsp;&nbsp;<ImArrowDown /></h2>
