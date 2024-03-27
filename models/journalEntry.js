@@ -13,5 +13,5 @@ const JournalEntrySchema = new Schema({
     calculationText: { type: String, required: true }
 });
 
-export default mongoose.models.JournalEntrySchema || mongoose.model('JournalEntry', JournalEntrySchema);
+export default mongoose.models.JournalEntry || mongoose.model('JournalEntry', JournalEntrySchema);
 
