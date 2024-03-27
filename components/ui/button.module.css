@@ -1,13 +1,21 @@
 .button {
-  width: 15rem;
-  background-color: seagreen;
+  width: 10rem;
+  background-color: midnightblue;
   color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.15rem;
   border-radius: 0.5rem;
   margin: auto;
   padding: 0.5rem;
   text-wrap: wrap;
   border: none;
   box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4)
+}
+
+.button:hover {
+  transform: translateY(-3px) scale(1.05);
+  cursor: pointer;
 }
 
 .m_half {
