@@ -3,7 +3,10 @@ const accountCategoryMapping = {
   Cash: ["Assets", "Cash & Cash Equivalents"],
   "Loan Principal": ["Assets", "Loan Market Value"],
   "Loan Discount/Premium": ["Assets", "Loan Market Value"],
-  "Deferred Fees - Unfunded": ["Liabilities", "Unfunded Commitment Market Value"],
+  "Deferred Fees - Unfunded": [
+    "Liabilities",
+    "Unfunded Commitment Market Value",
+  ],
   "Deferred Fees - LC": ["Liabilities", "LC/Guarantee Market Value"],
   "Funded Loan MTM B/S": ["Assets", "Loan Market Value"],
   "Unfunded Commitment MTM B/S": [
@@ -35,54 +38,37 @@ export class JournalEntry {
   constructor(account, accounting, amount, isDebit) {
     this.account = account;
     this.accounting = accounting;
-    const mapping = accountCategoryMapping[account];
-    if (!mapping) {
-      // Handle case where account doesn't match any key in accountCategoryMapping
-      console.error(`Account "${account}" doesn't have a mapping.`);
-      this.highLevelCategory = "Unknown";
-      this.category = "Unknown";
-    } else {
-      const [highLevelCategory, category] = mapping;
-      this.highLevelCategory = highLevelCategory;
-      this.category = category;
-    }
+    const mapping = accountCategoryMapping[account] || ["Unknown", "Unknown"];
+
+    [this.highLevelCategory, this.category] = mapping;
+
     this.amount = amount;
     this.isDebit = isDebit;
-
+    
+    this.calculationText = this.getCalculationText();
+  }
+  // method to get the calculation text based on the account posted to
+  getCalculationText() {
     switch (this.account) {
       case "Cash":
-        this.calculationText = "Funded Loans - Upfront Fees";
-        break;
-      case "HFI Loan Principal" || "HFS Loan Principal" || "FVO Loan Principal" || "FVTPL Loan Principal":
-        this.calculationText = "Funded Loan Amount";
-        break;
+        return "Funded Loans - Upfront Fees";
+      case "Loan Principal":
+        return "Funded Loan Amount";
       case "Loan Discount/Premium":
-        this.calculationText = "Upfront Fee / Commitment * Funded Loan Amount";
-        break;
+        return "Upfront Fee / Commitment * Funded Loan Amount";
       case "Deferred Fees - Unfunded":
-        this.calculationText = "Upfront Fee / Commitment * Unfunded Commitment";
-        break;
+        return "Upfront Fee / Commitment * Unfunded Commitment";
       case "Deferred Fees - LC":
-        this.calculationText = "Upfront Fee / Commitment * Letters Of Credit";
-        break;
+        return "Upfront Fee / Commitment * Letters Of Credit";
       case "Funded Loan MTM B/S":
       case "Funded Loan MTM P&L":
-        this.calculationText =
-          "Funded Loan * (Trader Mark - Weighted Average Cost)";
-        break;
       case "Unfunded Commitment MTM B/S":
       case "Unfunded Commitment MTM P&L":
-        this.calculationText =
-          "Unfunded Commitment * (Trader Mark - Weighted Average Cost)";
-        break;
       case "LC/Guarantee MTM B/S":
       case "LC/Guarantee MTM P&L":
-        this.calculationText =
-          "Unfunded Commitment * (Trader Mark - Weighted Average Cost)";
-        break;
+        return "Some calculation for MTM";
       default:
-        this.calculationText = "";
-        break;
+        return "";
     }
   }
 }
