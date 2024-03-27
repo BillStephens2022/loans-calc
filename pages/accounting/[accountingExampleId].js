@@ -79,6 +79,7 @@ const AccountingExampleDetail = () => {
       <h2 className={classes.summary_header}>Loan Facility Summary</h2>
         <LoanExamplesTable examples={[example]} showButtons={false} />
         <LoanDetail
+          example={example}
           borrower={borrower}
           facility={facility}
           commitment={commitment}
