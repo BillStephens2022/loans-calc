@@ -20,10 +20,13 @@ const LoanDetail = ({
   unfundedMTM,
   lettersOfCreditMTM,
 }) => {
+
+  // calculate total based on condition (i.e. sum all entries where entry is a debit, or entry is to an asset account, etc).
+  const calculateTotal = (journalEntries, condition) =>
+    journalEntries.reduce((total, entry) => (condition(entry) ? total + entry.amount : total), 0);
+
   // create array of journal entries using custom JournalEntry class which has been imported
   // constructor calls for (string account, string accounting, float amount, boolean isDebit)
- 
-  
   const journalEntries = [
     new JournalEntry("Cash", accounting, cash, cash > 0),
     new JournalEntry("Loan Principal", accounting, fundedLoan, true),
@@ -74,68 +77,16 @@ const LoanDetail = ({
   ];
 
   // Calculate totals for debit and credit columns
-  const debitTotal = journalEntries.reduce(
-    (total, entry) => (entry.isDebit ? total + entry.amount : total),
-    0
-  );
-  const creditTotal = journalEntries.reduce(
-    (total, entry) => (!entry.isDebit ? total + entry.amount : total),
-    0
-  );
-
-  const assetsTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.highLevelCategory == "Assets" ? total + entry.amount : total,
-    0
-  );
-
-  const liabilitiesTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.highLevelCategory == "Liabilities" ? total + entry.amount : total,
-    0
-  );
-
-  const pnlTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.highLevelCategory == "P&L" ? total + entry.amount : total,
-    0
-  );
-
-  const cashTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.category == "Cash & Cash Equivalents"
-        ? total + entry.amount
-        : total,
-    0
-  );
-
-  const loanMarketValueTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.category == "Loan Market Value" ? total + entry.amount : total,
-    0
-  );
-
-  const commitmentMarketValueTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.category == "Unfunded Commitment Market Value"
-        ? total + entry.amount
-        : total,
-    0
-  );
-
-  const lcMarketValueTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.category == "LC/Guarantee Market Value"
-        ? total + entry.amount
-        : total,
-    0
-  );
-
-  const mtmPnlTotal = journalEntries.reduce(
-    (total, entry) =>
-      entry.category == "MTM P&L (unrealized)" ? total + entry.amount : total,
-    0
-  );
+  const debitTotal = calculateTotal(journalEntries, entry => entry.isDebit);
+  const creditTotal = calculateTotal(journalEntries, entry => !entry.isDebit);
+  const assetsTotal = calculateTotal(journalEntries, entry => entry.highLevelCategory === "Assets");
+  const liabilitiesTotal = calculateTotal(journalEntries, entry => entry.highLevelCategory === "Liabilities");
+  const pnlTotal = calculateTotal(journalEntries, entry => entry.highLevelCategory === "P&L");
+  const cashTotal = calculateTotal(journalEntries, entry => entry.category === "Cash & Cash Equivalents");
+  const loanMarketValueTotal = calculateTotal(journalEntries, entry => entry.category === "Loan Market Value");
+  const commitmentMarketValueTotal = calculateTotal(journalEntries, entry => entry.category === "Unfunded Commitment Market Value");
+  const lcMarketValueTotal = calculateTotal(journalEntries, entry => entry.category === "LC/Guarantee Market Value");
+  const mtmPnlTotal = calculateTotal(journalEntries, entry => entry.category === "MTM P&L (unrealized)");
 
   return (
     <div className={classes.loanDetail_container}>
