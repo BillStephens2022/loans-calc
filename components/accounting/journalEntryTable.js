@@ -53,13 +53,13 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
           </td>
           <td className={classes.tableCell}></td>
           <td className={classes.tableCell}></td>
+          <td className={classes.tableCell}></td>
           <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>
             <strong>{formatAmount(debitTotal)}</strong>
           </td>
           <td className={`${classes.tableCell} ${classes.tableCellAmounts}`}>
             <strong>{formatAmount(creditTotal)}</strong>
           </td>
-          <td className={classes.tableCell}></td>
           <td className={classes.tableCell}></td>
         </tr>
       </tbody>
