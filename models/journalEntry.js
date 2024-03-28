@@ -14,4 +14,3 @@ const JournalEntrySchema = new Schema({
 });
 
 export default mongoose.models.JournalEntry || mongoose.model('JournalEntry', JournalEntrySchema);
-
