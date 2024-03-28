@@ -50,7 +50,13 @@ const Accounting = ({ loanAccountingExamples }) => {
   }, [updatedExamples]);
 
   const handleFormSubmit = async (formData) => {
-    await createLoanAccountingExample(formData);
+    try {
+      await createLoanAccountingExample(formData);
+      // Form submission successful, hide the form
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+    }
   };
 
   const handleDeleteExample = async (exampleId) => {
