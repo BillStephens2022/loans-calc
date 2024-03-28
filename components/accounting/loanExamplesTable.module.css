@@ -63,6 +63,10 @@
   align-items: center;
 }
 
+.totalCell {
+  font-weight: bold;
+}
+
 @media (max-width: 1660px) {
   .loanExamples_table {
     font-size: 0.75rem;
