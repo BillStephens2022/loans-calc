@@ -72,6 +72,10 @@
   font-weight: bold;
 }
 
+.footnoteDiv {
+  margin-bottom: 2rem;
+}
+
 .footnote {
   font-size: smaller; /* Smaller font size */
   vertical-align: super; /* Raised position */
@@ -80,6 +84,10 @@
 
 .footnoteDesc {
   margin: 0.15rem 0;
+}
+
+.tableFooter:hover {
+  cursor: auto;
 }
 
 @media (max-width: 1660px) {

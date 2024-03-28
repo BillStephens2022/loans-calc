@@ -20,6 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 3rem;
 }
 
 .instructionHeader {
@@ -46,6 +47,7 @@
   align-items: flex-start;
   padding: 0 1rem;
   min-height: 70vh;
+  margin-bottom: 2rem;
 }
 
 .formAndButtonContainer {
@@ -72,6 +74,20 @@
 
 .loanDetail_summary h2 {
   margin: 0;
+}
+
+.balanceSheetView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 2rem;
+}
+
+.balanceSheetHeader {
+  margin-top: 3rem;
+  font-size: 2rem;
+  color: #484848;
 }
 
 @media (max-width: 1024px) {

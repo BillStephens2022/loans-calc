@@ -131,7 +131,7 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
             })}
           </tbody>
           <tfoot>
-            <tr className={classes.tableBodyRows}>
+            <tr className={`${classes.tableBodyRows} ${classes.tableFooter}`}>
               <td className={classes.totalCell}>Total:</td>
               <td className={classes.totalCell}></td>
               <td className={classes.totalCell}></td>
@@ -169,7 +169,7 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
           </tfoot>
         </table>
         {portfolioPage && (
-          <div>
+          <div className={classes.footnoteDiv}>
             <p className={classes.footnoteDesc}>
               <span className={classes.footnote}>(1)</span>Weighted Average Cost
               for Portfolio
