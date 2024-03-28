@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
+import Link from "next/link";
 import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
 import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
@@ -7,20 +8,32 @@ import {
   createLoanAccountingExample,
   getLoanAccountingExamples,
   deleteLoanAccountingExampleById,
+  getJournalEntries
 } from "../../lib/api";
 import classes from "./accounting.module.css";
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import Button from "../../components/ui/button";
 
+import FullBalanceSheet from "../../components/accounting/fullBalanceSheet";
+
 // Accounting Page
 
 const Accounting = ({ loanAccountingExamples }) => {
   const [examples, setExamples] = useState(loanAccountingExamples || {});
+  const [journalEntries, setJournalEntries] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [showBalanceSheet, setShowBalanceSheet] = useState(false);
 
   const { data: updatedExamples, error } = useSWR(
-    "/api/accounting/",
-    getLoanAccountingExamples,
+    ["/api/accounting/", "/api/entries"], // Include both endpoints
+    async () => {
+      const [loanExamples, journalEntriesData] = await Promise.all([
+        getLoanAccountingExamples(),
+        getJournalEntries()
+      ]);
+      
+      return { loanExamples, journalEntriesData };
+    },
     {
       refreshInterval: 1000,
     }
@@ -28,15 +41,22 @@ const Accounting = ({ loanAccountingExamples }) => {
 
   useEffect(() => {
     if (updatedExamples) {
-      const sortedExamples = updatedExamples.sort((a, b) =>
+      const sortedExamples = updatedExamples.loanExamples.sort((a, b) =>
         a.borrower.localeCompare(b.borrower)
       );
       setExamples(sortedExamples);
+      setJournalEntries(updatedExamples.journalEntriesData)
     }
   }, [updatedExamples]);
 
   const handleFormSubmit = async (formData) => {
-    await createLoanAccountingExample(formData);
+    try {
+      await createLoanAccountingExample(formData);
+      // Form submission successful, hide the form
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+    }
   };
 
   const handleDeleteExample = async (exampleId) => {
@@ -67,9 +87,16 @@ const Accounting = ({ loanAccountingExamples }) => {
         <LoanExamplesTable
           examples={examples}
           onDelete={handleDeleteExample}
-          showButtons={true}
+          portfolioPage={true}
         />
       </div>
+      <Button onClick={() => setShowBalanceSheet(!showBalanceSheet)}>{!showBalanceSheet ? "Show Balance Sheet" : "Hide Balance Sheet"}</Button>
+      {showBalanceSheet && 
+      
+      <div className={classes.balanceSheetView}>
+        <h2 className={classes.balanceSheetHeader}>Portfolio Balance Sheet</h2>
+        <FullBalanceSheet journalEntries={journalEntries} />
+      </div>}
     </div>
   );
 };

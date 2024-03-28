@@ -1,0 +1,84 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 2rem;
+    width: 98%;
+}
+
+.balanceSheetSummary {
+    display: flex;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.assetsSide, .liabilitiesSide {
+    padding: 2rem 0.5rem;
+    background-color: whitesmoke;
+    border: 5px solid #484848;
+    color: #484848;
+}
+
+.assetsSide_header, .liabilitiesSide_header {
+    
+    background-color: #484848;
+    color: white;
+    padding: 0.5rem;
+}
+.assetsSide {
+  width: 50%;
+  border-right: 2.5px solid #484848;
+}
+
+.liabilitiesSide {
+  width: 50%;
+  border-left: 2.5px solid #484848;
+}
+
+.accountBalance {
+
+    padding-left: 20px;
+}
+
+.subCategory {
+    padding-left: 10px;
+}
+
+.assetsLiabilitiesSubtotals {
+    text-transform: uppercase;
+    border: 2px solid black;
+    padding: 1.25rem 0.25rem;
+}
+
+.table_caption {
+    display: flex;
+    color: red;
+    font-weight: 900;
+    margin-top: 0.25rem;
+
+}
+
+.footnoteDiv {
+    margin-bottom: 2rem;
+  }
+  
+  .footnote {
+    font-size: smaller; /* Smaller font size */
+    vertical-align: super; /* Raised position */
+    color: red;
+  }
+  
+  .footnoteDesc {
+    margin: 0.15rem 0;
+  }
+
+@media (max-width: 767px) {
+    .balanceSheetSummary {
+        flex-direction: column;
+        align-items: center;
+        font-size: 1rem;
+    }
+    .assetsSide, .liabilitiesSide {
+        width: 90%;
+    }
+}

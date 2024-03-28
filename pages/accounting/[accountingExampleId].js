@@ -75,7 +75,7 @@ const AccountingExampleDetail = () => {
       <main className={classes.main}>
       <Link className={classes.link} href="/accounting"><p><ImArrowLeft />&nbsp;&nbsp;<span className={classes.backLinkText}>Back to Examples</span></p></Link>
       <h2 className={classes.summary_header}>Loan Facility Summary</h2>
-        <LoanExamplesTable examples={[example]} showButtons={false} />
+        <LoanExamplesTable examples={[example]} portfolioPage={false} />
         <LoanDetail
           journalEntries={journalEntries}         
           lettersOfCredit={lettersOfCredit}
