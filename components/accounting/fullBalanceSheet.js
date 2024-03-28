@@ -108,6 +108,17 @@ const FullBalanceSheet = ({ journalEntries }) => {
     lettersOfCreditMarketValueFVOTotal +
     lettersOfCreditMarketValueFVTPLTotal;
 
+    const deferredFeesTotal = sumEntriesByCategory(
+        journalEntries,
+        "Unfunded Commitment Market Value",
+        "HFI"
+      ) + sumEntriesByCategory(
+        journalEntries,
+        "LC/Guarantee Market Value",
+        "HFI"
+      );
+    
+
   const mtmPnlTotal = sumEntriesByCategory(
     journalEntries,
     "MTM P&L (unrealized)"
@@ -167,6 +178,15 @@ const FullBalanceSheet = ({ journalEntries }) => {
             Liabilities - Debit/(Credit)
           </h3>
           <div>
+            <h4>Deferred Fees</h4>
+            <p className={classes.accountBalance}>
+              Deferred Fees - HFI: ${" "}
+              {formatAmount(deferredFeesTotal)}
+            </p>
+            <h4 className={classes.accountBalance}>
+              Total Deferred Fees: $
+              {formatAmount(deferredFeesTotal)}
+            </h4>
             <h4>Commitments</h4>
             <p className={classes.accountBalance}>
               Commitments - Held For Sale - LOCOM: ${" "}
@@ -205,18 +225,24 @@ const FullBalanceSheet = ({ journalEntries }) => {
             <h4 className={classes.assetsLiabilitiesSubtotals}>Total Liabilities: $ {formatAmount(liabilitiesTotal)}</h4>
           </div>
           <h3 className={classes.liabilitiesSide_header}>
-            Owner's Equity - P&L - Debit/(Credit)
+            Owner's Equity - Debit/(Credit)
           </h3>
           <div>
             <p className={classes.accountBalance}>
               Paid-In-Capital: $ {formatAmount(equityStartingBalance)}{" "}
             </p>
+            <h4 className={classes.accountBalance}>
+              Total Equity: $ {formatAmount(equityStartingBalance)}
+            </h4>
             <p className={classes.accountBalance}>
               Trading P&L: $ {formatAmount(mtmPnlTotal)}{" "}
             </p>
-            <p>
-              <strong>Total P&L: $ {formatAmount(mtmPnlTotal)}</strong>
-            </p>
+            <h4 className={classes.accountBalance}>
+              Total P&L: $ {formatAmount(mtmPnlTotal)}
+            </h4>
+            <h4 className={classes.assetsLiabilitiesSubtotals}>
+              Total Owner's Equity: $ {formatAmount(mtmPnlTotal + equityStartingBalance)}
+            </h4>
           </div>
           <h4 className={classes.assetsLiabilitiesSubtotals}>
             Total Liabilities + Owner's Equity: ${" "}
