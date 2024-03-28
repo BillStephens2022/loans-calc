@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { ImArrowLeft } from "react-icons/im";
-import { getLoanAccountingExampleById } from "@/lib/api";
+import { getLoanAccountingExampleById, getJournalEntriesByExampleId } from "@/lib/api";
 import PageHeader from "../../components/pageHeader"
 import classes from "./accountingExampleId.module.css"
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
@@ -13,14 +13,17 @@ const AccountingExampleDetail = () => {
   const router = useRouter();
   const { accountingExampleId } = router.query;
   const [example, setExample] = useState(null);
+  const [journalEntries, setJournalEntries] = useState([]);
   const [loading, setLoading] = useState(true); // accounting example data loading state
 
   useEffect(() => {
     if (accountingExampleId) {
       const fetchLoanAccountingExampleDetails = async () => {
         try {
-          const data = await getLoanAccountingExampleById(accountingExampleId);
-          setExample(data); // Update example state with fetched data
+          const exampleData = await getLoanAccountingExampleById(accountingExampleId);
+          const journalEntriesData = await getJournalEntriesByExampleId(accountingExampleId);
+          setExample(exampleData);
+          setJournalEntries(journalEntriesData);
           setLoading(false);
         } catch (error) {
           console.error(

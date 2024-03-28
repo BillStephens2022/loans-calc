@@ -1,27 +1,20 @@
-import { JournalEntry } from "../../util/helperClasses";
-import { createJournalEntries } from "@/util/createJournalEntries";
+// import { useState } from "react";
+// import useSWR from "swr";
+// import { JournalEntry } from "../../util/helperClasses";
+// import { createJournalEntries } from "@/util/createJournalEntries";
+// import { getJournalEntries } from "@/lib/api";
 import JournalEntryTable from "./journalEntryTable";
 import OffBalanceSheetTable from "./offBalanceSheetTable";
 import BalanceSheetSummary from "./balanceSheetSummary";
 import classes from "./loanDetail.module.css";
 
 const LoanDetail = ({
-  example,
-  borrower,
-  facility,
-  commitment,
-  fundedLoan,
+  journalEntries,
   lettersOfCredit,
   accounting,
-  loanMark,
   unfundedCommitment,
-  upfrontFee,
-  weightedAverageCost,
-  cash,
-  fundedMTM,
-  unfundedMTM,
-  lettersOfCreditMTM,
 }) => {
+
 
   // calculate total based on condition (i.e. sum all entries where entry is a debit, or entry is to an asset account, etc).
   const calculateTotal = (journalEntries, condition) =>
@@ -29,7 +22,7 @@ const LoanDetail = ({
 
   // create array of journal entries using custom JournalEntry class which has been imported
   // constructor calls for (string account, string accounting, float amount, boolean isDebit)
-  const journalEntries = createJournalEntries(example);
+  // const journalEntries = createJournalEntries(example);
   // const journalEntries = [
   //   new JournalEntry("Cash", accounting, cash, cash > 0),
   //   new JournalEntry("Loan Principal", accounting, fundedLoan, true),
