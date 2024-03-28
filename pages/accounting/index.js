@@ -67,7 +67,7 @@ const Accounting = ({ loanAccountingExamples }) => {
         <LoanExamplesTable
           examples={examples}
           onDelete={handleDeleteExample}
-          showButtons={true}
+          portfolioPage={true}
         />
       </div>
     </div>
