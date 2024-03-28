@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { ImArrowLeft } from "react-icons/im";
-import { getLoanAccountingExampleById } from "@/lib/api";
+import { getLoanAccountingExampleById, getJournalEntriesByExampleId } from "@/lib/api";
 import PageHeader from "../../components/pageHeader"
 import classes from "./accountingExampleId.module.css"
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
@@ -13,14 +13,17 @@ const AccountingExampleDetail = () => {
   const router = useRouter();
   const { accountingExampleId } = router.query;
   const [example, setExample] = useState(null);
-  const [loading, setLoading] = useState(true); // accounting example data loading state
+  const [journalEntries, setJournalEntries] = useState([]);
+  const [loading, setLoading] = useState(true); // loading state, set to false once data is loaded
 
   useEffect(() => {
     if (accountingExampleId) {
       const fetchLoanAccountingExampleDetails = async () => {
         try {
-          const data = await getLoanAccountingExampleById(accountingExampleId);
-          setExample(data); // Update example state with fetched data
+          const exampleData = await getLoanAccountingExampleById(accountingExampleId);
+          const journalEntriesData = await getJournalEntriesByExampleId(accountingExampleId);
+          setExample(exampleData);
+          setJournalEntries(journalEntriesData);
           setLoading(false);
         } catch (error) {
           console.error(
@@ -53,7 +56,6 @@ const AccountingExampleDetail = () => {
 
 
   const unfundedCommitment = commitment - fundedLoan - lettersOfCredit;
-  const cash = -fundedLoan + upfrontFee;
   let loanMTM = commitment * ((loanMark - weightedAverageCost) / 100);
   if (accounting === "HFS" && loanMTM > 0) {
     loanMTM = 0;  // apply LOCOM (lower of cost or market) accounting for HFS. MTM can only be negative on HFS loans
@@ -62,10 +64,6 @@ const AccountingExampleDetail = () => {
     loanMTM = 0;  // HFI loans aren't marked to market, so set to zero
   }
 
-  // Pro-rate the Loan MTM
-  const fundedMTM = loanMTM / commitment * fundedLoan; // calculate funded portion of Loan MTM
-  const unfundedMTM = loanMTM / commitment * unfundedCommitment; // calculate unfunded portion of Loan MTM
-  const lettersOfCreditMTM = loanMTM / commitment * lettersOfCredit; // calculate letter of credit portion of Loan MTM
 
   return (
     <div>
@@ -79,20 +77,10 @@ const AccountingExampleDetail = () => {
       <h2 className={classes.summary_header}>Loan Facility Summary</h2>
         <LoanExamplesTable examples={[example]} showButtons={false} />
         <LoanDetail
-          borrower={borrower}
-          facility={facility}
-          commitment={commitment}
-          fundedLoan={fundedLoan}
+          journalEntries={journalEntries}         
           lettersOfCredit={lettersOfCredit}
           accounting={accounting}
-          unfundedCommitment={unfundedCommitment}
-          upfrontFee={upfrontFee}
-          loanMark={loanMark}
-          weightedAverageCost={weightedAverageCost}
-          cash={cash}
-          fundedMTM={fundedMTM}
-          unfundedMTM={unfundedMTM}
-          lettersOfCreditMTM={lettersOfCreditMTM}
+          unfundedCommitment={unfundedCommitment}         
         />
       </main>
     </div>

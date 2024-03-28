@@ -1,80 +1,18 @@
-import { JournalEntry } from "../../util/helperClasses";
 import JournalEntryTable from "./journalEntryTable";
 import OffBalanceSheetTable from "./offBalanceSheetTable";
 import BalanceSheetSummary from "./balanceSheetSummary";
 import classes from "./loanDetail.module.css";
 
 const LoanDetail = ({
-  borrower,
-  facility,
-  commitment,
-  fundedLoan,
+  journalEntries,
   lettersOfCredit,
   accounting,
-  loanMark,
   unfundedCommitment,
-  upfrontFee,
-  weightedAverageCost,
-  cash,
-  fundedMTM,
-  unfundedMTM,
-  lettersOfCreditMTM,
 }) => {
 
   // calculate total based on condition (i.e. sum all entries where entry is a debit, or entry is to an asset account, etc).
   const calculateTotal = (journalEntries, condition) =>
     journalEntries.reduce((total, entry) => (condition(entry) ? total + entry.amount : total), 0);
-
-  // create array of journal entries using custom JournalEntry class which has been imported
-  // constructor calls for (string account, string accounting, float amount, boolean isDebit)
-  const journalEntries = [
-    new JournalEntry("Cash", accounting, cash, cash > 0),
-    new JournalEntry("Loan Principal", accounting, fundedLoan, true),
-    new JournalEntry(
-      "Loan Discount/Premium",
-      accounting,
-      (-upfrontFee / commitment) * fundedLoan,
-      upfrontFee < 0
-    ),
-    new JournalEntry(
-      "Deferred Fees - Unfunded",
-      accounting,
-      (-upfrontFee / commitment) * unfundedCommitment,
-      upfrontFee < 0
-    ),
-    new JournalEntry(
-      "Deferred Fees - LC",
-      accounting,
-      (-upfrontFee / commitment) * lettersOfCredit,
-      upfrontFee < 0
-    ),
-    new JournalEntry("Funded Loan MTM B/S", accounting, fundedMTM, fundedMTM > 0),
-    new JournalEntry("Funded Loan MTM P&L", accounting, -fundedMTM, fundedMTM < 0),
-    new JournalEntry(
-      "Unfunded Commitment MTM B/S",
-      accounting,
-      unfundedMTM,
-      unfundedMTM > 0
-    ),
-    new JournalEntry(
-      "Unfunded Commitment MTM P&L",
-      accounting,
-      -unfundedMTM,
-      unfundedMTM < 0
-    ),
-    new JournalEntry(
-      "LC/Guarantee MTM B/S",
-      accounting,
-      lettersOfCreditMTM,
-      unfundedMTM > 0
-    ),
-    new JournalEntry(
-      "LC/Guarantee MTM P&L",
-      accounting,
-      -lettersOfCreditMTM,
-      unfundedMTM < 0
-    ),
-  ];
 
   // Calculate totals for debit and credit columns
   const debitTotal = calculateTotal(journalEntries, entry => entry.isDebit);

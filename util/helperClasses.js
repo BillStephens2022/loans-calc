@@ -34,6 +34,7 @@ export class JournalEntry {
    * @param {string} category - The category of the account (e.g., "Cash & Cash Equivalents", "Loan Market Value", etc).
    * @param {number} amount - The amount of the journal entry.
    * @param {boolean} isDebit - Indicates whether the entry is a debit (true) or credit (false).
+   * @param {string} calculationText - shows formula for how amount is calculated
    */
   constructor(account, accounting, amount, isDebit) {
     this.account = account;
