@@ -83,8 +83,8 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
               <th>Letters of Credit</th>
               <th>Unfunded Commitment</th>
               <th>Upfront Fees</th>
-              <th>Weighted Average Cost</th>
-              <th>Loan Mark</th>
+              <th className={classes.price}>Weighted Average Cost</th>
+              <th className={classes.price}>Loan Mark</th>
               <th>MTM</th>
               {showButtons && <th>Delete</th>}
             </tr>
@@ -105,8 +105,8 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
                   <td>{formatAmount(example.lettersOfCredit)}</td>
                   <td>{formatAmount(calculateUnfundedCommitment(example))}</td>
                   <td>{formatAmount(example.upfrontFee)}</td>
-                  <td>{example.weightedAverageCost.toFixed(4)}</td>
-                  <td>{example.loanMark.toFixed(4)}</td>
+                  <td className={classes.price}>{example.weightedAverageCost.toFixed(4)}</td>
+                  <td className={classes.price}>{example.loanMark.toFixed(4)}</td>
                   <td>{formatAmount(calculateLoanMTM(example))}</td>
                   {showButtons && (
                     <td className={classes.deleteCell}>
@@ -136,13 +136,15 @@ const LoanExamplesTable = ({ examples, onDelete, showButtons }) => {
               <td className={classes.totalCell}>{formatAmount(totalLettersOfCredit)}</td>
               <td className={classes.totalCell}>{formatAmount(totalUnfundedCommitment)}</td>
               <td className={classes.totalCell}>{formatAmount(totalUpfrontFees)}</td>
-              <td className={classes.totalCell}>{((totalCommitment-totalUpfrontFees)/totalCommitment * 100).toFixed(4)}</td>
-              <td className={classes.totalCell}>{weightedAverageMark.toFixed(4)}</td>
+              <td className={classes.totalCell}>{((totalCommitment-totalUpfrontFees)/totalCommitment * 100).toFixed(4)} <span className={classes.footnote}>(1)</span></td>
+              <td className={classes.totalCell}>{weightedAverageMark.toFixed(4)} <span className={classes.footnote}>(2)</span></td>
               <td className={classes.totalCell}>{formatAmount(totalLoanMTM)}</td>
               {showButtons && <td></td>}
             </tr>
           </tfoot>
         </table>
+        <p className={classes.footnoteDesc}><span className={classes.footnote}>(1)</span>Weighted Average Cost for Portfolio</p>
+        <p className={classes.footnoteDesc}><span className={classes.footnote}>(2)</span>Weighted Average Mark for Portfolio</p>
       </div>
     </div>
   );

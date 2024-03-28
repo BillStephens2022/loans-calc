@@ -47,6 +47,11 @@
   text-wrap: wrap;
 }
 
+.price {
+  min-width: 4rem;
+  max-width: 5rem;
+}
+
 .tableBodyRows td {
   text-align: right;
 }
@@ -65,6 +70,16 @@
 
 .totalCell {
   font-weight: bold;
+}
+
+.footnote {
+  font-size: smaller; /* Smaller font size */
+  vertical-align: super; /* Raised position */
+  color: red;
+}
+
+.footnoteDesc {
+  margin: 0.15rem 0;
 }
 
 @media (max-width: 1660px) {
