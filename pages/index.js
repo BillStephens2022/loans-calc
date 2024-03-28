@@ -42,7 +42,7 @@ const Home = () => {
             </Link>
 
             <Link href="/fronting" className={classes.featureBox}>
-              <h3>Fronting Exposure</h3>
+              <h3>Fronting Risk</h3>
               <h4>Swingline Loan & Issued LC Fronting</h4>
               <p>
                 Enter example loan terms to view fronting exposure calculations
