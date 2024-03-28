@@ -6,6 +6,7 @@ import FacilityTypes from "../../components/learn/facilityTypes";
 import Utilization from "../../components/learn/utilization";
 import FeeTypes from "../../components/learn/feeTypes";
 import Trades from "../../components/learn/trades";
+import Fronting from "../../components/learn/fronting";
 import classes from "./learn.module.css";
 
 const Learn = () => {
@@ -83,6 +84,17 @@ const Learn = () => {
               }
             >
               Trades
+            </li>
+            
+            <li
+              className={`${classes.topic} ${
+                topic.type === "Fronting" ? classes.active : ""
+              }`}
+              onClick={() =>
+                handleClick({ type: "fronting", content: <Fronting /> })
+              }
+            >
+              Fronting
             </li>
           </ul>
         </aside>
