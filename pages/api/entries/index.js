@@ -1,7 +1,7 @@
 // route: api/entries
 
-import dbConnect from "../../../../lib/db";
-import JournalEntry from "../../../../models/journalEntry";
+import dbConnect from "../../../lib/db";
+import JournalEntry from "../../../models/journalEntry";
 
 const handler = async (req, res) => {
   await dbConnect();
