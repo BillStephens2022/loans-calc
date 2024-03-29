@@ -1,14 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useSWR from "swr";
 import PageHeader from "../../components/pageHeader";
 import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
+import { createFrontingExample } from "../../lib/api";
 import classes from "./fronting.module.css";
 import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
 
 const Fronting = () => {
   const [formData, setFormData] = useState(null);
-  const [showFrontingExposure, setShowFrontingExposure] = useState(false);
+  // const [showFrontingExposure, setShowFrontingExposure] = useState(false);
   const [showForm, setShowForm] = useState(true);
+  const [frontingExamples, setFrontingExamples] = useState([]);
+
+  const { data, error } = useSWR(
+    "/api/fronting/",
+    (url) => fetch(url).then((res) => res.json()),
+    { refreshInterval: 1000 }
+  );
+
+  useEffect(() => {
+    if (error) {
+      console.error("Error fetching fronting examples:", error);
+    }
+    if (data) {
+      const sortedFrontingExamples = data.sort((a, b) =>
+        a.borrower.localeCompare(b.borrower)
+      );
+      setFrontingExamples(sortedFrontingExamples);
+    }
+  }, [data, error]);
 
   const calculateNewValues = (formData) => {
     // Calculate new values based on formData
@@ -40,8 +61,8 @@ const Fronting = () => {
     const hasFullSublimitAvailability =
       globalAvailability >= totalSublimitAvailability;
     const sublimitOverage = totalSublimitAvailability - globalAvailability;
-    
-    // if availability under sublimits is greater than global facility availability, 
+
+    // if availability under sublimits is greater than global facility availability,
     // adjust the availability under the sublimits by a pro-rata share of overage
     const adjustedSwinglineAvailability = hasFullSublimitAvailability
       ? swinglineSublimitAvailability
@@ -49,25 +70,25 @@ const Fronting = () => {
         (sublimitOverage / totalSublimitAvailability) *
           swinglineSublimitAvailability;
 
-    // if availability under sublimits is greater than global facility availability, 
+    // if availability under sublimits is greater than global facility availability,
     // adjust the availability under the sublimits by a pro-rata share of overage
     const adjustedLCAvailability = hasFullSublimitAvailability
       ? lcSublimitAvailability
       : lcSublimitAvailability -
-        (sublimitOverage / totalSublimitAvailability) *
-          lcSublimitAvailability;
+        (sublimitOverage / totalSublimitAvailability) * lcSublimitAvailability;
 
     const unfundedSwinglineFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
         ? otherLendersShare * adjustedSwinglineAvailability
         : 0;
-    const fundedSwinglineFrontingExposure = otherLendersShare * swinglinesFundedByYourBank;
+    const fundedSwinglineFrontingExposure =
+      otherLendersShare * swinglinesFundedByYourBank;
 
     const unissuedLCFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
         ? otherLendersShare * adjustedLCAvailability
         : 0;
-        
+
     const issuedLCFrontingExposure = otherLendersShare * lcsIssuedByYourBank;
 
     return {
@@ -81,16 +102,24 @@ const Fronting = () => {
     };
   };
 
-  const handleFormSubmit = (data) => {
-    const combinedProps = calculateNewValues(data);
-    setFormData(combinedProps);
-    setShowForm(false); // Hide the form after submission
-    setShowFrontingExposure(true);
+  const handleFormSubmit = async (formData) => {
+    // const combinedProps = calculateNewValues(data);
+    // setFormData(combinedProps);
+    // setShowForm(false); // Hide the form after submission
+    // setShowFrontingExposure(true);
+
+    try {
+      await createFrontingExample(formData);
+      // Form submission successful, hide the form
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+    }
   };
 
   const handleUpdateForm = () => {
     setShowForm(true); // Show the form again when "Update Form" button is clicked
-    setShowFrontingExposure(false);
+    // setShowFrontingExposure(false);
   };
 
   return (
@@ -114,12 +143,26 @@ const Fronting = () => {
           </Button>
         )}
       </div>
-      {showFrontingExposure && (
+      {/* {showFrontingExposure && (
         <div className={classes.frontingExampleContainer}>
-          {/* Pass the combined props to FrontingExampleSummary */}
+          // Pass the combined props to FrontingExampleSummary 
           <FrontingExampleSummary {...formData} />
         </div>
-      )}
+      )} */}
+      
+        {frontingExamples.map((example) => {
+          console.log(example);
+          return (
+          <div key={example._id}>
+          <p>Borrower: {example.borrower}</p>
+          <p>Facility: {example.facility}</p>
+          <p>Global Commitment: {example.globalCommitment}</p>
+          <p>LC Issuer? {String(example.isLCIssuer)}</p>
+          <p>Swingline Lender? {String(example.isSwinglineLender)}</p>
+          <p>Non Accrual? {String(example.isNonAccrual)}</p>
+          </div>)
+})}
+    
     </main>
   );
 };

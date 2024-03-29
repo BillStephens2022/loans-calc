@@ -4,6 +4,7 @@ import classes from "./frontingForm.module.css";
 
 const initialFormData = {
   borrower: "Vandelay Industries",
+  facility: "Revolver",
   yourBankName: "Bank of Costanza",
   globalCommitment: 100000000.0,
   globalFundedLoans: 45000000.0,
@@ -28,7 +29,7 @@ const FrontingForm = ({ onSubmit }) => {
 
     if (type === "checkbox") {
       newValue = checked;
-    } else if (name === "borrower" || name === "yourBankName") {
+    } else if (name === "borrower" || name === "yourBankName" || name === "facility") {
       newValue = value; // Treat as string, no need to parse
     } else {
       // Parse numeric values to remove commas and convert to float
@@ -45,7 +46,6 @@ const FrontingForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
     onSubmit(formData);
   };
 

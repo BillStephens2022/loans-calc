@@ -64,7 +64,6 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("handleSubmit button FORMDATA: ", formData);
     onSubmit(formData); // passes formData to the parent component (Accounting Page)
   };
 

@@ -19,5 +19,5 @@ const FrontingExampleSchema = new Schema({
 });
 
 
-export default mongoose.modelsFrontingExample ||
+export default mongoose.models.FrontingExample ||
   mongoose.model("FrontingExample", FrontingExampleSchema);
