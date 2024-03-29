@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import Link from "next/link";
 import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
 import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
@@ -13,8 +12,8 @@ import {
 import classes from "./accounting.module.css";
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import Button from "../../components/ui/button";
-
 import FullBalanceSheet from "../../components/accounting/fullBalanceSheet";
+import OffBalanceSheetTable from "@/components/accounting/offBalanceSheetTable";
 
 // Accounting Page
 
@@ -68,6 +67,14 @@ const Accounting = ({ loanAccountingExamples }) => {
     }
   };
 
+  const totalUnfundedCommitments = examples.reduce((total, example) => {
+    return total + (example.commitment - example.fundedLoan - example.lettersOfCredit);
+  }, 0);
+
+  const totalLettersOfCredit = examples.reduce((total, example) => {
+    return total + example.lettersOfCredit;
+  }, 0);
+
   return (
     <div className={classes.accounting_main}>
       <PageHeader>
@@ -96,6 +103,8 @@ const Accounting = ({ loanAccountingExamples }) => {
       <div className={classes.balanceSheetView}>
         <h2 className={classes.balanceSheetHeader}>Portfolio Balance Sheet</h2>
         <FullBalanceSheet journalEntries={journalEntries} />
+        <h2 className={classes.balanceSheetHeader}>Portfolio Off Balance Sheet</h2>
+        <OffBalanceSheetTable unfundedCommitment={totalUnfundedCommitments} lettersOfCredit={totalLettersOfCredit} isPortfolioPage={true}/>
       </div>}
     </div>
   );

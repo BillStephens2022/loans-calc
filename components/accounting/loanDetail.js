@@ -44,6 +44,7 @@ const LoanDetail = ({
       <OffBalanceSheetTable
         unfundedCommitment={unfundedCommitment}
         lettersOfCredit={lettersOfCredit}
+        isPortfolioPage={false}
       />
       <div className={classes.loanDetail_journalEntries}>
         <h2 className={classes.table_headers}>Journal Entries</h2>

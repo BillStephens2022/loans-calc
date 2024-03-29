@@ -1,7 +1,7 @@
 import { formatAmount } from "../../util/formatting";
 import classes from "./offBalanceSheetTable.module.css";
 
-const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit }) => {
+const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit, isPortfolioPage }) => {
   return (
     <div className={classes.offBalanceSheetTableWrapper}>
     <table className={classes.offBalanceSheet_table}>
@@ -13,7 +13,7 @@ const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit }) => {
       </thead>
       <tbody>
         <tr>
-          <td>Unfunded Commitment</td>
+          <td>Unfunded Commitment{isPortfolioPage ? "s" : ""}</td>
           <td>{formatAmount(unfundedCommitment)}</td>
         </tr>
         <tr>

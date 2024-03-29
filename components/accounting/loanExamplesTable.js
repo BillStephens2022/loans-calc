@@ -56,6 +56,7 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
     return total + calculateUnfundedCommitment(example);
   }, 0);
   const totalUpfrontFees = calculateColumnTotal("upfrontFee");
+
   const totalLoanMTM = examples.reduce((total, example) => {
     return total + calculateLoanMTM(example);
   }, 0);
