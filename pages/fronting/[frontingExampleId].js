@@ -118,7 +118,7 @@ const FrontingExampleDetail = () => {
   return (
     <div>
       <PageHeader>
-        <h1 className={classes.pageHeader}>Borrower Place Holder</h1>
+        <h1 className={classes.pageHeader}>{updatedExample.borrower}</h1>
         <h2 className={classes.subHeader}>Fronting Details</h2>
       </PageHeader>
       <main className={classes.main}>
