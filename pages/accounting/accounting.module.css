@@ -23,23 +23,6 @@
   padding-bottom: 3rem;
 }
 
-.instructionHeader {
-  padding: 0.75rem 1.5rem;
-  color: #484848;
-  font-weight: 900;
-  border-radius: 10px;
-  animation: blinker 2s ease-in-out infinite;
-}
-
-@keyframes blinker {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.2;
-  }
-}
-
 .accountingExamplesTableContainer {
   display: flex;
   flex-direction: column;

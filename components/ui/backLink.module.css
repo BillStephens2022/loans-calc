@@ -1,0 +1,11 @@
+.link {
+    color: #484848;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-left: 1rem;
+  }
+  
+  .backLinkText {
+    color: #484848;
+    text-decoration: underline;
+  }

@@ -62,7 +62,6 @@ const handler = async (req, res) => {
   } else if (req.method === "GET") {
     try {
       const loanAccountingExamples = await LoanAccountingExample.find({});
-      // Check if there are any loan accounting examples
       res.status(200).json(loanAccountingExamples);
     } catch (error) {
       console.error("Error fetching loan accounting examples:", error);

@@ -1,13 +1,12 @@
 // route: /accounting/[exampleId]
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { ImArrowLeft } from "react-icons/im";
 import { getLoanAccountingExampleById, getJournalEntriesByExampleId } from "@/lib/api";
 import PageHeader from "../../components/pageHeader"
 import classes from "./accountingExampleId.module.css"
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import LoanDetail from "../../components/accounting/loanDetail";
-import Link from "next/link";
+import BackLink from "../../components/ui/backLink";
 
 const AccountingExampleDetail = () => {
   const router = useRouter();
@@ -73,7 +72,7 @@ const AccountingExampleDetail = () => {
       </PageHeader>
       
       <main className={classes.main}>
-      <Link className={classes.link} href="/accounting"><p><ImArrowLeft />&nbsp;&nbsp;<span className={classes.backLinkText}>Back to Examples</span></p></Link>
+      <BackLink page="accounting" text="Accounting Examples" />
       <h2 className={classes.summary_header}>Loan Facility Summary</h2>
         <LoanExamplesTable examples={[example]} portfolioPage={false} />
         <LoanDetail

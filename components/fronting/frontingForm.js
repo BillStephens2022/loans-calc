@@ -3,19 +3,20 @@ import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
 
 const initialFormData = {
-  borrower: "Vandelay Industries",
-  yourBankName: "Bank of Costanza",
-  globalCommitment: 100000000.0,
-  globalFundedLoans: 45000000.0,
-  globalLettersOfCredit: 22000000.0,
-  yourBankCommitment: 18000000.0,
-  lcIssuer: true,
-  swinglineLender: true,
-  nonAccrual: false,
-  swinglineSublimit: 11000000.0,
-  swinglinesFundedByYourBank: 3000000.0,
-  lcSublimit: 14000000.0,
-  lcsIssuedByYourBank: 4000000.0
+  borrower: "",
+  facility: "",
+  yourBankName: "",
+  globalCommitment: 0.0,
+  globalFundedLoans: 0.0,
+  globalLettersOfCredit: 0.0,
+  yourBankCommitment: 0.0,
+  isLCIssuer: true,
+  isSwinglineLender: true,
+  isNonAccrual: false,
+  swinglineSublimit: 0.0,
+  swinglinesFundedByYourBank: 0.0,
+  lcSublimit: 0.0,
+  lcsIssuedByYourBank: 0.0
 };
 
 const FrontingForm = ({ onSubmit }) => {
@@ -28,7 +29,7 @@ const FrontingForm = ({ onSubmit }) => {
 
     if (type === "checkbox") {
       newValue = checked;
-    } else if (name === "borrower" || name === "yourBankName") {
+    } else if (name === "borrower" || name === "yourBankName" || name === "facility") {
       newValue = value; // Treat as string, no need to parse
     } else {
       // Parse numeric values to remove commas and convert to float
@@ -45,7 +46,6 @@ const FrontingForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
     onSubmit(formData);
   };
 
@@ -60,16 +60,16 @@ const resetFormValues = () => {
         if (
           (key === "swinglineSublimit" ||
             key === "swinglinesFundedByYourBank") &&
-          !formData.swinglineLender
+          !formData.isSwinglineLender
         ) {
-          return null; // Don't render these fields if swinglineLender is not checked
+          return null; // Don't render these fields if isSwinglineLender is not checked
         }
 
         if (
           (key === "lcSublimit" || key === "lcsIssuedByYourBank") &&
-          !formData.lcIssuer
+          !formData.isLCIssuer
         ) {
-          return null; // Don't render these fields if lcIssuer is not checked
+          return null; // Don't render these fields if isLCIssuer is not checked
         }
         return (
           <div key={key} className={classes.formControl}>
