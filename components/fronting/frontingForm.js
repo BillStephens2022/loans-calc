@@ -46,6 +46,7 @@ const FrontingForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(formData);
     onSubmit(formData);
   };
 

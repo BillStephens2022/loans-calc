@@ -1,0 +1,80 @@
+.tableWrapper {
+  overflow: auto;
+  max-width: 100% !important;
+}
+
+.scrollableTableWrapper {
+  overflow: auto;
+  max-width: 95vw !important;
+}
+
+.loanExamples_table {
+  padding: 5px;
+  border: 5px solid #484848;
+  background-color: darkgray;
+  margin-bottom: 2rem;
+}
+
+.tableHeaderRow {
+  background-color: #484848;
+  color: white;
+  max-height: 2rem;
+}
+
+.tableBodyRows {
+  text-align: right;
+  background-color: whitesmoke;
+  color: #484848;
+  max-height: 2rem;
+}
+
+.tableBodyRows:nth-child(even) {
+  text-align: right;
+  background-color: white;
+  color: #484848;
+}
+
+.tableBodyRows:hover {
+  background-color: #484848;
+  color: white;
+  cursor: pointer;
+}
+
+.tableHeaderRow th,
+.tableBodyRows td {
+  padding: 0.5rem;
+  text-wrap: wrap;
+}
+
+.price {
+  min-width: 4rem;
+  max-width: 5rem;
+}
+
+.tableBodyRows td {
+  text-align: right;
+}
+
+.deleteCell {
+  margin: auto;
+  text-align: center;
+}
+
+.viewCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 1660px) {
+  .loanExamples_table {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 767px) {
+}

@@ -21,6 +21,7 @@ const handler = async (req, res) => {
       isSwinglineLender,
       isNonAccrual,
       swinglineSublimit,
+      swinglinesFundedByYourBank,
       lcSublimit,
       lcsIssuedByYourBank,
     } = req.body;
@@ -39,6 +40,7 @@ const handler = async (req, res) => {
         isSwinglineLender,
         isNonAccrual,
         swinglineSublimit,
+        swinglinesFundedByYourBank,
         lcSublimit,
         lcsIssuedByYourBank,
       });

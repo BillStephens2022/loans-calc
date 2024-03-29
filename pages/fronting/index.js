@@ -3,9 +3,10 @@ import useSWR from "swr";
 import PageHeader from "../../components/pageHeader";
 import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
-import { createFrontingExample } from "../../lib/api";
+import { createFrontingExample, deleteFrontingExampleById } from "../../lib/api";
 import classes from "./fronting.module.css";
 import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
+import FrontingExamplesTable from "@/components/fronting/frontingExamplesTable";
 
 const Fronting = () => {
   const [formData, setFormData] = useState(null);
@@ -122,6 +123,15 @@ const Fronting = () => {
     // setShowFrontingExposure(false);
   };
 
+  const handleDeleteExample = async (exampleId) => {
+    try {
+      await deleteFrontingExampleById(exampleId);
+      setFrontingExamples(frontingExamples.filter((example) => example._id !== exampleId));
+    } catch (error) {
+      console.error("Error deleting fronting example:", error.message);
+    }
+  };
+
   return (
     <main className={classes.fronting_main}>
       <PageHeader>
@@ -162,6 +172,8 @@ const Fronting = () => {
           <p>Non Accrual? {String(example.isNonAccrual)}</p>
           </div>)
 })}
+
+          <FrontingExamplesTable examples={frontingExamples} onDelete={handleDeleteExample} portfolioPage={true}/>
     
     </main>
   );

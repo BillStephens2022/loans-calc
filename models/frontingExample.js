@@ -14,6 +14,7 @@ const FrontingExampleSchema = new Schema({
   isSwinglineLender: { type: Boolean, required: true },
   isNonAccrual: { type: Boolean, required: true },
   swinglineSublimit: { type: Number, required: true },
+  swinglinesFundedByYourBank: { type: Number, required: true },
   lcSublimit: { type: Number, required: true },
   lcsIssuedByYourBank: { type: Number, required: true },
 });
