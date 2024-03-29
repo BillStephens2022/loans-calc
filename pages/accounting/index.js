@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
 import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
 import {
@@ -13,8 +12,8 @@ import classes from "./accounting.module.css";
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import Button from "../../components/ui/button";
 import FullBalanceSheet from "../../components/accounting/fullBalanceSheet";
-import OffBalanceSheetTable from "@/components/accounting/offBalanceSheetTable";
-import BlinkingInstructions from "@/components/ui/blinkingInstructions";
+import OffBalanceSheetTable from "../../components/accounting/offBalanceSheetTable";
+import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 
 // Accounting Page
 

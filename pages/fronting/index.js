@@ -9,13 +9,10 @@ import {
   deleteFrontingExampleById,
 } from "../../lib/api";
 import classes from "./fronting.module.css";
-import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
-import FrontingExamplesTable from "@/components/fronting/frontingExamplesTable";
-import BlinkingInstructions from "@/components/ui/blinkingInstructions";
+import FrontingExamplesTable from "../../components/fronting/frontingExamplesTable";
+import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 
 const Fronting = () => {
-  const [formData, setFormData] = useState(null);
-  // const [showFrontingExposure, setShowFrontingExposure] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [frontingExamples, setFrontingExamples] = useState([]);
 
@@ -37,83 +34,7 @@ const Fronting = () => {
     }
   }, [data, error]);
 
-  const calculateNewValues = (formData) => {
-    // Calculate new values based on formData
-    const {
-      globalCommitment,
-      globalFundedLoans,
-      globalLettersOfCredit,
-      lcSublimit,
-      lcsIssuedByYourBank,
-      swinglineSublimit,
-      swinglinesFundedByYourBank,
-      yourBankCommitment,
-      isNonAccrual,
-    } = formData;
-
-    const globalAvailability = isNonAccrual
-      ? 0
-      : globalCommitment - globalFundedLoans - globalLettersOfCredit;
-    const hasAvailability = globalAvailability > 0;
-    const yourBankPercentShare = yourBankCommitment / globalCommitment;
-    const otherLendersShare = 1 - yourBankPercentShare;
-    const swinglineSublimitAvailability =
-      swinglineSublimit - swinglinesFundedByYourBank;
-    const lcSublimitAvailability = lcSublimit - lcsIssuedByYourBank;
-
-    const totalSublimitAvailability =
-      swinglineSublimitAvailability + lcSublimitAvailability;
-
-    const hasFullSublimitAvailability =
-      globalAvailability >= totalSublimitAvailability;
-    const sublimitOverage = totalSublimitAvailability - globalAvailability;
-
-    // if availability under sublimits is greater than global facility availability,
-    // adjust the availability under the sublimits by a pro-rata share of overage
-    const adjustedSwinglineAvailability = hasFullSublimitAvailability
-      ? swinglineSublimitAvailability
-      : swinglineSublimitAvailability -
-        (sublimitOverage / totalSublimitAvailability) *
-          swinglineSublimitAvailability;
-
-    // if availability under sublimits is greater than global facility availability,
-    // adjust the availability under the sublimits by a pro-rata share of overage
-    const adjustedLCAvailability = hasFullSublimitAvailability
-      ? lcSublimitAvailability
-      : lcSublimitAvailability -
-        (sublimitOverage / totalSublimitAvailability) * lcSublimitAvailability;
-
-    const unfundedSwinglineFrontingExposure =
-      hasAvailability && totalSublimitAvailability > 0
-        ? otherLendersShare * adjustedSwinglineAvailability
-        : 0;
-    const fundedSwinglineFrontingExposure =
-      otherLendersShare * swinglinesFundedByYourBank;
-
-    const unissuedLCFrontingExposure =
-      hasAvailability && totalSublimitAvailability > 0
-        ? otherLendersShare * adjustedLCAvailability
-        : 0;
-
-    const issuedLCFrontingExposure = otherLendersShare * lcsIssuedByYourBank;
-
-    return {
-      ...formData,
-      globalAvailability,
-      yourBankPercentShare,
-      unfundedSwinglineFrontingExposure,
-      fundedSwinglineFrontingExposure,
-      unissuedLCFrontingExposure,
-      issuedLCFrontingExposure,
-    };
-  };
-
   const handleFormSubmit = async (formData) => {
-    // const combinedProps = calculateNewValues(data);
-    // setFormData(combinedProps);
-    // setShowForm(false); // Hide the form after submission
-    // setShowFrontingExposure(true);
-
     try {
       await createFrontingExample(formData);
       // Form submission successful, hide the form
@@ -151,12 +72,6 @@ const Fronting = () => {
           </div>
         )}
       </div>
-      {/* {showFrontingExposure && (
-        <div className={classes.frontingExampleContainer}>
-          // Pass the combined props to FrontingExampleSummary 
-          <FrontingExampleSummary {...formData} />
-        </div>
-      )} */}
 
       <h2>Fronting Examples</h2>
 
