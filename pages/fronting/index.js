@@ -21,10 +21,10 @@ const Fronting = () => {
       swinglineSublimit,
       swinglinesFundedByYourBank,
       yourBankCommitment,
-      nonAccrual,
+      isNonAccrual,
     } = formData;
 
-    const globalAvailability = nonAccrual
+    const globalAvailability = isNonAccrual
       ? 0
       : globalCommitment - globalFundedLoans - globalLettersOfCredit;
     const hasAvailability = globalAvailability > 0;
@@ -61,18 +61,14 @@ const Fronting = () => {
       hasAvailability && totalSublimitAvailability > 0
         ? otherLendersShare * adjustedSwinglineAvailability
         : 0;
-    const fundedSwinglineFrontingExposure =
-      hasAvailability && totalSublimitAvailability > 0
-        ? otherLendersShare * swinglinesFundedByYourBank
-        : 0;
+    const fundedSwinglineFrontingExposure = otherLendersShare * swinglinesFundedByYourBank;
+
     const unissuedLCFrontingExposure =
       hasAvailability && totalSublimitAvailability > 0
         ? otherLendersShare * adjustedLCAvailability
         : 0;
-    const issuedLCFrontingExposure =
-      hasAvailability && totalSublimitAvailability > 0
-        ? otherLendersShare * lcsIssuedByYourBank
-        : 0;
+        
+    const issuedLCFrontingExposure = otherLendersShare * lcsIssuedByYourBank;
 
     return {
       ...formData,

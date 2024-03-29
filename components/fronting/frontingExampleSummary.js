@@ -8,8 +8,8 @@ const FrontingExampleSummary = ({
   globalCommitment,
   globalFundedLoans,
   globalLettersOfCredit,
-  lcIssuer,
-  swinglineLender,
+  isLCIssuer,
+  isSwinglineLender,
   swinglineSublimit,
   lcSublimit,
   yourBankCommitment,
@@ -21,7 +21,7 @@ const FrontingExampleSummary = ({
   fundedSwinglineFrontingExposure,
   unissuedLCFrontingExposure,
   issuedLCFrontingExposure,
-  nonAccrual,
+  isNonAccrual,
 }) => {
   return (
     <div className={classes.mainContainer}>
@@ -43,13 +43,13 @@ const FrontingExampleSummary = ({
                 <td className={classes.tableCell}>Borrower</td>
                 <td className={classes.tableCell}>{borrower}</td>
               </tr>
-              {swinglineLender && (
+              {isSwinglineLender && (
                 <tr className={classes.tableRow}>
                   <td className={classes.tableCell}>Swingline Lender</td>
                   <td className={classes.tableCell}>{yourBankName}</td>
                 </tr>
               )}
-              {lcIssuer && (
+              {isLCIssuer && (
                 <tr className={classes.tableRow}>
                   <td className={classes.tableCell}>LC Issuing Bank</td>
                   <td className={classes.tableCell}>{yourBankName}</td>
@@ -279,11 +279,14 @@ const FrontingExampleSummary = ({
         </table>
       </div>
       <div className={`${classes.tableContainer} ${classes.frontingContainer}`}>
-        {nonAccrual && (
+        {isNonAccrual && (
           <div className={classes.nonAccrualMessage}>
             <p>
-              Facility is Non-Accrual, therefore no availability for
-              borrowing/fronting.
+              Facility is Non-Accrual,<br />
+              therefore no availability<br />
+              for borrowing/fronting. Only<br />
+              exposure is for what is<br />
+              already funded/issued.
             </p>
             <ImArrowDown />
           </div>

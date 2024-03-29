@@ -9,9 +9,9 @@ const initialFormData = {
   globalFundedLoans: 45000000.0,
   globalLettersOfCredit: 22000000.0,
   yourBankCommitment: 18000000.0,
-  lcIssuer: true,
-  swinglineLender: true,
-  nonAccrual: false,
+  isLCIssuer: true,
+  isSwinglineLender: true,
+  isNonAccrual: false,
   swinglineSublimit: 11000000.0,
   swinglinesFundedByYourBank: 3000000.0,
   lcSublimit: 14000000.0,
@@ -60,16 +60,16 @@ const resetFormValues = () => {
         if (
           (key === "swinglineSublimit" ||
             key === "swinglinesFundedByYourBank") &&
-          !formData.swinglineLender
+          !formData.isSwinglineLender
         ) {
-          return null; // Don't render these fields if swinglineLender is not checked
+          return null; // Don't render these fields if isSwinglineLender is not checked
         }
 
         if (
           (key === "lcSublimit" || key === "lcsIssuedByYourBank") &&
-          !formData.lcIssuer
+          !formData.isLCIssuer
         ) {
-          return null; // Don't render these fields if lcIssuer is not checked
+          return null; // Don't render these fields if isLCIssuer is not checked
         }
         return (
           <div key={key} className={classes.formControl}>
