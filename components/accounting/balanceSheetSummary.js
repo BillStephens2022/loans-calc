@@ -31,11 +31,7 @@ const BalanceSheetSummary = ({
       commitmentBookValueDescription = "FVO Commitments Market Value";
       lettersOfCreditBookValueDescription = "FVO Letters of Credit (Guarantees) Market Value";
       break;
-    case "FVTPL":
-      loanBookValueDescription = "FVTPL Loans Market Value (Trading)";
-      commitmentBookValueDescription = "FVO Commitments Market Value (Trading)";
-      lettersOfCreditBookValueDescription = "FVO Letters of Credit (Guarantees) Market Value (Trading)";
-      break;
+
     default:
       break;
 

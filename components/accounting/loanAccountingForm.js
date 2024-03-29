@@ -135,7 +135,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
           <option className={classes.option} value="HFI">HFI - Held For Investment</option>
           <option className={classes.option} value="HFS">HFS - Held For Sale</option>
           <option className={classes.option} value="FVO">FVO - Fair Value Option</option>
-          <option className={classes.option} value="FVTPL">FVTPL - Fair Value Through P&L</option>
+          
         </select>
       </div>
       <div className={classes.formControl}>

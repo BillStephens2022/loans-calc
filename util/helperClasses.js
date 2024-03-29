@@ -29,7 +29,7 @@ export class JournalEntry {
    * Create a new journal entry.
    * @constructor
    * @param {string} account - The account name.
-   * @param {string} accounting - The accounting method (e.g. "HFI", "HFS", "FVO", "FVTPL")
+   * @param {string} accounting - The accounting method (e.g. "HFI", "HFS", "FVO")
    * @param {string} highLevelCategory - The category of the account (e.g., "Assets", "Liabilities", "P&L").
    * @param {string} category - The category of the account (e.g., "Cash & Cash Equivalents", "Loan Market Value", etc).
    * @param {number} amount - The amount of the journal entry.

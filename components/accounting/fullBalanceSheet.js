@@ -51,16 +51,11 @@ const FullBalanceSheet = ({ journalEntries }) => {
     "Loan Market Value",
     "FVO"
   );
-  const loanMarketValueFVTPLTotal = sumEntriesByCategory(
-    journalEntries,
-    "Loan Market Value",
-    "FVTPL"
-  );
+
   const loanMarketValueTotal =
     loanMarketValueHFITotal +
     loanMarketValueHFSTotal +
-    loanMarketValueFVOTotal +
-    loanMarketValueFVTPLTotal;
+    loanMarketValueFVOTotal;
 
   const commitmentMarketValueHFSTotal = sumEntriesByCategory(
     journalEntries,
@@ -74,16 +69,9 @@ const FullBalanceSheet = ({ journalEntries }) => {
     "FVO"
   );
 
-  const commitmentMarketValueFVTPLTotal = sumEntriesByCategory(
-    journalEntries,
-    "Unfunded Commitment Market Value",
-    "FVTPL"
-  );
-
   const commitmentMarketValueTotal =
     commitmentMarketValueHFSTotal +
-    commitmentMarketValueFVOTotal +
-    commitmentMarketValueFVTPLTotal;
+    commitmentMarketValueFVOTotal;
 
   const lettersOfCreditMarketValueHFSTotal = sumEntriesByCategory(
     journalEntries,
@@ -97,16 +85,11 @@ const FullBalanceSheet = ({ journalEntries }) => {
     "FVO"
   );
 
-  const lettersOfCreditMarketValueFVTPLTotal = sumEntriesByCategory(
-    journalEntries,
-    "LC/Guarantee Market Value",
-    "FVTPL"
-  );
+
 
   const lettersOfCreditMarketValueTotal =
     lettersOfCreditMarketValueHFSTotal +
-    lettersOfCreditMarketValueFVOTotal +
-    lettersOfCreditMarketValueFVTPLTotal;
+    lettersOfCreditMarketValueFVOTotal;
 
     const deferredFeesTotal = sumEntriesByCategory(
         journalEntries,
@@ -158,10 +141,6 @@ const FullBalanceSheet = ({ journalEntries }) => {
               Loans - Fair Value Option (Market Value): ${" "}
               {formatAmount(loanMarketValueFVOTotal)}{" "}
             </p>
-            <p className={classes.accountBalance}>
-              Loans - Traded - Fair Value Thru P&L: ${" "}
-              {formatAmount(loanMarketValueFVTPLTotal)}{" "}
-            </p>
             <h4>Total Loans: $ {formatAmount(loanMarketValueTotal)} </h4>
             <h4 className={classes.assetsLiabilitiesSubtotals}>
             Total Assets: $ {formatAmount(assetsTotal)}
@@ -196,10 +175,6 @@ const FullBalanceSheet = ({ journalEntries }) => {
               Commitments - FVO - Market Value: ${" "}
               {formatAmount(commitmentMarketValueFVOTotal)}
             </p>
-            <p className={classes.accountBalance}>
-              Commitments - Traded FVTPL - Market Value: ${" "}
-              {formatAmount(commitmentMarketValueFVTPLTotal)}
-            </p>
             <h4 className={classes.accountBalance}>
               Total Commitment Market Value: $
               {formatAmount(commitmentMarketValueTotal)}
@@ -212,10 +187,6 @@ const FullBalanceSheet = ({ journalEntries }) => {
             <p className={classes.accountBalance}>
               LCs / Guarantees - FVO - Market Value: ${" "}
               {formatAmount(lettersOfCreditMarketValueFVOTotal)}{" "}
-            </p>
-            <p className={classes.accountBalance}>
-              LCs / Guarantees -- Traded FVTPL - Market Value: ${" "}
-              {formatAmount(lettersOfCreditMarketValueFVTPLTotal)}{" "}
             </p>
             <h4 className={classes.accountBalance}>
               Total LC/Guarantee Market Value: $

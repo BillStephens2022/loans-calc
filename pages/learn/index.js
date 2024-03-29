@@ -7,6 +7,7 @@ import Utilization from "../../components/learn/utilization";
 import FeeTypes from "../../components/learn/feeTypes";
 import Trades from "../../components/learn/trades";
 import Fronting from "../../components/learn/fronting";
+import Accounting from "../../components/learn/accounting";
 import classes from "./learn.module.css";
 
 const Learn = () => {
@@ -95,6 +96,16 @@ const Learn = () => {
               }
             >
               Fronting
+            </li>
+            <li
+              className={`${classes.topic} ${
+                topic.type === "Accounting" ? classes.active : ""
+              }`}
+              onClick={() =>
+                handleClick({ type: "accounting", content: <Accounting /> })
+              }
+            >
+              Accounting
             </li>
           </ul>
         </aside>
