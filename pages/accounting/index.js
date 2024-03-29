@@ -14,6 +14,7 @@ import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import Button from "../../components/ui/button";
 import FullBalanceSheet from "../../components/accounting/fullBalanceSheet";
 import OffBalanceSheetTable from "@/components/accounting/offBalanceSheetTable";
+import BlinkingInstructions from "@/components/ui/blinkingInstructions";
 
 // Accounting Page
 
@@ -82,7 +83,7 @@ const Accounting = ({ loanAccountingExamples }) => {
         <h2 className={classes.subHeader}>Examples</h2>
       </PageHeader>
       <div className={classes.formAndButtonContainer}>
-        <h2 className={classes.instructionHeader}><ImArrowDown />&nbsp;&nbsp;Click a loan below to view accounting details&nbsp;&nbsp;<ImArrowDown /></h2>
+        <BlinkingInstructions page="accounting" />
       <Button className="addExample" onClick={() => setShowForm(!showForm)}>{showForm ? "Hide Form" : "Add Example"}</Button>
       {showForm && (
         <div className={classes.formContainer}>

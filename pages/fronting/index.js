@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
+import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
 import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
@@ -7,6 +8,7 @@ import { createFrontingExample, deleteFrontingExampleById } from "../../lib/api"
 import classes from "./fronting.module.css";
 import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
 import FrontingExamplesTable from "@/components/fronting/frontingExamplesTable";
+import BlinkingInstructions from "@/components/ui/blinkingInstructions";
 
 const Fronting = () => {
   const [formData, setFormData] = useState(null);
@@ -136,8 +138,9 @@ const Fronting = () => {
     <main className={classes.fronting_main}>
       <PageHeader>
         <h1 className={classes.pageHeader}>Fronting Risk</h1>
+        <h2 className={classes.subHeader}>Examples</h2>
       </PageHeader>
-
+      <BlinkingInstructions page="fronting risk" />
       <div className={classes.formContainer}>
         {showForm ? (
           <div>
@@ -160,18 +163,9 @@ const Fronting = () => {
         </div>
       )} */}
       
-        {frontingExamples.map((example) => {
-          console.log(example);
-          return (
-          <div key={example._id}>
-          <p>Borrower: {example.borrower}</p>
-          <p>Facility: {example.facility}</p>
-          <p>Global Commitment: {example.globalCommitment}</p>
-          <p>LC Issuer? {String(example.isLCIssuer)}</p>
-          <p>Swingline Lender? {String(example.isSwinglineLender)}</p>
-          <p>Non Accrual? {String(example.isNonAccrual)}</p>
-          </div>)
-})}
+        <h2>Fronting Examples</h2>
+        
+        
 
           <FrontingExamplesTable examples={frontingExamples} onDelete={handleDeleteExample} portfolioPage={true}/>
     
