@@ -33,6 +33,16 @@
   
 }
 
+.frontingExamplesTableContainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: flex-start;
+  padding: 0 1rem;
+  min-height: 70vh;
+  margin-bottom: 2rem;
+}
+
 
 @media (max-width: 1024px) {
   .pageHeader {

@@ -74,12 +74,13 @@ const Fronting = () => {
       </div>
 
       <h2>Fronting Examples</h2>
-
+      <div className={classes.frontingExamplesTableContainer}>
       <FrontingExamplesTable
         examples={frontingExamples}
         onDelete={handleDeleteExample}
         portfolioPage={true}
       />
+      </div>
     </main>
   );
 };
