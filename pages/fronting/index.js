@@ -4,7 +4,10 @@ import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
 import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
-import { createFrontingExample, deleteFrontingExampleById } from "../../lib/api";
+import {
+  createFrontingExample,
+  deleteFrontingExampleById,
+} from "../../lib/api";
 import classes from "./fronting.module.css";
 import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
 import FrontingExamplesTable from "@/components/fronting/frontingExamplesTable";
@@ -13,7 +16,7 @@ import BlinkingInstructions from "@/components/ui/blinkingInstructions";
 const Fronting = () => {
   const [formData, setFormData] = useState(null);
   // const [showFrontingExposure, setShowFrontingExposure] = useState(false);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [frontingExamples, setFrontingExamples] = useState([]);
 
   const { data, error } = useSWR(
@@ -120,15 +123,12 @@ const Fronting = () => {
     }
   };
 
-  const handleUpdateForm = () => {
-    setShowForm(true); // Show the form again when "Update Form" button is clicked
-    // setShowFrontingExposure(false);
-  };
-
   const handleDeleteExample = async (exampleId) => {
     try {
       await deleteFrontingExampleById(exampleId);
-      setFrontingExamples(frontingExamples.filter((example) => example._id !== exampleId));
+      setFrontingExamples(
+        frontingExamples.filter((example) => example._id !== exampleId)
+      );
     } catch (error) {
       console.error("Error deleting fronting example:", error.message);
     }
@@ -141,19 +141,14 @@ const Fronting = () => {
         <h2 className={classes.subHeader}>Examples</h2>
       </PageHeader>
       <BlinkingInstructions page="fronting risk" />
+      <Button className="addExample" onClick={() => setShowForm(!showForm)}>
+        {!showForm ? "Try New Example" : "Hide Form"}
+      </Button>
       <div className={classes.formContainer}>
-        {showForm ? (
+        {showForm && (
           <div>
-            <h2 className={classes.fronting_subheader}>
-              Enter details about a loan to calculate potential Fronting
-              Exposure
-            </h2>
             <FrontingForm onSubmit={handleFormSubmit} />
           </div>
-        ) : (
-          <Button className="addExample" onClick={handleUpdateForm}>
-            Try New Example
-          </Button>
         )}
       </div>
       {/* {showFrontingExposure && (
@@ -162,13 +157,14 @@ const Fronting = () => {
           <FrontingExampleSummary {...formData} />
         </div>
       )} */}
-      
-        <h2>Fronting Examples</h2>
-        
-        
 
-          <FrontingExamplesTable examples={frontingExamples} onDelete={handleDeleteExample} portfolioPage={true}/>
-    
+      <h2>Fronting Examples</h2>
+
+      <FrontingExamplesTable
+        examples={frontingExamples}
+        onDelete={handleDeleteExample}
+        portfolioPage={true}
+      />
     </main>
   );
 };

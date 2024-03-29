@@ -3,20 +3,20 @@ import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
 
 const initialFormData = {
-  borrower: "Vandelay Industries",
-  facility: "Revolver",
-  yourBankName: "Bank of Costanza",
-  globalCommitment: 100000000.0,
-  globalFundedLoans: 45000000.0,
-  globalLettersOfCredit: 22000000.0,
-  yourBankCommitment: 18000000.0,
+  borrower: "",
+  facility: "",
+  yourBankName: "",
+  globalCommitment: 0.0,
+  globalFundedLoans: 0.0,
+  globalLettersOfCredit: 0.0,
+  yourBankCommitment: 0.0,
   isLCIssuer: true,
   isSwinglineLender: true,
   isNonAccrual: false,
-  swinglineSublimit: 11000000.0,
-  swinglinesFundedByYourBank: 3000000.0,
-  lcSublimit: 14000000.0,
-  lcsIssuedByYourBank: 4000000.0
+  swinglineSublimit: 0.0,
+  swinglinesFundedByYourBank: 0.0,
+  lcSublimit: 0.0,
+  lcsIssuedByYourBank: 0.0
 };
 
 const FrontingForm = ({ onSubmit }) => {
@@ -46,7 +46,6 @@ const FrontingForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
     onSubmit(formData);
   };
 
