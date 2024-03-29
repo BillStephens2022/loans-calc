@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { ImArrowLeft } from "react-icons/im";
 import { getFrontingExampleById } from "../../lib/api";
 import PageHeader from "../../components/pageHeader";
 import classes from "./frontingExampleId.module.css";
 import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
+import BackLink from "../../components/ui/backLink";
 
 const FrontingExampleDetail = () => {
   const router = useRouter();
@@ -12,17 +12,14 @@ const FrontingExampleDetail = () => {
 
   const [example, setExample] = useState(null);
   const [loading, setLoading] = useState(true); // loading state, set to false once data is loaded
-  
+
   useEffect(() => {
-    
     if (frontingExampleId) {
-      
       const fetchFrontingExampleDetails = async () => {
         try {
-         
           const exampleData = await getFrontingExampleById(frontingExampleId);
           setExample(exampleData);
-         
+
           setLoading(false);
         } catch (error) {
           console.error(
@@ -32,11 +29,7 @@ const FrontingExampleDetail = () => {
         }
       };
 
-      
-
       fetchFrontingExampleDetails();
-   
-      
     }
   }, [frontingExampleId]);
 
@@ -122,15 +115,17 @@ const FrontingExampleDetail = () => {
 
   const updatedExample = calculateNewValues(example);
 
-
   return (
-    <main>
+    <div>
       <PageHeader>
         <h1 className={classes.pageHeader}>Borrower Place Holder</h1>
         <h2 className={classes.subHeader}>Fronting Details</h2>
       </PageHeader>
-      <FrontingExampleSummary {...updatedExample} />
-    </main>
+      <main className={classes.main}>
+        <BackLink page="fronting" text="Fronting Examples" />
+        <FrontingExampleSummary {...updatedExample} />
+      </main>
+    </div>
   );
 };
 
