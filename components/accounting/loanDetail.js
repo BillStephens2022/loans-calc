@@ -28,7 +28,7 @@ const LoanDetail = ({
 
   return (
     <div className={classes.loanDetail_container}>
-      <h2 className={classes.table_headers}>Balance Sheet Summary</h2>
+      <h2 className={classes.table_headers}>Balance Sheet Impact</h2>
       <BalanceSheetSummary
         assetsTotal={assetsTotal}
         liabilitiesTotal={liabilitiesTotal}

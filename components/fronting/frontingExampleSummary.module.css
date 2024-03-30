@@ -51,6 +51,16 @@
   background-color: #484848;
 }
 
+.tableSubheader {
+  color: white;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.15rem;
+  background-color: #484848;
+}
+
 .table {
   padding: 5px;
   border: 5px solid #484848;
@@ -117,6 +127,8 @@
   .tableRow_header {
     font-size: 0.8rem;
   }
+
+  
 
   .tableCell {
     font-size: 0.75rem;

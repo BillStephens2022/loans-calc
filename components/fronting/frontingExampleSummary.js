@@ -4,6 +4,7 @@ import { ImArrowDown } from "react-icons/im";
 
 const FrontingExampleSummary = ({
   borrower,
+  facility,
   yourBankName,
   globalCommitment,
   globalFundedLoans,
@@ -79,10 +80,12 @@ const FrontingExampleSummary = ({
               <th
                 className={`${classes.tableCell} ${classes.tableCellAmountHeader}`}
               >
-                {yourBankName}'s Share: ({yourBankPercentShare * 100})%
+                {yourBankName}'s Share: (
+                {(yourBankPercentShare * 100).toFixed(2)})%
               </th>
               <th className={classes.tableCell}>
-                Other Lenders' Share: ({(1 - yourBankPercentShare) * 100})%
+                Other Lenders' Share: (
+                {((1 - yourBankPercentShare) * 100).toFixed(2)})%
               </th>
             </tr>
           </thead>
@@ -282,10 +285,14 @@ const FrontingExampleSummary = ({
         {isNonAccrual && (
           <div className={classes.nonAccrualMessage}>
             <p>
-              Facility is Non-Accrual,<br />
-              therefore no availability<br />
-              for borrowing/fronting. Only<br />
-              exposure is for what is<br />
+              Facility is Non-Accrual,
+              <br />
+              therefore no availability
+              <br />
+              for borrowing/fronting. Only
+              <br />
+              exposure is for what is
+              <br />
               already funded/issued.
             </p>
             <ImArrowDown />
@@ -379,6 +386,151 @@ const FrontingExampleSummary = ({
                       unissuedLCFrontingExposure
                   )}
                 </strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className={classes.tableContainer}>
+        <table className={classes.table}>
+          <thead>
+            <tr className={classes.tableHeader}>
+              <th colSpan="4">{borrower}</th>
+            </tr>
+            <tr className={classes.tableHeader}>
+              <th colSpan="4">{facility}</th>
+            </tr>
+            <tr className={classes.tableHeader}>
+              <th colSpan="4">Total Risk</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colSpan="2" className={classes.tableSubheader}>
+                Net Exposure (Net of Fronting)
+              </th>
+            </tr>
+
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Net Commitment</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(yourBankCommitment)}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Net Funded Loans</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(globalFundedLoans * yourBankPercentShare)}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Net LC's</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(globalLettersOfCredit * yourBankPercentShare)}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Net Unfunded Commitment</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(globalAvailability * yourBankPercentShare)}
+              </td>
+            </tr>
+            <tr>
+              <th colSpan="2" className={classes.tableSubheader}>
+                Fronting Exposure
+              </th>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Fronted Funded Swinglines</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(fundedSwinglineFrontingExposure)}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Fronted Issued LC's</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(issuedLCFrontingExposure)}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Fronted Unfunded Swinglines</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(unfundedSwinglineFrontingExposure)}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Fronted Unissued LC's</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(unissuedLCFrontingExposure)}
+              </td>
+            </tr>
+            <tr>
+              <th colSpan="2" className={classes.tableSubheader}>
+                Gross Exposure (Net + Fronting)
+              </th>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Gross Commitment</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(
+                  yourBankCommitment +
+                    fundedSwinglineFrontingExposure +
+                    unfundedSwinglineFrontingExposure +
+                    issuedLCFrontingExposure +
+                    unissuedLCFrontingExposure
+                )}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Gross Funded</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(
+                  globalFundedLoans * yourBankPercentShare +
+                    fundedSwinglineFrontingExposure
+                )}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Gross LC's</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(
+                  globalLettersOfCredit * yourBankPercentShare +
+                    issuedLCFrontingExposure
+                )}
+              </td>
+            </tr>
+            <tr className={classes.tableRow}>
+              <td className={classes.tableCell}>Gross Unfunded Commitment</td>
+              <td
+                className={`${classes.tableCell} ${classes.tableCellAmounts}`}
+              >
+                {formatAmount(
+                  globalAvailability * yourBankPercentShare +
+                    unfundedSwinglineFrontingExposure +
+                    unissuedLCFrontingExposure
+                )}
               </td>
             </tr>
           </tbody>
