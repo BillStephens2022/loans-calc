@@ -486,7 +486,9 @@ const FrontingExampleSummary = ({
               </th>
             </tr>
             <tr className={classes.tableRow}>
-              <td className={classes.tableCell}>Gross Commitment</td>
+              <td className={classes.tableCell}>
+                Gross Commitment<span className={classes.footnote}>(1)</span>
+              </td>
               <td
                 className={`${classes.tableCell} ${classes.tableCellAmounts}`}
               >
@@ -500,7 +502,9 @@ const FrontingExampleSummary = ({
               </td>
             </tr>
             <tr className={classes.tableRow}>
-              <td className={classes.tableCell}>Gross Funded</td>
+              <td className={classes.tableCell}>
+                Gross Funded<span className={classes.footnote}>(2)</span>
+              </td>
               <td
                 className={`${classes.tableCell} ${classes.tableCellAmounts}`}
               >
@@ -511,7 +515,9 @@ const FrontingExampleSummary = ({
               </td>
             </tr>
             <tr className={classes.tableRow}>
-              <td className={classes.tableCell}>Gross LC's</td>
+              <td className={classes.tableCell}>
+                Gross LC's<span className={classes.footnote}>(3)</span>
+              </td>
               <td
                 className={`${classes.tableCell} ${classes.tableCellAmounts}`}
               >
@@ -522,7 +528,10 @@ const FrontingExampleSummary = ({
               </td>
             </tr>
             <tr className={classes.tableRow}>
-              <td className={classes.tableCell}>Gross Unfunded Commitment</td>
+              <td className={classes.tableCell}>
+                Gross Unfunded Commitment
+                <span className={classes.footnote}>(4)</span>
+              </td>
               <td
                 className={`${classes.tableCell} ${classes.tableCellAmounts}`}
               >
@@ -535,6 +544,24 @@ const FrontingExampleSummary = ({
             </tr>
           </tbody>
         </table>
+        <div className={classes.footnoteDiv}>
+        <p className={classes.footnoteDesc}>
+          <span className={classes.footnote}>(1)</span>Net Commitment + Total
+          Fronting Exposure (all categories)
+        </p>
+        <p className={classes.footnoteDesc}>
+          <span className={classes.footnote}>(2)</span>Net Funded Loans +
+          Fronted Funded Swinglines
+        </p>
+        <p className={classes.footnoteDesc}>
+          <span className={classes.footnote}>(3)</span>Net LC's + Fronted Issued
+          LC's
+        </p>
+        <p className={classes.footnoteDesc}>
+          <span className={classes.footnote}>(4)</span>Net Unfunded Commitment +
+          Fronted Unfunded Swinglines + Fronted Unissed LC's
+        </p>
+        </div>
       </div>
     </div>
   );

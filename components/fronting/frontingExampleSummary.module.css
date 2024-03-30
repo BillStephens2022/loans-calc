@@ -14,6 +14,9 @@
 }
 
 .tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: auto;
   max-width: 98vw;
 }
@@ -107,6 +110,23 @@
   padding: 0.5rem;
   border-radius: 10px;
 }
+
+.footnoteDiv {
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+.footnote {
+  font-size: smaller; /* Smaller font size */
+  vertical-align: super; /* Raised position */
+  color: red;
+}
+
+.footnoteDesc {
+  margin: 0.5rem 0;
+  align-self: center;
+}
+
 
 @media (max-width: 767px) {
 

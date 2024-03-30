@@ -19,3 +19,28 @@
     font-weight: 900;
     text-transform: uppercase;
   }
+
+  @media (max-width: 1024px) {
+    .pageHeader {
+      font-size: 2.5rem;
+      line-height: 1.5;
+     }
+  
+     .subHeader {
+      font-size: 1.3rem;
+     }
+  }
+  
+  @media (max-width: 767px) {
+     .pageHeader {
+      margin-top: 1.5rem;
+      font-size: 1.5em;
+      letter-spacing: 0.8rem;
+     }
+  
+     .subHeader {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.25rem;
+     }
+  }
