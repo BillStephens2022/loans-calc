@@ -5,22 +5,9 @@
     border: 3px solid white;
     border-radius: 10px;
     padding: 0.5rem;
-    margin: 2rem 0;
+    margin: 1rem auto;
     background-color: #484848;
 
-}
-
-.formTitle {
-    padding: 0.75rem;
-    width: 80%;
-    margin: 1rem auto 2rem auto;
-    background-color: white;
-    color: #484848;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    border-radius: 10px;
-    text-align: center;
 }
 
 .formControl {
@@ -61,14 +48,13 @@
     max-width: initial;
 }
 
+
 @media (max-width: 1024px) {
     .accountingForm {
         width: 75%; 
         padding: 1rem;
     }
-    .formTitle {
-        font-size: 1.3rem;
-    }
+  
     .selectInput {
         width: 11.5rem;
     }
@@ -76,12 +62,24 @@
 
 @media (max-width: 767px) {
     .accountingForm {
-        width: 90%;
+        width: 80%;
+        padding: 0.75rem;
     }
-    .formTitle {
-        font-size: 1.1rem;
+ 
+    .formControl label {
+        font-size: 0.75rem;
+    }
+
+    .formControl input {
+        margin-left: 0.5rem;
+        padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+        width: 8rem;
     }
     .selectInput {
-        width: 11.5rem;
+        width: 9.5rem;
+    }
+
+    .submitButton {
+        font-size: 0.75rem;
     }
 }

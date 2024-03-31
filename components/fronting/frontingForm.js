@@ -55,7 +55,7 @@ const resetFormValues = () => {
 
   return (
     <form className={classes.frontingForm} onSubmit={handleSubmit}>
-      <h4 className={classes.formTitle}>Fronting Example Input Form</h4>
+     
       {Object.entries(initialFormData).map(([key, value], index) => {
         if (
           (key === "swinglineSublimit" ||
@@ -116,8 +116,8 @@ const resetFormValues = () => {
         );
       })}
       <div className={classes.formControl}>
-        <Button type="submit" className="m_half">Submit</Button>
-        <Button type="button" className="m_half" onClick={resetFormValues}>Reset Values</Button>
+        <Button type="submit" className="m_half_formSubmitButton">Submit</Button>
+        <Button type="button" className="m_half_formSubmitButton" onClick={resetFormValues}>Reset Values</Button>
       </div>
     </form>
   );

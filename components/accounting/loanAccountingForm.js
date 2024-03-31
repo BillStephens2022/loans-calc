@@ -69,7 +69,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
 
   return (
     <form className={classes.accountingForm} onSubmit={handleSubmit}>
-      <h4 className={classes.formTitle}>Loan Example Input Form</h4>
+    
       <div className={classes.formControl}>
         <label htmlFor="borrower">Borrower Name:</label>
         <input
@@ -111,7 +111,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
         />
       </div>
       <div className={classes.formControl}>
-        <label htmlFor="lettersOfCredit">Total Letters of Credit:</label>
+        <label htmlFor="lettersOfCredit">Total LC's:</label>
         <input
           type="number"
           id="lettersOfCredit"
@@ -201,7 +201,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
         />
       </div>
       <div className={classes.formControl}>
-        <Button type="submit">Submit</Button>
+        <Button className="formSubmitButton" type="submit">Submit</Button>
       </div>
     </form>
   );

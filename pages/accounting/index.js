@@ -6,11 +6,12 @@ import {
   createLoanAccountingExample,
   getLoanAccountingExamples,
   deleteLoanAccountingExampleById,
-  getJournalEntries
+  getJournalEntries,
 } from "../../lib/api";
 import classes from "./accounting.module.css";
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import Button from "../../components/ui/button";
+import Modal from "../../components/ui/modal";
 import FullBalanceSheet from "../../components/accounting/fullBalanceSheet";
 import OffBalanceSheetTable from "../../components/accounting/offBalanceSheetTable";
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
@@ -20,7 +21,7 @@ import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 const Accounting = ({ loanAccountingExamples }) => {
   const [examples, setExamples] = useState(loanAccountingExamples || {});
   const [journalEntries, setJournalEntries] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBalanceSheet, setShowBalanceSheet] = useState(false);
 
   const { data: updatedExamples, error } = useSWR(
@@ -28,9 +29,9 @@ const Accounting = ({ loanAccountingExamples }) => {
     async () => {
       const [loanExamples, journalEntriesData] = await Promise.all([
         getLoanAccountingExamples(),
-        getJournalEntries()
+        getJournalEntries(),
       ]);
-      
+
       return { loanExamples, journalEntriesData };
     },
     {
@@ -44,15 +45,15 @@ const Accounting = ({ loanAccountingExamples }) => {
         a.borrower.localeCompare(b.borrower)
       );
       setExamples(sortedExamples);
-      setJournalEntries(updatedExamples.journalEntriesData)
+      setJournalEntries(updatedExamples.journalEntriesData);
     }
   }, [updatedExamples]);
 
   const handleFormSubmit = async (formData) => {
     try {
       await createLoanAccountingExample(formData);
-      // Form submission successful, hide the form
-      setShowForm(false);
+      // Form submission successful, close the modal
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
@@ -68,7 +69,10 @@ const Accounting = ({ loanAccountingExamples }) => {
   };
 
   const totalUnfundedCommitments = examples.reduce((total, example) => {
-    return total + (example.commitment - example.fundedLoan - example.lettersOfCredit);
+    return (
+      total +
+      (example.commitment - example.fundedLoan - example.lettersOfCredit)
+    );
   }, 0);
 
   const totalLettersOfCredit = examples.reduce((total, example) => {
@@ -83,12 +87,16 @@ const Accounting = ({ loanAccountingExamples }) => {
       </PageHeader>
       <div className={classes.formAndButtonContainer}>
         <BlinkingInstructions page="accounting" />
-      <Button className="addExample" onClick={() => setShowForm(!showForm)}>{showForm ? "Hide Form" : "Add Example"}</Button>
-      {showForm && (
-        <div className={classes.formContainer}>
-          <LoanAccountingForm onSubmit={handleFormSubmit} />
-        </div>
-      )}
+        <Button className="addExample" onClick={() => setIsModalOpen(true)}>
+          Add Example
+        </Button>
+        {isModalOpen &&
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          content={<LoanAccountingForm onSubmit={handleFormSubmit} />}
+          title="Add Loan Example"
+        />}
       </div>
       <div className={classes.accountingExamplesTableContainer}>
         <LoanExamplesTable
@@ -97,15 +105,25 @@ const Accounting = ({ loanAccountingExamples }) => {
           portfolioPage={true}
         />
       </div>
-      <Button onClick={() => setShowBalanceSheet(!showBalanceSheet)}>{!showBalanceSheet ? "Show Balance Sheet" : "Hide Balance Sheet"}</Button>
-      {showBalanceSheet && 
-      
-      <div className={classes.balanceSheetView}>
-        <h2 className={classes.balanceSheetHeader}>Portfolio Balance Sheet</h2>
-        <FullBalanceSheet journalEntries={journalEntries} />
-        <h2 className={classes.balanceSheetHeader}>Portfolio Off Balance Sheet</h2>
-        <OffBalanceSheetTable unfundedCommitment={totalUnfundedCommitments} lettersOfCredit={totalLettersOfCredit} isPortfolioPage={true}/>
-      </div>}
+      <Button onClick={() => setShowBalanceSheet(!showBalanceSheet)}>
+        {!showBalanceSheet ? "Show Balance Sheet" : "Hide Balance Sheet"}
+      </Button>
+      {showBalanceSheet && (
+        <div className={classes.balanceSheetView}>
+          <h2 className={classes.balanceSheetHeader}>
+            Portfolio Balance Sheet
+          </h2>
+          <FullBalanceSheet journalEntries={journalEntries} />
+          <h2 className={classes.balanceSheetHeader}>
+            Portfolio Off Balance Sheet
+          </h2>
+          <OffBalanceSheetTable
+            unfundedCommitment={totalUnfundedCommitments}
+            lettersOfCredit={totalLettersOfCredit}
+            isPortfolioPage={true}
+          />
+        </div>
+      )}
     </div>
   );
 };
