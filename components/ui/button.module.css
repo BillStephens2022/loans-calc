@@ -22,6 +22,10 @@
   margin: 0.5rem;
 }
 
+.m_half_formSubmitButton {
+  margin: 0.5rem;
+}
+
 .m_1 {
   margin: 1rem;
 }
@@ -31,25 +35,7 @@
 }
 
 
-@media (max-width: 1660px) {
-  .width_8 {
-    width: 5rem;
-  }
-}
-@media (max-width: 1024px) {
-  .width_8 {
-    width: 4rem;
-  }
- 
-}
 
-@media (max-width: 767px) {
-  
-  .formSubmitButton {
-    font-size: 0.75rem;
-    width: 10rem;
-  }
-}
 
 .deleteButton {
   cursor: pointer;
@@ -79,6 +65,38 @@
 .addExample:hover {
   transform: translateY(-3px) scale(1.05);
   cursor: pointer;
+}
+
+@media (max-width: 1660px) {
+  .width_8 {
+    width: 5rem;
+  }
+}
+@media (max-width: 1024px) {
+  .width_8 {
+    width: 4rem;
+  }
+ 
+}
+
+@media (max-width: 767px) {
+  
+  .formSubmitButton {
+    font-size: 0.75rem;
+    width: 10rem;
+  }
+
+  .addExample {
+    font-size: 0.75rem;
+    width: 6rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .m_half_formSubmitButton {
+    margin: 0.5rem;
+    font-size: 0.75rem;
+    width: 7rem;
+  }
 }
 
 

@@ -49,6 +49,15 @@
   color: white;
 }
 
+@media (max-width: 1024px) {
+
+  .modal {
+    padding: 1rem;
+    width: 75vw;
+
+  }
+}
+
 @media (max-width: 767px) {
   .titleBar {
     border-top-left-radius: 5px;
@@ -58,7 +67,7 @@
     padding: 0;
   }
   .modal {
-    padding: 0.25rem 0.25rem;
+    padding: 0.25rem;
     width: 95vw;
   }
 

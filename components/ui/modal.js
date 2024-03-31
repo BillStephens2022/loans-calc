@@ -1,20 +1,10 @@
 
 import classes from "./modal.module.css";
 
-const Modal = ({ isOpen, onClose, content, title }) => {
-
-    const handleCloseModal = (event) => {
-        const modalContent = document.querySelector(`.${classes.modalContent}`);
-        if (!modalContent.contains(event.target)) {
-            onClose();
-        }
-    };
-
-    if (!isOpen) return null;
-
+const Modal = ({ onClose, content, title }) => {
 
   return (
-    <div className={classes.modalOverlay} onClick={handleCloseModal}>
+    <div className={classes.modalOverlay}>
       <div className={classes.modal}>
       <div className={classes.titleBar}>
         <h2 className={classes.title}>{title}</h2>
