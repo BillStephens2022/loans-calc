@@ -87,7 +87,7 @@ const Accounting = ({ loanAccountingExamples }) => {
         <Button className="addExample" onClick={() => setIsModalOpen(true)}>
           Add Example
         </Button>
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={<LoanAccountingForm onSubmit={handleFormSubmit} />} />
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} content={<LoanAccountingForm onSubmit={handleFormSubmit} />} title="Add Loan Example" />
       </div>
       <div className={classes.accountingExamplesTableContainer}>
         <LoanExamplesTable

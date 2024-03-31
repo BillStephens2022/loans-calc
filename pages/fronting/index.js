@@ -70,6 +70,7 @@ const Fronting = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         content={<FrontingForm onSubmit={handleFormSubmit} />}
+        title="Add Fronting Example"
       />
 
       <h2>Fronting Examples</h2>
