@@ -111,7 +111,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
         />
       </div>
       <div className={classes.formControl}>
-        <label htmlFor="lettersOfCredit">Total Letters of Credit:</label>
+        <label htmlFor="lettersOfCredit">Total LC's:</label>
         <input
           type="number"
           id="lettersOfCredit"
