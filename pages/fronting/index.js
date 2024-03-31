@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { ImArrowDown } from "react-icons/im";
 import PageHeader from "../../components/pageHeader";
+import Modal from "../../components/ui/modal";
 import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
 import {
@@ -13,7 +14,7 @@ import FrontingExamplesTable from "../../components/fronting/frontingExamplesTab
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 
 const Fronting = () => {
-  const [showForm, setShowForm] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [frontingExamples, setFrontingExamples] = useState([]);
 
   const { data, error } = useSWR(
@@ -37,8 +38,8 @@ const Fronting = () => {
   const handleFormSubmit = async (formData) => {
     try {
       await createFrontingExample(formData);
-      // Form submission successful, hide the form
-      setShowForm(false);
+      // Form submission successful, close the modal
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
@@ -62,24 +63,22 @@ const Fronting = () => {
         <h2 className={classes.subHeader}>Examples</h2>
       </PageHeader>
       <BlinkingInstructions page="fronting risk" />
-      <Button className="addExample" onClick={() => setShowForm(!showForm)}>
-        {!showForm ? "Try New Example" : "Hide Form"}
+      <Button className="addExample" onClick={() => setIsModalOpen(true)}>
+        Add Example
       </Button>
-      <div className={classes.formContainer}>
-        {showForm && (
-          <div>
-            <FrontingForm onSubmit={handleFormSubmit} />
-          </div>
-        )}
-      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        content={<FrontingForm onSubmit={handleFormSubmit} />}
+      />
 
       <h2>Fronting Examples</h2>
       <div className={classes.frontingExamplesTableContainer}>
-      <FrontingExamplesTable
-        examples={frontingExamples}
-        onDelete={handleDeleteExample}
-        portfolioPage={true}
-      />
+        <FrontingExamplesTable
+          examples={frontingExamples}
+          onDelete={handleDeleteExample}
+          portfolioPage={true}
+        />
       </div>
     </main>
   );

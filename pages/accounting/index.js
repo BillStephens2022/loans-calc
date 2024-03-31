@@ -52,7 +52,7 @@ const Accounting = ({ loanAccountingExamples }) => {
   const handleFormSubmit = async (formData) => {
     try {
       await createLoanAccountingExample(formData);
-      // Form submission successful, hide the form
+      // Form submission successful, close the modal
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error submitting form:", error.message);
