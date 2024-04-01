@@ -57,7 +57,7 @@ const FeeTypes = () => {
         Upfront fees, also known as commitment fees, are charges levied by
         lenders to compensate for the commitment of funds under a credit
         facility. These fees are typically calculated as a percentage of the
-        undrawn portion of the facility and are paid upfront upon the
+        total commitment and are paid upfront upon the
         establishment of the credit arrangement.
       </p>
       <p>
