@@ -1,0 +1,27 @@
+.main {
+    background-image: url("../../public/glossyWhite.avif");
+    background-size: cover;
+    color: #484848;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 3rem;
+    min-height: 90vh;
+  }
+
+  .quizForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
+    border: 10px solid midnightblue;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    color: midnightblue;
+  }
+
+  .radioInput {
+    margin: 1rem 0.5rem;
+  }
