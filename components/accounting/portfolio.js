@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { ImArrowLeft } from "react-icons/im";
 import Link from "next/link";
-import PageHeader from "../../components/pageHeader"
+import PageHeader from "../layout/pageHeader"
 import { getJournalEntries, getLoanAccountingExamples } from "../../lib/api";
 import classes from "./portfolio.module.css"
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";

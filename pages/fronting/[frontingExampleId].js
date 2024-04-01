@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getFrontingExampleById } from "../../lib/api";
-import PageHeader from "../../components/pageHeader";
+import PageHeader from "../../components/layout/pageHeader";
 import classes from "./frontingExampleId.module.css";
 import FrontingExampleSummary from "../../components/fronting/frontingExampleSummary";
 import BackLink from "../../components/ui/backLink";

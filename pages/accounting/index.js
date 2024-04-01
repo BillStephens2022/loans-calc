@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import PageHeader from "../../components/pageHeader";
+import PageHeader from "../../components/layout/pageHeader";
 import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
 import {
   createLoanAccountingExample,

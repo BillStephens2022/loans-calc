@@ -1,7 +1,7 @@
   import { useState, useEffect } from "react";
   import useSWR from "swr";
   import { ImArrowDown } from "react-icons/im";
-  import PageHeader from "../../components/pageHeader";
+  import PageHeader from "../../components/layout/pageHeader";
   import Modal from "../../components/ui/modal";
   import FrontingForm from "../../components/fronting/frontingForm";
   import Button from "../../components/ui/button";

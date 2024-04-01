@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageHeader from "../../components/pageHeader";
+import PageHeader from "../../components/layout/pageHeader";
 import LoanTypes from "../../components/learn/loanTypes";
 import LoanDocs from "../../components/learn/loanDocs";
 import FacilityTypes from "../../components/learn/facilityTypes";

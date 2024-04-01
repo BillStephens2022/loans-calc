@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getLoanAccountingExampleById, getJournalEntriesByExampleId } from "../../lib/api";
-import PageHeader from "../../components/pageHeader"
+import PageHeader from "../../components/layout/pageHeader"
 import classes from "./accountingExampleId.module.css"
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
 import LoanDetail from "../../components/accounting/loanDetail";
