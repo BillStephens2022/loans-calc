@@ -13,7 +13,7 @@ const Quiz = () => {
   const totalQuestions = quizData.questions.length;
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setCurrentQuestionIndex(currentQuestionIndex + 1); // advance to the next question in the array of question objects
     setIsAnswerSubmitted(false); // Reset answer submission status for the next question
     setSelectedAnswer(null); // Reset selected answer for the next question
   };
@@ -43,10 +43,10 @@ const Quiz = () => {
       <main className={classes.main}>
         {!isQuizFinished ? (
           <>
-            <h2>{currentQuestion.question}</h2>
+            <h2 className={classes.question}>{currentQuestion.question}</h2>
             <form className={classes.quizForm}>
               {Object.keys(currentQuestion.answers).map((key) => (
-                <div key={key}>
+                <div className={classes.choice} key={key}>
                   <input
                     className={classes.radioInput}
                     type="radio"
@@ -56,12 +56,12 @@ const Quiz = () => {
                     checked={selectedAnswer === key}
                     onChange={() => setSelectedAnswer(key)}
                   />
-                  <label htmlFor={key}>{currentQuestion.answers[key]}</label>
+                  <label className={classes.label} htmlFor={key}>{currentQuestion.answers[key]}</label>
                 </div>
               ))}
             </form>
             {isAnswerSubmitted && (
-              <div>
+              <div className={`${classes.resultDiv} ${selectedAnswer !== currentQuestion.correct_answer && classes.incorrectResult}`}>
                 <p>
                   {selectedAnswer === currentQuestion.correct_answer
                     ? `Correct! ${score} of ${
@@ -86,10 +86,11 @@ const Quiz = () => {
             )}
           </>
         ) : (
-          <div>
+          <div className={classes.finalMessage}>
             <p>
-              Quiz Finished! Final Score: {score} of {totalQuestions} correct
+              Quiz Finished! Final Score: {score} of {totalQuestions} correct.
             </p>
+            {score === 10 && <div><p>Perfect Score!!</p></div>}
             <Button onClick={handleRetakeQuiz}>Retake Quiz</Button>
           </div>
         )}

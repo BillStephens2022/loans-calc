@@ -1,27 +1,86 @@
 .main {
-    background-image: url("../../public/glossyWhite.avif");
-    background-size: cover;
-    color: #484848;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-bottom: 3rem;
-    min-height: 90vh;
+  background-image: url("../../public/glossyWhite.avif");
+  background-size: cover;
+  color: #484848;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
+  min-height: 90vh;
+}
+
+.question {
+  margin-top: 2.5rem;
+  box-shadow: 2px 2px 5px black;
+  background-color: midnightblue;
+}
+
+.question,
+.resultDiv,
+.quizForm {
+  color: white;
+  max-width: 60vw;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.resultDiv {
+  background-color: lightseagreen;
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.incorrectResult {
+  background-color: red;
+}
+
+.quizForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  color: white;
+  font-weight: bold;
+  background-color: #484848;
+}
+
+.choice {
+  margin: 0.5rem 0.5rem;
+}
+
+.label {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  margin-left: 0.5rem;
+}
+
+.finalMessage {
+  color: midnightblue;
+  text-shadow: 1px 1px 2px white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60vw;
+}
+
+@media (max-width: 767px) {
+    .question {
+
+        line-height: 1.5;
+    }
+  .question, .quizForm, .resultDiv, .label {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    max-width: 75%;
   }
 
-  .quizForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 1rem;
-    border: 10px solid midnightblue;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    color: midnightblue;
-  }
-
-  .radioInput {
-    margin: 1rem 0.5rem;
-  }
+ 
+}
