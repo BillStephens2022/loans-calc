@@ -36,7 +36,7 @@ const Quiz = () => {
   };
 
   return (
-    <main className={classes.quizPage}>
+    <div className={classes.quizPage}>
       <PageHeader>
         <h1 className={classes.pageHeader}>Quiz</h1>
       </PageHeader>
@@ -45,6 +45,7 @@ const Quiz = () => {
           <>
             <h2 className={classes.question}>{currentQuestion.question}</h2>
             <form className={classes.quizForm}>
+              <div className={classes.choices}>
               {Object.keys(currentQuestion.answers).map((key) => (
                 <div className={classes.choice} key={key}>
                   <input
@@ -59,6 +60,7 @@ const Quiz = () => {
                   <label className={classes.label} htmlFor={key}>{currentQuestion.answers[key]}</label>
                 </div>
               ))}
+              </div>
             </form>
             {isAnswerSubmitted && (
               <div className={`${classes.resultDiv} ${selectedAnswer !== currentQuestion.correct_answer && classes.incorrectResult}`}>
@@ -90,12 +92,12 @@ const Quiz = () => {
             <p>
               Quiz Finished! Final Score: {score} of {totalQuestions} correct.
             </p>
-            {score === 10 && <div><p>Perfect Score!!</p></div>}
+            {score === 10 && <div className={classes.perfectScore}><p>Perfect Score!!</p></div>}
             <Button onClick={handleRetakeQuiz}>Retake Quiz</Button>
           </div>
         )}
       </main>
-    </main>
+    </div>
   );
 };
 

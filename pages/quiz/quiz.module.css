@@ -5,37 +5,62 @@
   text-transform: uppercase;
 }
 
-.main {
+.quizPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: url("../../public/glossyWhite.avif");
+  background-size: cover;
+}
+
+.main {
+  background-image: url("../../public/blackTexture.webp");
   background-size: cover;
   color: #484848;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-bottom: 3rem;
   min-height: 90vh;
+  margin: 2rem 0;
+  border-radius: 10px;
+  border: 2rem solid white;
+  max-width: 60%;
+}
+
+.slideTransition {
+  animation: slideLeft 0.5s ease-out;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .question {
-  margin-top: 2.5rem;
-  box-shadow: 2px 2px 5px black;
-  background-color: midnightblue;
+  margin: 0.5rem 0 0 0;
+  width: 50%;
 }
 
 .question,
 .resultDiv,
 .quizForm {
   color: white;
-  max-width: 60vw;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
 }
 
 .resultDiv {
   background-color: lightseagreen;
+  opacity: 0.9;
   font-size: 1.15rem;
   font-weight: bold;
+  width: 50%;
+  margin-bottom: 1.5rem;
 }
 
 .incorrectResult {
@@ -50,10 +75,18 @@
   padding: 1rem;
   box-shadow: 2px 2px 5px black;
   border-radius: 10px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: white;
   font-weight: bold;
+  background-color: transparent;
+}
+
+.choices {
   background-color: #484848;
+  opacity: 0.8;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 0;
 }
 
 .choice {
@@ -67,30 +100,67 @@
 }
 
 .finalMessage {
-  color: midnightblue;
-  text-shadow: 1px 1px 2px white;
+  color: white;
+  text-shadow: 1px 1px 2px black;
   font-weight: bold;
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 60vw;
+  width: 75%;
 }
 
-@media (max-width: 767px) {
+
+@media (max-width: 1024px) {
   .pageHeader {
-    font-size: 1.5em;
+    font-size: 2rem;
+  }
+  .main {
+    border-width: 1rem;
+    max-width: 85%;
   }
   .question {
     line-height: 1.5;
+    width: 70%;
   }
+
+  .resultDiv {
+    width: 70%;
+  }
+
   .question,
   .quizForm,
   .resultDiv,
   .label {
     font-size: 0.9rem;
     padding: 0.75rem;
-    max-width: 75%;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageHeader {
+    font-size: 1.5em;
+  }
+  .main {
+    border-width: 0.75rem;
+    max-width: 85%;
+  }
+  .question {
+    line-height: 1.5;
+    width: 85%;
+  }
+
+  .resultDiv {
+    width: 85%;
+    margin-bottom: 0.5rem;
+  }
+
+  .question,
+  .quizForm,
+  .resultDiv,
+  .label {
+    font-size: 0.9rem;
+    padding: 0.75rem;
   }
 }
