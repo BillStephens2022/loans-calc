@@ -1,10 +1,9 @@
 .tableWrapper {
-  overflow: auto;
+  overflow-x: auto;
   max-width: 100% !important;
 }
 
 .scrollableTableWrapper {
-  overflow: auto;
   max-width: 95vw !important;
 }
 

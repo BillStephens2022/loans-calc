@@ -1,5 +1,5 @@
 .journalEntryTableWrapper {
-    overflow: auto;
+    overflow-x: auto;
     max-width: 95vw;
 }
 
