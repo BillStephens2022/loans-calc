@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import PageHeader from "../../components/layout/pageHeader";
 import LoanTypes from "../../components/learn/loanTypes";
 import LoanDocs from "../../components/learn/loanDocs";
@@ -8,7 +9,9 @@ import FeeTypes from "../../components/learn/feeTypes";
 import Trades from "../../components/learn/trades";
 import Fronting from "../../components/learn/fronting";
 import Accounting from "../../components/learn/accounting";
+import Button from "../../components/ui/button";
 import classes from "./learn.module.css";
+
 
 const Learn = () => {
   const [topic, setTopic] = useState({ type: "loan", content: <LoanTypes /> });
@@ -21,6 +24,7 @@ const Learn = () => {
     <div>
       <PageHeader>
         <h1 className={classes.pageHeader}>Learn</h1>
+        <Link href="/quiz"><Button className="m_1">Take Quiz</Button></Link>
       </PageHeader>
       <main className={classes.main}>
         <aside className={classes.aside}>
