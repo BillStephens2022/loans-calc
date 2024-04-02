@@ -6,6 +6,7 @@
 .scrollableTableWrapper {
   overflow: auto;
   max-width: 95vw !important;
+  margin-bottom: 4rem;
 }
 
 .loanExamples_table {
@@ -40,7 +41,6 @@
   cursor: pointer;
 }
 
-
 .tableHeaderRow th,
 .tableBodyRows td {
   padding: 0.5rem;
@@ -57,7 +57,6 @@
 }
 
 .deleteCell {
-  
   margin: auto;
   text-align: center;
 }
@@ -90,6 +89,33 @@
   cursor: auto;
 }
 
+.chartHeader {
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  line-height: 1.5;
+  text-align: center;
+  background-color: rgba(54, 162, 235, 0.2);
+  
+  color: white;
+}
+
+.pieChartWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem auto 0 auto;
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  max-width: 400px;
+  max-height: 400px;
+  
+}
+
 @media (max-width: 1660px) {
   .loanExamples_table {
     font-size: 0.75rem;
@@ -97,13 +123,22 @@
 }
 
 @media (max-width: 1024px) {
+  .pieChartWrapper {
+    padding-top: 1rem;
+  }
 
- 
-
-
-  
+  .chartHeader {
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 767px) {
+  .chartHeader {
+    font-size: 1rem;
+    width: 75%;
+  }
 
+  .pieChartWrapper {
+    padding-bottom: 3rem;
+  }
 }

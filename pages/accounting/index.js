@@ -15,6 +15,7 @@ import Modal from "../../components/ui/modal";
 import FullBalanceSheet from "../../components/accounting/fullBalanceSheet";
 import OffBalanceSheetTable from "../../components/accounting/offBalanceSheetTable";
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
+import AccountingPieChart from "@/components/accounting/accountingPieChart";
 
 // Accounting Page
 
@@ -23,6 +24,7 @@ const Accounting = ({ loanAccountingExamples }) => {
   const [journalEntries, setJournalEntries] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBalanceSheet, setShowBalanceSheet] = useState(false);
+  const [showChart, setShowChart] = useState(false);
 
   const { data: updatedExamples, error } = useSWR(
     ["/api/accounting/", "/api/entries"], // Include both endpoints
@@ -79,6 +81,26 @@ const Accounting = ({ loanAccountingExamples }) => {
     return total + example.lettersOfCredit;
   }, 0);
 
+  // Function to calculate totals by accounting methodology
+  const calculateTotalByAccounting = (accounting) => {
+    return examples.reduce((total, example) => {
+      if (example.accounting === accounting) {
+        return total + example.commitment;
+      }
+      return total;
+    }, 0);
+  };
+
+  // Calculate total commitments by accounting methodology
+  const totalCommitmentHFI = calculateTotalByAccounting("HFI");
+  const totalCommitmentHFS = calculateTotalByAccounting("HFS");
+  const totalCommitmentFVO = calculateTotalByAccounting("FVO");
+
+  const handleShowContent = (chart, balanceSheet) => {
+    setShowChart(chart);
+    setShowBalanceSheet(balanceSheet);
+  };
+
   return (
     <div className={classes.accounting_main}>
       <PageHeader>
@@ -90,13 +112,14 @@ const Accounting = ({ loanAccountingExamples }) => {
         <Button className="addExample" onClick={() => setIsModalOpen(true)}>
           Add Example
         </Button>
-        {isModalOpen &&
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          content={<LoanAccountingForm onSubmit={handleFormSubmit} />}
-          title="Add Loan Example"
-        />}
+        {isModalOpen && (
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            content={<LoanAccountingForm onSubmit={handleFormSubmit} />}
+            title="Add Loan Example"
+          />
+        )}
       </div>
       <div className={classes.accountingExamplesTableContainer}>
         <LoanExamplesTable
@@ -105,9 +128,21 @@ const Accounting = ({ loanAccountingExamples }) => {
           portfolioPage={true}
         />
       </div>
-      <Button onClick={() => setShowBalanceSheet(!showBalanceSheet)}>
-        {!showBalanceSheet ? "Show Balance Sheet" : "Hide Balance Sheet"}
-      </Button>
+      <div className={classes.showButtonsDiv}>
+        <Button
+          className="showButton"
+          onClick={() => handleShowContent(true, false)}
+        >
+          Show Commitments by Acctg
+        </Button>
+        <Button
+          className="showButton"
+          onClick={() => handleShowContent(false, true)}
+        >
+          Show Balance Sheet
+        </Button>
+      </div>
+
       {showBalanceSheet && (
         <div className={classes.balanceSheetView}>
           <h2 className={classes.balanceSheetHeader}>
@@ -121,6 +156,16 @@ const Accounting = ({ loanAccountingExamples }) => {
             unfundedCommitment={totalUnfundedCommitments}
             lettersOfCredit={totalLettersOfCredit}
             isPortfolioPage={true}
+          />
+        </div>
+      )}
+      {showChart && (
+        <div className={classes.pieChartWrapper}>
+          <h3 className={classes.chartHeader}>Commitments by Accounting Methodology</h3>
+          <AccountingPieChart
+            totalCommitmentHFI={totalCommitmentHFI}
+            totalCommitmentHFS={totalCommitmentHFS}
+            totalCommitmentFVO={totalCommitmentFVO}
           />
         </div>
       )}
