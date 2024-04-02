@@ -145,11 +145,11 @@ const Accounting = ({ loanAccountingExamples }) => {
 
       {showBalanceSheet && (
         <div className={classes.balanceSheetView}>
-          <h2 className={classes.balanceSheetHeader}>
+          <h2 className={classes.chartHeader}>
             Portfolio Balance Sheet
           </h2>
           <FullBalanceSheet journalEntries={journalEntries} />
-          <h2 className={classes.balanceSheetHeader}>
+          <h2 className={classes.chartHeader}>
             Portfolio Off Balance Sheet
           </h2>
           <OffBalanceSheetTable
