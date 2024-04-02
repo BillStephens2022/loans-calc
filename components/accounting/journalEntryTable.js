@@ -1,9 +1,11 @@
+import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
 import classes from "./journalEntryTable.module.css";
 
 const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
 
   return (
+    <div>
     <div className={classes.journalEntryTableWrapper}>
     <table className={classes.journalEntry_table}>
       <thead>
@@ -64,7 +66,10 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
         </tr>
       </tbody>
     </table>
+    
     </div>
+    <p className={classes.scrollText}><ImArrowLeft /> Scroll <ImArrowRight /></p>
+</div>
   );
 };
 

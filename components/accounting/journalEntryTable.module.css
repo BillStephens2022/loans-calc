@@ -1,13 +1,14 @@
 .journalEntryTableWrapper {
     overflow-x: auto;
     max-width: 95vw;
+    margin-bottom: 2rem; 
+    border: 5px solid black;
 }
 
 .journalEntry_table {
     padding: 5px;
-    border: 5px solid #484848;
+    
     background-color: darkgray;
-    margin-bottom: 2rem;
 }
 
 .tableCell {
@@ -37,3 +38,28 @@
     background-color: #484848;
     color: white;
 }
+
+.scrollText {
+    display: none;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .journalEntryTableWrapper {
+        max-width: 85vw;
+        padding-bottom: 0;
+        border: 5px solid black;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .journalEntryTableWrapper {
+        margin-bottom: 0.5rem;
+    }
+    
+    .scrollText {
+      display: block;
+    }
+  }

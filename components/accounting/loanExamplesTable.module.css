@@ -6,14 +6,13 @@
 .scrollableTableWrapper {
   overflow: auto;
   max-width: 95vw !important;
-  margin-bottom: 4rem;
+  margin-bottom: 0.5rem;
+  border: 5px solid black;
 }
 
 .loanExamples_table {
   padding: 5px;
-  border: 5px solid #484848;
   background-color: darkgray;
-  margin-bottom: 2rem;
 }
 
 .tableHeaderRow {
@@ -89,9 +88,35 @@
   cursor: auto;
 }
 
+.scrollText {
+  display: none;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
 @media (max-width: 1660px) {
   .loanExamples_table {
     font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .scrollableTableWrapper {
+    max-width: 90vw;
+    border: 5px solid black;
+  }
+}
+
+@media (max-width: 900px) {
+  .scrollText {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .scrollableTableWrapper {
+    max-width: 90vw;
   }
 }
 

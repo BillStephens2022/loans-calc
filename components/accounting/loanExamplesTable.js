@@ -4,6 +4,7 @@ import { GoTrash } from "react-icons/go";
 import { formatAmount } from "../../util/formatting";
 import Button from "../ui/button";
 import classes from "./loanExamplesTable.module.css";
+import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 
 const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
   const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing
@@ -169,6 +170,8 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
             </tr>
           </tfoot>
         </table>
+        </div>
+        <p className={classes.scrollText}><ImArrowLeft /> Scroll <ImArrowRight /></p>
         {portfolioPage && (
           <div className={classes.footnoteDiv}>
             <p className={classes.footnoteDesc}>
@@ -181,7 +184,7 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
             </p>
           </div>
         )}
-      </div>
+      
     </div>
   );
 };
