@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { GoTrash } from "react-icons/go";
+import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
 import Button from "../ui/button";
 import classes from "./frontingExamplesTable.module.css";
@@ -96,6 +97,7 @@ const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
           </tbody>
         </table>
       </div>
+      <p className={classes.scrollText}><ImArrowLeft /> Scroll <ImArrowRight /></p>
     </div>
   );
 };

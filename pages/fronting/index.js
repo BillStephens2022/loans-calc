@@ -74,7 +74,7 @@
           title="Add Fronting Example"
         />}
 
-        <h2>Fronting Examples</h2>
+        <h2 className={classes.frontingTableHeader}>Fronting Examples</h2>
         <div className={classes.frontingExamplesTableContainer}>
           <FrontingExamplesTable
             examples={frontingExamples}

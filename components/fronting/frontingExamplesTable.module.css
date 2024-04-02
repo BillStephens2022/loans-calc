@@ -1,17 +1,19 @@
 .tableWrapper {
-  overflow-x: auto;
-  max-width: 100% !important;
+  max-width: 98%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .scrollableTableWrapper {
-  max-width: 95vw !important;
+  max-width: 98%;
+  border: 5px solid #484848;
+  overflow-x: auto;
 }
 
 .loanExamples_table {
-  padding: 5px;
-  border: 5px solid #484848;
   background-color: darkgray;
-  margin-bottom: 2rem;
 }
 
 .tableHeaderRow {
@@ -65,6 +67,12 @@
   align-items: center;
 }
 
+.scrollText {
+  display: none;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
 
 @media (max-width: 1660px) {
   .loanExamples_table {
@@ -73,7 +81,24 @@
 }
 
 @media (max-width: 1024px) {
+  .scrollableTableWrapper {
+    max-width: 90vw;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .scrollText {
+    display: block;
+  }
 }
 
 @media (max-width: 767px) {
+  .scrollableTableWrapper {
+    max-width: 87vw;
+    margin-bottom: 0.5rem;
+  }
 }
+
+
+

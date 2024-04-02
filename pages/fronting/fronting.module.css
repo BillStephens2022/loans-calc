@@ -44,10 +44,25 @@
   margin-bottom: 2rem;
 }
 
+.frontingTableHeader {
+  margin: 0.5rem auto 1.5rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  color: #484848;
+  background-color: rgba(176, 196, 222, 0.7);
+  width: 25%;
+}
+
 
 @media (max-width: 1024px) {
   .pageHeader {
     font-size: 2.5rem;
+  }
+  .frontingTableHeader {
+    width: 40%;
+    font-size: 1.25rem;
   }
 }
 
@@ -72,5 +87,9 @@
   }
   .fronting_main {
     padding: 0;
+  }
+  .frontingTableHeader {
+    width: 60%;
+    font-size: 1.15rem;
   }
 }
