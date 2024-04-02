@@ -6,6 +6,7 @@
 .scrollableTableWrapper {
   overflow: auto;
   max-width: 95vw !important;
+  margin-bottom: 4rem;
 }
 
 .loanExamples_table {
@@ -40,7 +41,6 @@
   cursor: pointer;
 }
 
-
 .tableHeaderRow th,
 .tableBodyRows td {
   padding: 0.5rem;
@@ -57,7 +57,6 @@
 }
 
 .deleteCell {
-  
   margin: auto;
   text-align: center;
 }
@@ -96,14 +95,5 @@
   }
 }
 
-@media (max-width: 1024px) {
-
- 
 
 
-  
-}
-
-@media (max-width: 767px) {
-
-}

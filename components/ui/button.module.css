@@ -10,7 +10,7 @@
   padding: 0.5rem;
   text-wrap: wrap;
   border: none;
-  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4)
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4);
 }
 
 .button:hover {
@@ -32,6 +32,12 @@
 
 .width_8 {
   width: 8rem;
+}
+
+.showButton {
+  width: 10rem;
+  height: 5rem;
+  margin: auto 1rem;
 }
 
 .deleteButton {
@@ -73,11 +79,9 @@
   .width_8 {
     width: 4rem;
   }
- 
 }
 
 @media (max-width: 767px) {
-  
   .formSubmitButton {
     font-size: 0.75rem;
     width: 10rem;
@@ -94,6 +98,9 @@
     font-size: 0.75rem;
     width: 7rem;
   }
+
+  .showButton {
+    margin: auto 0.5rem;
+    font-size: 0.9rem;
+  }
 }
-
-
