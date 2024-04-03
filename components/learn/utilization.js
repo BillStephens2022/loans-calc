@@ -1,5 +1,7 @@
 import classes from "./utilization.module.css";
 
+// content for Utilization Types on the Learn page
+
 const Utilization = () => {
   return (
     <div className={classes.main}>

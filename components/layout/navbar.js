@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import classes from "./navbar.module.css";
 
+// Navbar component.  Displays as hamburger menu that expands to fill page for user to make selection
+
 const Navbar = () => {
 
   const [isChecked, setIsChecked] = useState(false);

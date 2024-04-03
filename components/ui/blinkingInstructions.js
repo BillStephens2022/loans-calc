@@ -1,6 +1,8 @@
 import classes from "./blinkingInstructions.module.css";
 import { ImArrowDown } from "react-icons/im";
 
+// blinking instructional message to the user to click on a row in the table
+
 const BlinkingInstructions = ({ page }) => {
   return (
     <h2 className={classes.instructionHeader}>

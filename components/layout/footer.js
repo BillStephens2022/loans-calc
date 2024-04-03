@@ -1,6 +1,7 @@
 import Link from "next/link";
 import classes from "./footer.module.css";
 
+// displays footer with copyright and link to Bill Stephens' portfolio page
 const Footer = () => {
   return (
     <div className={classes.footer}>

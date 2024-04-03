@@ -1,6 +1,8 @@
 
 import classes from "./modal.module.css";
 
+// reusable pop-up modal component to render input forms to the user
+
 const Modal = ({ onClose, content, title }) => {
 
   return (

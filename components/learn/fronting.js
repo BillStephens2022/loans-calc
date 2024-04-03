@@ -1,5 +1,7 @@
 import classes from "./fronting.module.css";
 
+// content for Fronting on the Learn page
+
 const Fronting = () => {
   return (
     <div className={classes.main}>

@@ -1,5 +1,7 @@
 import classes from "./trades.module.css";
 
+// content for Trades (Assigments & Participations) on the Learn page
+
 const Trades = () => {
   return (
     <div className={classes.main}>

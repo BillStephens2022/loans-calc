@@ -1,5 +1,6 @@
 import classes from "./accounting.module.css";
 
+// content for Loan Accounting on the Learn page
 const Accounting = () => {
   return (
     <div className={classes.main}>

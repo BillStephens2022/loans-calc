@@ -1,5 +1,6 @@
 import classes from "./feeTypes.module.css";
 
+// content for Fee Types on the Learn page
 const FeeTypes = () => {
   return (
     <div className={classes.main}>

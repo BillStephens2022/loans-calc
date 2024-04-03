@@ -1,5 +1,8 @@
 import classes from "../../components/learn/loanDocs.module.css";
 
+
+// content for Loan Documentation on the Learn page
+
 const LoanDocs = () => {
   return (
     <div className={classes.main}>

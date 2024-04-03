@@ -1,5 +1,6 @@
 import classes from "./facilityTypes.module.css";
 
+// content for Facility Types on the Learn page
 const FacilityTypes = () => {
   return (
     <div className={classes.main}>
