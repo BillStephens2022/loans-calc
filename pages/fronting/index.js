@@ -1,89 +1,105 @@
-  import { useState, useEffect } from "react";
-  import useSWR from "swr";
-  import { ImArrowDown } from "react-icons/im";
-  import PageHeader from "../../components/layout/pageHeader";
-  import Modal from "../../components/ui/modal";
-  import FrontingForm from "../../components/fronting/frontingForm";
-  import Button from "../../components/ui/button";
-  import {
-    createFrontingExample,
-    deleteFrontingExampleById,
-  } from "../../lib/api";
-  import classes from "./fronting.module.css";
-  import FrontingExamplesTable from "../../components/fronting/frontingExamplesTable";
-  import BlinkingInstructions from "../../components/ui/blinkingInstructions";
+import { useState, useEffect } from "react";
+import useSWR from "swr";
+import {
+  createFrontingExample,
+  deleteFrontingExampleById,
+} from "../../lib/api";
+import PageHeader from "../../components/layout/pageHeader";
+import Modal from "../../components/ui/modal";
+import FrontingForm from "../../components/fronting/frontingForm";
+import Button from "../../components/ui/button";
+import FrontingExamplesTable from "../../components/fronting/frontingExamplesTable";
+import BlinkingInstructions from "../../components/ui/blinkingInstructions";
+import classes from "./fronting.module.css";
 
-  const Fronting = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [frontingExamples, setFrontingExamples] = useState([]);
+const Fronting = () => {
+  // state for opening / closing the modal containing the FrontingForm for entering examples
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // state for setting fronting examples as data is retrieved from the database as well as new
+  // examples are created or existing examples are deleted.
+  const [frontingExamples, setFrontingExamples] = useState([]);
 
-    const { data, error } = useSWR(
-      "/api/fronting/",
-      (url) => fetch(url).then((res) => res.json()),
-      { refreshInterval: 1000 }
-    );
+  // useSWR hook used for fronting examples data retrieval from the database
+  const { data, error } = useSWR(
+    "/api/fronting/",
+    (url) => fetch(url).then((res) => res.json()),
+    { refreshInterval: 1000 }
+  );
 
-    useEffect(() => {
-      if (error) {
-        console.error("Error fetching fronting examples:", error);
-      }
-      if (data) {
-        const sortedFrontingExamples = data.sort((a, b) =>
-          a.borrower.localeCompare(b.borrower)
-        );
-        setFrontingExamples(sortedFrontingExamples);
-      }
-    }, [data, error]);
+  useEffect(() => {
+    if (error) {
+      console.error("Error fetching fronting examples:", error);
+    }
+    // sort the fronting examples by borrower name (alphabetical order) and update state
+    // so examples are rendered in order
+    if (data) {
+      const sortedFrontingExamples = data.sort((a, b) =>
+        a.borrower.localeCompare(b.borrower)
+      );
+      setFrontingExamples(sortedFrontingExamples);
+    }
+  }, [data, error]);
 
-    const handleFormSubmit = async (formData) => {
-      try {
-        await createFrontingExample(formData);
-        // Form submission successful, close the modal
-        setIsModalOpen(false);
-      } catch (error) {
-        console.error("Error submitting form:", error.message);
-      }
-    };
+  // handle the FrontingForm submit (in the pop up modal). Uses
+  // imported custom function 'createFrontingExample' to post the
+  // example to the database and close the modal.
+  const handleFormSubmit = async (formData) => {
+    try {
+      await createFrontingExample(formData);
+      // Form submission successful, close the modal
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+    }
+  };
+  // handle deleting a fronting example from the database when a delete button 
+  // is clicked on a specific example in the FrontingExamplesTable component.
+  const handleDeleteExample = async (exampleId) => {
+    try {
+      // imported custom function to delete specific fronting example from the database
+      await deleteFrontingExampleById(exampleId);
+      // remove deleted item from fronting examples dataset and reset state
+      setFrontingExamples(
+        frontingExamples.filter((example) => example._id !== exampleId)
+      );
+    } catch (error) {
+      console.error("Error deleting fronting example:", error.message);
+    }
+  };
 
-    const handleDeleteExample = async (exampleId) => {
-      try {
-        await deleteFrontingExampleById(exampleId);
-        setFrontingExamples(
-          frontingExamples.filter((example) => example._id !== exampleId)
-        );
-      } catch (error) {
-        console.error("Error deleting fronting example:", error.message);
-      }
-    };
-
-    return (
-      <main className={classes.fronting_main}>
-        <PageHeader>
-          <h1 className={classes.pageHeader}>Fronting Risk</h1>
-          <h2 className={classes.subHeader}>Examples</h2>
-        </PageHeader>
-        <BlinkingInstructions page="fronting risk" />
-        <Button className="addExample" onClick={() => setIsModalOpen(true)}>
-          Add Example
-        </Button>
-        {isModalOpen &&
+  return (
+    <main className={classes.fronting_main}>
+      <PageHeader>
+        <h1 className={classes.pageHeader}>Fronting Risk</h1>
+        <h2 className={classes.subHeader}>Examples</h2>
+      </PageHeader>
+      {/* Instructions for clicking on a specific fronting example in table to see further detail */}
+      <BlinkingInstructions page="fronting risk" />
+      {/* Button to toggle modal opening of form for entering a new fronting example */}
+      <Button className="addExample" onClick={() => setIsModalOpen(true)}>
+        Add Example
+      </Button>
+      {/* If modal is open (via button click above), show the form */}
+      {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           content={<FrontingForm onSubmit={handleFormSubmit} />}
           title="Add Fronting Example"
-        />}
+        />
+      )}
 
-        <h2 className={classes.frontingTableHeader}>Fronting Examples</h2>
-        <div className={classes.frontingExamplesTableContainer}>
-          <FrontingExamplesTable
-            examples={frontingExamples}
-            onDelete={handleDeleteExample}
-            portfolioPage={true}
-          />
-        </div>
-      </main>
-    );
-  };
+      <h2 className={classes.frontingTableHeader}>Fronting Examples</h2>
+      <div className={classes.frontingExamplesTableContainer}>
+        {/* Table showing all entered fronting examples from the database */}
+        <FrontingExamplesTable
+          examples={frontingExamples}
+          onDelete={handleDeleteExample}
+          portfolioPage={true}
+        />
+      </div>
+    </main>
+  );
+};
 
-  export default Fronting;
+export default Fronting;
