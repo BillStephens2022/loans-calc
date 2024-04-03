@@ -12,15 +12,29 @@ import Accounting from "../../components/learn/accounting";
 import Button from "../../components/ui/button";
 import classes from "./learn.module.css";
 
-// Learning Page summary - User can click on item in topic list (viewed as tabs) to view 
-// educational content about specific loan topics.
+// Learning Page summary - User can click on item in topic list (viewed as tabs) to view
+// educational content about specific loan topics.  Click the button to take quiz to navigate
+// to the Quiz page which features a multiple choice quiz.
 
 const Learn = () => {
   // state to set the topic for which content will be rendered
-  const [topic, setTopic] = useState({ type: "loan", content: <LoanTypes /> });
+  const [topic, setTopic] = useState(<LoanTypes />);
+
+  // list of topics to iterated over to render the topics list and the associated content to
+  // be rendered when list item clicked
+  const topicsList = [
+    { label: "Loan Types", content: <LoanTypes /> },
+    { label: "Loan Docs", content: <LoanDocs /> },
+    { label: "Facility Types", content: <FacilityTypes /> },
+    { label: "Utilization", content: <Utilization /> },
+    { label: "Interest & Fees", content: <FeeTypes /> },
+    { label: "Trades", content: <Trades /> },
+    { label: "Fronting", content: <Fronting /> },
+    { label: "Accounting", content: <Accounting /> },
+  ];
 
   // handler for setting which content is rendered based on what button is clicked
-  const handleClick = (content) => {
+  const handleTopicSelection = (content) => {
     setTopic(content);
   };
 
@@ -28,7 +42,10 @@ const Learn = () => {
     <div>
       <PageHeader>
         <h1 className={classes.pageHeader}>Learn</h1>
-        <Link href="/quiz"><Button className="m_1">Take Quiz</Button></Link>
+
+        <Link href="/quiz">
+          <Button className="m_1">Take Quiz</Button>
+        </Link>
       </PageHeader>
       <main className={classes.main}>
         <aside className={classes.aside}>
@@ -36,90 +53,22 @@ const Learn = () => {
 
           {/* clickable topic list which renders content based on which list item is clicked */}
           <ul className={classes.topicsList}>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "loan" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "loan", content: <LoanTypes /> })
-              }
-            >
-              Loan Types
-            </li>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "loanDocs" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "loanDocs", content: <LoanDocs /> })
-              }
-            >
-              Loan Docs
-            </li>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "facility" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "facility", content: <FacilityTypes /> })
-              }
-            >
-              Facility Types
-            </li>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "utilization" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "utilization", content: <Utilization /> })
-              }
-            >
-              Utilization
-            </li>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "fees" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "fees", content: <FeeTypes /> })
-              }
-            >
-              Interest & Fees
-            </li>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "trades" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "trades", content: <Trades /> })
-              }
-            >
-              Trades
-            </li>
             
-            <li
-              className={`${classes.topic} ${
-                topic.type === "Fronting" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "fronting", content: <Fronting /> })
-              }
-            >
-              Fronting
-            </li>
-            <li
-              className={`${classes.topic} ${
-                topic.type === "Accounting" ? classes.active : ""
-              }`}
-              onClick={() =>
-                handleClick({ type: "accounting", content: <Accounting /> })
-              }
-            >
-              Accounting
-            </li>
+            {/* Iterate over topic list to render the clickable topic list items */}
+            {topicsList.map((item, index) => (
+              <li
+                key={index}
+                className={`${classes.topic} ${
+                  topic === item.content ? classes.active : ""
+                }`}
+                onClick={() => handleTopicSelection(item.content)}
+              >
+                {item.label}
+              </li>
+            ))}
           </ul>
         </aside>
-        <div className={classes.contentContainer}>{topic.content}</div>
+        <div className={classes.contentContainer}>{topic}</div>
       </main>
     </div>
   );
