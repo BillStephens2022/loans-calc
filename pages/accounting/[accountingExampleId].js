@@ -91,6 +91,7 @@ const AccountingExampleDetail = () => {
       </PageHeader>
       
       <main className={classes.main}>
+      {/* Compponent to render link w/message - link will route back to previous Accounting page */}
       <BackLink page="accounting" text="Accounting Examples" />
       <h2 className={classes.summary_header}>Loan Facility Summary</h2>
       {/* shows summary of example selected from Accounting page*/}

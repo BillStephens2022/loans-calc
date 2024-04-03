@@ -43,6 +43,7 @@ const handler = async (req, res) => {
       await newLoanAccountingExample.save();
       // Create journal entries for the new Loan Accounting Example
       const journalEntriesData = createJournalEntries(req.body);
+      // update database with newly created journal entries, update with the loan example Id
       const createdJournalEntries = await JournalEntry.insertMany(
         journalEntriesData.map((entry) => ({
           ...entry,
@@ -61,7 +62,9 @@ const handler = async (req, res) => {
     }
   } else if (req.method === "GET") {
     try {
+      // get all loan accounting examples from the database
       const loanAccountingExamples = await LoanAccountingExample.find({});
+      // return examples json data
       res.status(200).json(loanAccountingExamples);
     } catch (error) {
       console.error("Error fetching loan accounting examples:", error);

@@ -7,7 +7,7 @@ const handler = async (req, res) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
 
-  // Get journal entries for a specific loan account example
+  // Get all journal entries for a specific loan account example
   if (req.method === "GET") {
     try {
       const journalEntries = await JournalEntry.find({});

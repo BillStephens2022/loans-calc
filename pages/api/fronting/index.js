@@ -57,6 +57,7 @@ const handler = async (req, res) => {
     }
   } else if (req.method === "GET") {
     try {
+      // get all fronting examples from the database
       const frontingExamples = await FrontingExample.find({});
       res.status(200).json(frontingExamples);
     } catch (error) {

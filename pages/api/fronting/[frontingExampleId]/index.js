@@ -7,9 +7,10 @@ const handler = async (req, res) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
 
+  // get the id from the request object
   const { frontingExampleId } = req.query;
 
-  // Delete a specific fronting example
+  // Delete a specific fronting example using the id
   if (req.method === "DELETE") {
     try {
       const existingFrontingExample = await FrontingExample.findById(
@@ -25,7 +26,7 @@ const handler = async (req, res) => {
       console.error("Error deleting Fronting example:", error);
       res.status(500).json({ error: "Internal server error" });
     }
-    // Fetch a specific fronting example
+    // Fetch a specific fronting example using the id
   } else if (req.method === "GET") {
     try {
       const existingFrontingExample = await FrontingExample.findById(
