@@ -1,10 +1,14 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
+
+// Pie chart component using the external react-chartjs-2 library
+// renders a Pie Chart based on the Loan Examples Data from the accounting page
+// Pie chart shows the breakdown of the commitments by accounting methodology (HFI, HFS, FVO)
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
-
+// props are the total commitment amounts by accounting methodology
 const AccountingPieChart = ({ totalCommitmentHFI, totalCommitmentHFS, totalCommitmentFVO }) => {
 
   const data = {

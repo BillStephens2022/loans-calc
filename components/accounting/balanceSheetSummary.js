@@ -1,6 +1,10 @@
 import { formatAmount } from "../../util/formatting";
 import classes from "./balanceSheetSummary.module.css";
 
+// Shows a Balance Sheet impact for a specific accounting example
+// summarizes the accounts by high level category / category (i.e. high level 
+// categories like Assets & Liabilities and categores like loan market value, commitment market values, etc)
+
 const BalanceSheetSummary = ({
   assetsTotal,
   liabilitiesTotal,
@@ -15,6 +19,8 @@ const BalanceSheetSummary = ({
   let loanBookValueDescription;
   let commitmentBookValueDescription;
   let lettersOfCreditBookValueDescription;
+
+  // show description for certain accounts based on the accounting methodology
   switch(accounting) {
     case "HFI":
       loanBookValueDescription = "HFI Loans at Amortized Cost";

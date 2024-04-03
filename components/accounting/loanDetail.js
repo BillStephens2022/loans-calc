@@ -3,6 +3,11 @@ import OffBalanceSheetTable from "./offBalanceSheetTable";
 import BalanceSheetSummary from "./balanceSheetSummary";
 import classes from "./loanDetail.module.css";
 
+
+// renders details for specific loan examples including the Balance Sheet Summary, 
+// the Off Balance Sheet Table, and the Journal Entries table
+// props ultimately come from the LoanAccountingExample and JournalEntry records from database
+
 const LoanDetail = ({
   journalEntries,
   lettersOfCredit,

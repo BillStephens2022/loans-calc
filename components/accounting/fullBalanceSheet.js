@@ -1,7 +1,12 @@
 import { formatAmount } from "../../util/formatting";
 import classes from "./fullBalanceSheet.module.css";
 
+
+// shows the Full Balance sheet for the sum of all entered examples and their associated journal entries.
+
 const FullBalanceSheet = ({ journalEntries }) => {
+
+  // calculate the balance by summing up the journal entries by category and accounting methodology
   const sumEntriesByCategory = (journalEntries, category, accounting) => {
     const categoryTotal = journalEntries.reduce((total, entry) => {
       if (
@@ -17,6 +22,7 @@ const FullBalanceSheet = ({ journalEntries }) => {
     return categoryTotal;
   };
 
+  // calculate the balance by summing up the journal entries by high level category
   const sumEntriesByHighLevelCategory = (journalEntries, highLevelCategory) => {
     const highLevelCategoryTotal = journalEntries.reduce((total, entry) => {
       if (entry.highLevelCategory === highLevelCategory) {
@@ -30,7 +36,7 @@ const FullBalanceSheet = ({ journalEntries }) => {
   };
 
   // Category totals
-  // For balance sheet presentation purposes assume 1B of invested capital at inception (debit cash 1B, credit equity 1B)
+  // For balance sheet presentation purposes assume $1B of invested capital at inception (debit cash $1B, credit equity $1B)
   const cashStartingBalance = 1000000000;
   const equityStartingBalance = -cashStartingBalance;
   const cashTotal =

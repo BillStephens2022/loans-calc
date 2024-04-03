@@ -1,16 +1,26 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { GoTrash } from "react-icons/go";
+import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
 import Button from "../ui/button";
 import classes from "./loanExamplesTable.module.css";
-import { ImArrowLeft, ImArrowRight } from "react-icons/im";
+
+// Loan Examples Table shows a summary of all of the loan examples on the Accounting page (if portfolioPage prop is true)
+// If portfolioPage prop is false, it shows 1 row for a summary of the specific example on the [accountingExampleId] page.
+// also renders a delete button in the table so user can delete a specific example - only shows on 
+// Accounting page where portfolioPage prop is true)
 
 const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
-  const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing
+  // state used to disable delete button while process is executing
+  const [loading, setLoading] = useState(false); 
+  // used for routing when a specific loan example is clicked on the table
   const router = useRouter();
+
+  // handler for deleting a specific loan accounting example
   const handleDeleteExample = async (exampleId, event) => {
-    event.stopPropagation(); // Stop event propagation to prevent row click event
+    // Stop event propagation to prevent row click event
+    event.stopPropagation(); 
     setLoading(true);
     try {
       onDelete(exampleId); // Notify parent component that example was deleted
@@ -21,20 +31,26 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
     }
   };
 
+  // handler for clicking on a row in the table - user will be routed to the [accountingExampleId] page which will show
+  // details about the specific loan clicked. Uses the NextJS dynamic routing.
   const handleRowClick = (exampleId, event) => {
     if (!event.target.closest("button")) {
       router.push(`/accounting/${exampleId}`);
     }
   };
-
+  
+  // calculate unfunded commitment
   const calculateUnfundedCommitment = (example) => {
     return example.commitment - example.fundedLoan - example.lettersOfCredit;
   };
-
+  // calculate Loan Mark to Market
   const calculateLoanMTM = (example) => {
     let loanMTM =
       (example.commitment * (example.loanMark - example.weightedAverageCost)) /
       100;
+      // adjust Loan MTM based on accounting methodology
+      // if HFS, Loan MTM is set to zero if calculated Loan MTM is positive since Lower of Cost or Market accounting applied
+      // if HFI, Loan MTM is set to zero since HFI loans are held at amortized cost and not market to market.
     if (
       (example.accounting === "HFS" && loanMTM > 0) ||
       example.accounting === "HFI"

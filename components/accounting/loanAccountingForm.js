@@ -2,6 +2,10 @@ import { useState } from "react";
 import Button from "../ui/button";
 import classes from "./loanAccountingForm.module.css";
 
+
+// form where user enters an example loan transaction.  Form is shown in the Modal component on the Accounting page.
+// form is ultimately submitted via the API to the MongoDB database using the LoanAccountingExample model.
+
 const LoanAccountingForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     borrower: "",

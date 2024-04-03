@@ -2,6 +2,8 @@ import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
 import classes from "./journalEntryTable.module.css";
 
+
+// show table of journal entries retrieved from database
 const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
 
   return (
@@ -68,6 +70,7 @@ const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
     </table>
     
     </div>
+    {/* Note: below will only be rendered if screen size is too small to fit width - controlled with CSS media query display property */}
     <p className={classes.scrollText}><ImArrowLeft /> Scroll <ImArrowRight /></p>
 </div>
   );
