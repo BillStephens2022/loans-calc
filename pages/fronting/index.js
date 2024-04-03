@@ -12,6 +12,11 @@ import FrontingExamplesTable from "../../components/fronting/frontingExamplesTab
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 import classes from "./fronting.module.css";
 
+// Fronting Page summary - the fronting page features a table of fronting examples retrieved from the database.
+// A user can click the button to add a new fronting example to the database/table.  Within the table,
+// the user can click on an individual example to see the calculated fronting risk as well as the total
+// risk/exposure for the facility - this is done via NextJS dynamic page routing.
+
 const Fronting = () => {
   // state for opening / closing the modal containing the FrontingForm for entering examples
   const [isModalOpen, setIsModalOpen] = useState(false);

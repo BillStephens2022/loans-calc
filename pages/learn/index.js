@@ -12,10 +12,14 @@ import Accounting from "../../components/learn/accounting";
 import Button from "../../components/ui/button";
 import classes from "./learn.module.css";
 
+// Learning Page summary - User can click on item in topic list (viewed as tabs) to view 
+// educational content about specific loan topics.
 
 const Learn = () => {
+  // state to set the topic for which content will be rendered
   const [topic, setTopic] = useState({ type: "loan", content: <LoanTypes /> });
 
+  // handler for setting which content is rendered based on what button is clicked
   const handleClick = (content) => {
     setTopic(content);
   };
@@ -29,6 +33,8 @@ const Learn = () => {
       <main className={classes.main}>
         <aside className={classes.aside}>
           <h3 className={classes.topicsList_header}>Topics</h3>
+
+          {/* clickable topic list which renders content based on which list item is clicked */}
           <ul className={classes.topicsList}>
             <li
               className={`${classes.topic} ${
