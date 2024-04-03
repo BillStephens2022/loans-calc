@@ -16,11 +16,9 @@
 
 .aside {
   width: 10%;
-  /* background-color: darkslateblue; */
 }
 
 .topicsList_header {
-  /* background-color: darkslateblue; */
   color: white;
   padding: 0.5rem;
   margin: 1rem;
@@ -47,7 +45,6 @@
   border: 1px solid #ccc;
   border-right: none;
   cursor: pointer;
-  /* border-radius: 5px 0 0 5px; */
 }
 
 .topic.active {

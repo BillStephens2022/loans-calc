@@ -19,7 +19,7 @@ import classes from "./learn.module.css";
 
 const Learn = () => {
   // state to set the topic for which content will be rendered
-  const [topic, setTopic] = useState(<LoanTypes />);
+  const [activeTopic, setActiveTopic] = useState("Loan Types");
 
   // list of topics to iterated over to render the topics list and the associated content to
   // be rendered when list item clicked
@@ -35,8 +35,8 @@ const Learn = () => {
   ];
 
   // handler for setting which content is rendered based on what button is clicked
-  const handleTopicSelection = (content) => {
-    setTopic(content);
+  const handleTopicSelection = (label) => {
+    setActiveTopic(label);
   };
 
   return (
@@ -60,16 +60,16 @@ const Learn = () => {
               <li
                 key={index}
                 className={`${classes.topic} ${
-                  topic === item.content ? classes.active : ""
+                  activeTopic === item.label ? classes.active : ""
                 }`}
-                onClick={() => handleTopicSelection(item.content)}
+                onClick={() => handleTopicSelection(item.label)}
               >
                 {item.label}
               </li>
             ))}
           </ul>
         </aside>
-        <div className={classes.contentContainer}>{topic}</div>
+        <div className={classes.contentContainer}>{topicsList.find((topic) => topic.label === activeTopic)?.content}</div>
       </main>
     </div>
   );
