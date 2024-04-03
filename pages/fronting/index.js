@@ -12,6 +12,7 @@ import FrontingExamplesTable from "../../components/fronting/frontingExamplesTab
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 import classes from "./fronting.module.css";
 
+// page route: /fronting
 // Fronting Page summary - the fronting page features a table of fronting examples retrieved from the database.
 // A user can click the button to add a new fronting example to the database/table.  Within the table,
 // the user can click on an individual example to see the calculated fronting risk as well as the total

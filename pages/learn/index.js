@@ -12,6 +12,7 @@ import Accounting from "../../components/learn/accounting";
 import Button from "../../components/ui/button";
 import classes from "./learn.module.css";
 
+// page route: /learn
 // Learning Page summary - User can click on item in topic list (viewed as tabs) to view
 // educational content about specific loan topics.  Click the button to take quiz to navigate
 // to the Quiz page which features a multiple choice quiz.
@@ -53,7 +54,7 @@ const Learn = () => {
 
           {/* clickable topic list which renders content based on which list item is clicked */}
           <ul className={classes.topicsList}>
-            
+
             {/* Iterate over topic list to render the clickable topic list items */}
             {topicsList.map((item, index) => (
               <li

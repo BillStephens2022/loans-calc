@@ -8,7 +8,7 @@ import BackLink from "../../components/ui/backLink";
 import classes from "./accountingExampleId.module.css"
 
 
-// page route: /accounting/[exampleId]
+// page route: /accounting/[accountingExampleId]
 // Accounting Example Detail page summary - rendered via dynamic routing when user clicks on an individual loan example in the 
 // LoanExamplesTable on the Accounting Page. Shows LoanExamples component which is the row from the table on the Accounting page, 
 // and the LoanDetail component - this component contains several other components which show Balance Sheet, Off Balance Sheet, and

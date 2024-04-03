@@ -17,6 +17,7 @@ import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 import AccountingPieChart from "../../components/accounting/accountingPieChart";
 import classes from "./accounting.module.css";
 
+// page route: /accounting
 // Accounting Page summary - renders table of loan examples (LoanExamplesTable) and buttons where user can opt to
 // add new examples via a modal form, view the full balance sheet of the examples portfolio (FullBalanceSheet),
 // the Off Balance Sheet (OffBalanceSheetTable), or view the total commitments by accounting methodoloy (AccountingPieChart).
