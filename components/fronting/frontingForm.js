@@ -2,6 +2,9 @@ import { useState } from "react";
 import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
 
+// form for the user to entering Fronting examples. Displayed in the pop up Modal component on the Fronting Page.
+// captures data entered by user and ultimately submits to database
+
 const initialFormData = {
   borrower: "",
   facility: "",
@@ -116,7 +119,9 @@ const resetFormValues = () => {
         );
       })}
       <div className={classes.formControl}>
+        {/* Submits form data to the database */}
         <Button type="submit" className="m_half_formSubmitButton">Submit</Button>
+        {/* Button resets the form values to the initial state */}
         <Button type="button" className="m_half_formSubmitButton" onClick={resetFormValues}>Reset Values</Button>
       </div>
     </form>

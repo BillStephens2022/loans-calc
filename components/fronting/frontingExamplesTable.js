@@ -6,21 +6,33 @@ import { formatAmount } from "../../util/formatting";
 import Button from "../ui/button";
 import classes from "./frontingExamplesTable.module.css";
 
+// Fronting Examples Table shows a summary of all of the fronting examples on the Fronting page
+// also renders a delete button in the table so user can delete a specific example
+
 const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
-  const [loading, setLoading] = useState(false); // use state to disable delete button while process is executing
+  // state used to disable delete button while process is executing
+  const [loading, setLoading] = useState(false);
+  // used for routing when a specific loan example is clicked on the table 
   const router = useRouter();
+
+  // handler for deleting a specific fronting example from the database/table
   const handleDeleteExample = async (exampleId, event) => {
-    event.stopPropagation(); // Stop event propagation to prevent row click event
+    // Stop event propagation to prevent row click event - i.e. don't want the page to route to the detailed example page
+    // this prevents 'handleRowClick' (defined below) from executing.
+    event.stopPropagation(); 
+    // set loading state to true while waiting to delete from the dabase
     setLoading(true);
     try {
       onDelete(exampleId); // Notify parent component that example was deleted
     } catch (error) {
       console.error("Error deleting example:", error.message);
     } finally {
+      // set loading state to false
       setLoading(false);
     }
   };
 
+  // if user clicks on row, route to the [frontingExampleId] page to view the details for the specific example
   const handleRowClick = (exampleId, event) => {
     if (!event.target.closest("button")) {
       router.push(`/fronting/${exampleId}`);

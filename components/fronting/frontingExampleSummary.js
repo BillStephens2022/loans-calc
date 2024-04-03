@@ -1,7 +1,10 @@
-import classes from "./frontingExampleSummary.module.css";
-import { formatAmount } from "../../util/formatting";
 import { ImArrowDown } from "react-icons/im";
+import { formatAmount } from "../../util/formatting";
+import classes from "./frontingExampleSummary.module.css";
 
+
+// Shows several tables summarizing the Fronting Example, shows example details, 
+// sublimit availability, fronting exposure, and total exposure summaries.
 const FrontingExampleSummary = ({
   borrower,
   facility,
