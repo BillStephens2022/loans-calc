@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+// Journal Entries - created off the back of the LoanAccountingExamples entered by the User in the 
+// LoanAccountingForm in the modal on the Accounting Page
 const JournalEntrySchema = new Schema({
     loanAccountingExample: { type: Schema.Types.ObjectId, ref: 'LoanAccountingExample' },
     account: { type: String, required: true },

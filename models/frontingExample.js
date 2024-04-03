@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+// Fronting Example - entered by user via the FrontingForm in the modal on the Fronting Page
 const FrontingExampleSchema = new Schema({
   borrower: { type: String, required: true },
   yourBankName: { type: String, required: true },

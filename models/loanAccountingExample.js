@@ -3,6 +3,7 @@ import JournalEntry from "./journalEntry";
 
 const Schema = mongoose.Schema;
 
+// Loan Accounting Example - entered by user via the LoanAccountingForm in the modal on the Accounting Page
 const LoanAccountingExampleSchema = new Schema({
   borrower: { type: String, required: true },
   facility: { type: String, required: true },
