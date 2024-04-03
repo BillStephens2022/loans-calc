@@ -1,3 +1,9 @@
+// Custom Journal Entry class used for creating journal entries based on loan examples
+// entered by the user in the LoanAccountingForm.
+
+// mapping to account categories (category and high level category) based on the account.  Basically
+// establishing an account hierarchy
+// structure is:  'Account: [HighLevel Category, Category]'
 const accountCategoryMapping = {
   // Account: [HighLevel Category, Category]
   Cash: ["Assets", "Cash & Cash Equivalents"],
