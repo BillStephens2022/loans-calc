@@ -1,9 +1,24 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
-const Schema = mongoose.Schema;
+export interface FrontingExampleDocument extends Document {
+  borrower: string;
+  yourBankName: string;
+  facility: string;
+  globalCommitment: number;
+  globalFundedLoans: number;
+  globalLettersOfCredit: number;
+  yourBankCommitment: number;
+  isLCIssuer: boolean;
+  isSwinglineLender: boolean;
+  isNonAccrual: boolean;
+  swinglineSublimit: number;
+  swinglinesFundedByYourBank: number;
+  lcSublimit: number;
+  lcsIssuedByYourBank: number;
+}
 
 // Fronting Example - entered by user via the FrontingForm in the modal on the Fronting Page
-const FrontingExampleSchema = new Schema({
+const FrontingExampleSchema = new Schema<FrontingExampleDocument>({
   borrower: { type: String, required: true },
   yourBankName: { type: String, required: true },
   facility: { type: String, required: true },
@@ -20,6 +35,5 @@ const FrontingExampleSchema = new Schema({
   lcsIssuedByYourBank: { type: Number, required: true },
 });
 
-
 export default mongoose.models.FrontingExample ||
-  mongoose.model("FrontingExample", FrontingExampleSchema);
+  mongoose.model<FrontingExampleDocument>("FrontingExample", FrontingExampleSchema);
