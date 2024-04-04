@@ -6,17 +6,14 @@ interface ButtonProps {
     type?: "button" | "submit";
     onClick?: () => void;
     className?: string;
-  }
-  
-
-// reusable button component
+}
 
 const Button: React.FC<ButtonProps> = ({ children, type, onClick, className }) => {
-    const computedClassName = className ? classes[className] : ''; // Provides a default value for className
+    // Combine the default button class with the custom className if provided
+    const computedClassName = className ? `${classes.button} ${classes[className]}` : classes.button;
 
     return (
-        
-        <button className={`${classes.button} ${classes[computedClassName]}`} type={type} onClick={onClick}>{children}</button>
+        <button className={computedClassName} type={type} onClick={onClick}>{children}</button>
     );
 }
 
