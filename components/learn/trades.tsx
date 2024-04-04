@@ -1,8 +1,9 @@
+import React from "react";
 import classes from "./trades.module.css";
 
 // content for Trades (Assigments & Participations) on the Learn page
 
-const Trades = () => {
+const Trades: React.FC = () => {
   return (
     <div className={classes.main}>
       <h2>Trades - Assignments & Participations</h2>

@@ -1,7 +1,8 @@
+import React from "react";
 import classes from "./feeTypes.module.css";
 
 // content for Fee Types on the Learn page
-const FeeTypes = () => {
+const FeeTypes: React.FC = () => {
   return (
     <div className={classes.main}>
       <h2>Corporate Lending - Interest & Fees</h2>

@@ -1,8 +1,9 @@
+import React from "react";
 import classes from "./fronting.module.css";
 
 // content for Fronting on the Learn page
 
-const Fronting = () => {
+const Fronting: React.FC = () => {
   return (
     <div className={classes.main}>
       <h2>Fronting Risks in Syndicated Revolving Credit Facilities</h2>

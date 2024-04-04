@@ -1,8 +1,9 @@
+import React from "react";
 import classes from "./utilization.module.css";
 
 // content for Utilization Types on the Learn page
 
-const Utilization = () => {
+const Utilization: React.FC = () => {
   return (
     <div className={classes.main}>
       <h1>Loan Facility Utilization</h1>

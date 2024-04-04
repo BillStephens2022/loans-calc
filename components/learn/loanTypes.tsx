@@ -1,8 +1,9 @@
+import React from "react";
 import classes from "./loanTypes.module.css";
 
 // content for Loan Types on the Learn page
 
-const LoanTypes = () => {
+const LoanTypes: React.FC = () => {
   return (
     <div className={classes.main}>
       <h2>Loan Types</h2>

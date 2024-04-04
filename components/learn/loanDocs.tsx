@@ -1,9 +1,9 @@
+import React from "react";
 import classes from "../../components/learn/loanDocs.module.css";
-
 
 // content for Loan Documentation on the Learn page
 
-const LoanDocs = () => {
+const LoanDocs: React.FC = () => {
   return (
     <div className={classes.main}>
       <h2>Corporate Lending Loan Documentation</h2>

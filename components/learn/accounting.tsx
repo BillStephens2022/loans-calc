@@ -1,7 +1,8 @@
+import React from "react";
 import classes from "./accounting.module.css";
 
 // content for Loan Accounting on the Learn page
-const Accounting = () => {
+const Accounting: React.FC = () => {
   return (
     <div className={classes.main}>
       <h2>Accounting Options for Loans (US GAAP)</h2>
