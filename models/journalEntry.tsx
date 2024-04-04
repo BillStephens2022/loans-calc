@@ -1,10 +1,20 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
+import { LoanAccountingExampleDocument } from './loanAccountingExample';
 
-const Schema = mongoose.Schema;
+export interface JournalEntryDocument extends Document {
+    loanAccountingExample: LoanAccountingExampleDocument;
+    account: string;
+    accounting: string;
+    amount: number;
+    isDebit: boolean;
+    highLevelCategory: string;
+    category: string;
+    calculationText: string;
+}
 
 // Journal Entries - created off the back of the LoanAccountingExamples entered by the User in the 
 // LoanAccountingForm in the modal on the Accounting Page
-const JournalEntrySchema = new Schema({
+const JournalEntrySchema = new Schema<JournalEntryDocument>({
     loanAccountingExample: { type: Schema.Types.ObjectId, ref: 'LoanAccountingExample' },
     account: { type: String, required: true },
     accounting: { type: String, required: true },
@@ -15,4 +25,4 @@ const JournalEntrySchema = new Schema({
     calculationText: { type: String, required: true }
 });
 
-export default mongoose.models.JournalEntry || mongoose.model('JournalEntry', JournalEntrySchema);
+export default mongoose.models.JournalEntry || mongoose.model<JournalEntryDocument>('JournalEntry', JournalEntrySchema);
