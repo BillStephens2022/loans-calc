@@ -1,10 +1,10 @@
 // /api/fronting
 // route used for adding new fronting examples, getting all fronting examples
-
+import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../lib/db";
-import FrontingExample from "../../../models/frontingExample";
+import FrontingExample, { FrontingExampleDocument } from "../../../models/frontingExample";
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
   // Add a new Fronting Example
@@ -28,7 +28,7 @@ const handler = async (req, res) => {
 
     try {
       // Create a new Fronting Example
-      const newFrontingExample = new FrontingExample({
+      const newFrontingExample: FrontingExampleDocument = new FrontingExample({
         borrower,
         yourBankName,
         facility,
@@ -58,7 +58,7 @@ const handler = async (req, res) => {
   } else if (req.method === "GET") {
     try {
       // get all fronting examples from the database
-      const frontingExamples = await FrontingExample.find({});
+      const frontingExamples: FrontingExampleDocument[] = await FrontingExample.find({});
       res.status(200).json(frontingExamples);
     } catch (error) {
       console.error("Error fetching fronting examples:", error);

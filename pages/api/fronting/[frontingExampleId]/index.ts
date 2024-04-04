@@ -1,9 +1,9 @@
 // route: api/fronting/[frontingExampleId]
-
+import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../../lib/db";
-import FrontingExample from "../../../../models/frontingExample";
+import FrontingExample, { FrontingExampleDocument } from "../../../../models/frontingExample";
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
 
@@ -13,7 +13,7 @@ const handler = async (req, res) => {
   // Delete a specific fronting example using the id
   if (req.method === "DELETE") {
     try {
-      const existingFrontingExample = await FrontingExample.findById(
+      const existingFrontingExample: FrontingExampleDocument | null = await FrontingExample.findById(
         frontingExampleId
       );
 
@@ -29,7 +29,7 @@ const handler = async (req, res) => {
     // Fetch a specific fronting example using the id
   } else if (req.method === "GET") {
     try {
-      const existingFrontingExample = await FrontingExample.findById(
+      const existingFrontingExample: FrontingExampleDocument | null = await FrontingExample.findById(
         frontingExampleId
       );
 
