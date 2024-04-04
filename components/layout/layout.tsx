@@ -1,9 +1,12 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
 
+interface LayoutProps {
+  children?: React.ReactNode
+}
 // Layout to show Navbar and Footer component on each page
-const Layout = (props) => {
+const Layout: React.FC<LayoutProps> = (props) => {
   
     return (
       <Fragment>

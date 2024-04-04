@@ -1,9 +1,16 @@
-
+import React from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
 import "../styles/globals.css";
 
-const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+interface AppProps {
+  Component: React.ComponentType<any>;
+  pageProps: {
+    [key: string]: any;
+  };
+}
+
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
    
       <Layout>

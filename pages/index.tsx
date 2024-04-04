@@ -1,8 +1,9 @@
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import classes from "./home.module.css";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Head>
