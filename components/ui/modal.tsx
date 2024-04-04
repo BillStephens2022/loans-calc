@@ -1,9 +1,15 @@
 
+import React from "react";
 import classes from "./modal.module.css";
 
 // reusable pop-up modal component to render input forms to the user
 
-const Modal = ({ onClose, content, title }) => {
+interface ModalProps {
+  onClose: () => void;
+  content: React.ReactNode;
+  title?: string,
+}
+const Modal: React.FC<ModalProps> = ({ onClose, content, title }) => {
 
   return (
     <div className={classes.modalOverlay}>

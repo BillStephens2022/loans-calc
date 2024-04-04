@@ -20,8 +20,8 @@ import classes from "./learn.module.css";
 // type to be used creating a list of learning topic items along with the associated
 // React component containing the learning content
 interface TopicItem {
-  label: string,
-  content: React.ReactNode
+  label: string;
+  content: React.ReactNode;
 }
 
 const Learn: React.FC = () => {
@@ -61,7 +61,6 @@ const Learn: React.FC = () => {
 
           {/* clickable topic list which renders content based on which list item is clicked */}
           <ul className={classes.topicsList}>
-
             {/* Iterate over topic list to render the clickable topic list items */}
             {topicsList.map((item, index) => (
               <li
@@ -76,7 +75,9 @@ const Learn: React.FC = () => {
             ))}
           </ul>
         </aside>
-        <div className={classes.contentContainer}>{topicsList.find((topic) => topic.label === activeTopic)?.content}</div>
+        <div className={classes.contentContainer}>
+          {topicsList.find((topic) => topic.label === activeTopic)?.content}
+        </div>
       </main>
     </div>
   );

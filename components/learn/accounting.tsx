@@ -39,7 +39,7 @@ const Accounting: React.FC = () => {
         recorded at fair value with changes recorded in earnings, which may
         result in increased income volatility compared to loans measured at
         amortized cost. However, entities electing the FVO must consistently
-        apply fair value measurements to similar financial instruments. 
+        apply fair value measurements to similar financial instruments.
       </p>
     </div>
   );

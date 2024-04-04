@@ -123,7 +123,8 @@ export const quizData: QuizData = {
         "Swingline fronting risk arises when a bank acts as a swingline lender in a syndicated revolving credit facility. It refers to the risk assumed by the swingline lender when other syndicate banks fail to fund their pro-rata portions, exposing the swingline lender to potential credit risk and liquidity strain.",
     },
     {
-      question: "What is the primary difference between 'assignment' and 'participation' trades?",
+      question:
+        "What is the primary difference between 'assignment' and 'participation' trades?",
       answers: {
         a: "With assignments, the assignee becomes the lender of record, while with participation trades, the original lender retains its status as the lender of record.",
         b: "Assignments transfer the rights and obligations under a credit agreement to the seller, while participation trades transfer the rights and obligations under a credit agreement to the buyer",
@@ -131,7 +132,8 @@ export const quizData: QuizData = {
         d: "Participation trades involve transferring loan payments, while assignments do not.",
       },
       correct_answer: "a",
-      explanation: "In assignments, the assignee becomes the lender of record, assuming the rights and obligations of the original lender. On the other hand, in participation trades, the original lender retains its status as the lender of record, and the participating lender purchases a participation interest in the loan."
+      explanation:
+        "In assignments, the assignee becomes the lender of record, assuming the rights and obligations of the original lender. On the other hand, in participation trades, the original lender retains its status as the lender of record, and the participating lender purchases a participation interest in the loan.",
     },
     {
       question:
@@ -143,9 +145,8 @@ export const quizData: QuizData = {
         d: "Syndicated loans involve multiple lenders, while bilateral loans involve a single lender",
       },
       correct_answer: "d",
-      explanation: "The primary difference between syndicated loans and bilateral loans lies in the number of lenders involved in the financing arrangement. Syndicated loans involve a consortium of lenders pooling their resources to provide a single loan facility to a borrower, coordinated by one lead bank or financial institution. In contrast, bilateral loans involve a straightforward lending arrangement between a single lender and a borrower, without the involvement of multiple lenders. This distinction in the number of lenders impacts various aspects of the loan structure, including the level of complexity, flexibility in terms, and access to capital."
+      explanation:
+        "The primary difference between syndicated loans and bilateral loans lies in the number of lenders involved in the financing arrangement. Syndicated loans involve a consortium of lenders pooling their resources to provide a single loan facility to a borrower, coordinated by one lead bank or financial institution. In contrast, bilateral loans involve a straightforward lending arrangement between a single lender and a borrower, without the involvement of multiple lenders. This distinction in the number of lenders impacts various aspects of the loan structure, including the level of complexity, flexibility in terms, and access to capital.",
     },
   ],
 };
-
-

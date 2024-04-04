@@ -32,24 +32,26 @@ const Home: React.FC = () => {
         </div>
         <h2 className={classes.home_subheader}>Accounting & Risk Examples</h2>
         <div className={classes.featuresContainer}>
-        <Link href="/learn" className={classes.featureBox}>
-              <h3>Learn</h3>
-              <p>Learn about different types of Corporate Loans, their features and the economics.</p>
-            </Link>
-          
-            <Link href="/accounting" className={classes.featureBox}>
-              <h3>Accounting Examples</h3>
-              <p>Enter example loan terms to view simulated journal entries</p>
-            </Link>
+          <Link href="/learn" className={classes.featureBox}>
+            <h3>Learn</h3>
+            <p>
+              Learn about different types of Corporate Loans, their features and
+              the economics.
+            </p>
+          </Link>
 
-            <Link href="/fronting" className={classes.featureBox}>
-              <h3>Fronting Risk</h3>
-              <h4>Swingline Loan & Issued LC Fronting</h4>
-              <p>
-                Enter example loan terms to view fronting exposure calculations
-              </p>
-            </Link>
-          
+          <Link href="/accounting" className={classes.featureBox}>
+            <h3>Accounting Examples</h3>
+            <p>Enter example loan terms to view simulated journal entries</p>
+          </Link>
+
+          <Link href="/fronting" className={classes.featureBox}>
+            <h3>Fronting Risk</h3>
+            <h4>Swingline Loan & Issued LC Fronting</h4>
+            <p>
+              Enter example loan terms to view fronting exposure calculations
+            </p>
+          </Link>
         </div>
       </main>
     </>

@@ -6,7 +6,6 @@ import classes from "./navbar.module.css";
 // Navbar component.  Displays as hamburger menu that expands to fill page for user to make selection
 
 const Navbar: React.FC = () => {
-
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const router = useRouter();
@@ -31,7 +30,7 @@ const Navbar: React.FC = () => {
         <div className={classes.nav_background}></div>
         <nav className={classes.navbar_nav}>
           <ul className={classes.nav_items}>
-          <li className={classes.nav_item}>
+            <li className={classes.nav_item}>
               <Link
                 href="/"
                 className={`${classes.nav_item} ${classes.nav_link} ${
@@ -52,7 +51,7 @@ const Navbar: React.FC = () => {
               >
                 Learn
               </Link>
-              </li>
+            </li>
             <li className={classes.nav_item}>
               <Link
                 href="/accounting"
@@ -91,6 +90,6 @@ const Navbar: React.FC = () => {
       </div>
     </Fragment>
   );
-}
+};
 
 export default Navbar;

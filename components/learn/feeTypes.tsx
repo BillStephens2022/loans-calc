@@ -59,8 +59,8 @@ const FeeTypes: React.FC = () => {
         Upfront fees, also known as commitment fees, are charges levied by
         lenders to compensate for the commitment of funds under a credit
         facility. These fees are typically calculated as a percentage of the
-        total commitment and are paid upfront upon the
-        establishment of the credit arrangement.
+        total commitment and are paid upfront upon the establishment of the
+        credit arrangement.
       </p>
       <p>
         <span className={classes.pSpan}>Accounting: </span>Upfront Fees are
