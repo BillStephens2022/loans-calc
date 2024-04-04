@@ -4,8 +4,9 @@ import classes from "./button.module.css";
 interface ButtonProps {
   children?: React.ReactNode;
   type?: "button" | "submit";
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   className?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({

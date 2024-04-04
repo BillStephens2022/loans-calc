@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useSWR from "swr";
 import {
   createFrontingExample,
@@ -10,6 +10,7 @@ import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
 import FrontingExamplesTable from "../../components/fronting/frontingExamplesTable";
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
+import { FrontingExampleDocument } from "../../models/frontingExample";
 import classes from "./fronting.module.css";
 
 // page route: /fronting
@@ -18,15 +19,17 @@ import classes from "./fronting.module.css";
 // the user can click on an individual example to see the calculated fronting risk as well as the total
 // risk/exposure for the facility - this is done via NextJS dynamic page routing.
 
-const Fronting = () => {
+const Fronting: React.FC = () => {
   // state for opening / closing the modal containing the FrontingForm for entering examples
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // state for setting fronting examples as data is retrieved from the database as well as new
   // examples are created or existing examples are deleted.
-  const [frontingExamples, setFrontingExamples] = useState([]);
+  const [frontingExamples, setFrontingExamples] = useState<
+    FrontingExampleDocument[]
+  >([]);
 
   // useSWR hook used for fronting examples data retrieval from the database
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<FrontingExampleDocument[]>(
     "/api/fronting/",
     (url) => fetch(url).then((res) => res.json()),
     { refreshInterval: 1000 }
@@ -49,18 +52,22 @@ const Fronting = () => {
   // handle the FrontingForm submit (in the pop up modal). Uses
   // imported custom function 'createFrontingExample' to post the
   // example to the database and close the modal.
-  const handleFormSubmit = async (formData) => {
+  const handleFormSubmit = async (formData: any) => {
     try {
       await createFrontingExample(formData);
       // Form submission successful, close the modal
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error submitting form:", error.message);
+      if (error instanceof Error) {
+        console.error("Error submitting form:", error.message);
+      } else {
+        console.error("An unknown error occurred");
+      }
     }
   };
-  // handle deleting a fronting example from the database when a delete button 
+  // handle deleting a fronting example from the database when a delete button
   // is clicked on a specific example in the FrontingExamplesTable component.
-  const handleDeleteExample = async (exampleId) => {
+  const handleDeleteExample = async (exampleId: string) => {
     try {
       // imported custom function to delete specific fronting example from the database
       await deleteFrontingExampleById(exampleId);
@@ -69,7 +76,11 @@ const Fronting = () => {
         frontingExamples.filter((example) => example._id !== exampleId)
       );
     } catch (error) {
-      console.error("Error deleting fronting example:", error.message);
+      if (error instanceof Error) {
+        console.error("Error submitting form:", error.message);
+      } else {
+        console.error("An unknown error occurred");
+      }
     }
   };
 
@@ -88,7 +99,6 @@ const Fronting = () => {
       {/* If modal is open (via button click above), show the form */}
       {isModalOpen && (
         <Modal
-          isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           content={<FrontingForm onSubmit={handleFormSubmit} />}
           title="Add Fronting Example"

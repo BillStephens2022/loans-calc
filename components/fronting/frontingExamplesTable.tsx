@@ -1,31 +1,45 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { GoTrash } from "react-icons/go";
 import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
 import Button from "../ui/button";
 import classes from "./frontingExamplesTable.module.css";
+import { LoanAccountingExampleDocument } from "../../models/loanAccountingExample";
+import { FrontingExampleDocument } from "../../models/frontingExample";
 
 // Fronting Examples Table shows a summary of all of the fronting examples on the Fronting page
 // also renders a delete button in the table so user can delete a specific example
-
-const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
+interface FrontingExamplesTableProps {
+  examples: FrontingExampleDocument[];
+  onDelete: (exampleId: string) => void;
+  portfolioPage: boolean;
+}
+const FrontingExamplesTable: React.FC<FrontingExamplesTableProps> = ({
+  examples,
+  onDelete,
+  portfolioPage,
+}) => {
   // state used to disable delete button while process is executing
-  const [loading, setLoading] = useState(false);
-  // used for routing when a specific loan example is clicked on the table 
+  const [loading, setLoading] = useState<boolean>(false);
+  // used for routing when a specific loan example is clicked on the table
   const router = useRouter();
 
   // handler for deleting a specific fronting example from the database/table
-  const handleDeleteExample = async (exampleId, event) => {
+  const handleDeleteExample = async (exampleId: string, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     // Stop event propagation to prevent row click event - i.e. don't want the page to route to the detailed example page
     // this prevents 'handleRowClick' (defined below) from executing.
-    event.stopPropagation(); 
+    event.stopPropagation();
     // set loading state to true while waiting to delete from the dabase
     setLoading(true);
     try {
       onDelete(exampleId); // Notify parent component that example was deleted
     } catch (error) {
-      console.error("Error deleting example:", error.message);
+      if (error instanceof Error) {
+        console.error("Error deleting example:", error.message);
+      } else {
+        console.error("Unknown error!");
+      }
     } finally {
       // set loading state to false
       setLoading(false);
@@ -33,13 +47,12 @@ const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
   };
 
   // if user clicks on row, route to the [frontingExampleId] page to view the details for the specific example
-  const handleRowClick = (exampleId, event) => {
-    if (!event.target.closest("button")) {
+  const handleRowClick = (exampleId: string, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+    const target = event.target as Element;
+    if (!target.closest || !target.closest("button")) {
       router.push(`/fronting/${exampleId}`);
     }
   };
-
-
 
   return (
     <div className={classes.tableWrapper}>
@@ -66,10 +79,14 @@ const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
           </thead>
           <tbody>
             {examples.map((example) => {
-              const calculateGlobalUnfundedCommitment = (example) => {
-                return example.globalCommitment - example.globalFundedLoans - example.globalLettersOfCredit;
-              }
-              
+              const calculateGlobalUnfundedCommitment = (example: FrontingExampleDocument) => {
+                return (
+                  example.globalCommitment -
+                  example.globalFundedLoans -
+                  example.globalLettersOfCredit
+                );
+              };
+
               return (
                 <tr
                   key={example._id}
@@ -81,7 +98,9 @@ const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
                   <td>{formatAmount(example.globalCommitment)}</td>
                   <td>{formatAmount(example.globalFundedLoans)}</td>
                   <td>{formatAmount(example.globalLettersOfCredit)}</td>
-                  <td>{formatAmount(calculateGlobalUnfundedCommitment(example))}</td>
+                  <td>
+                    {formatAmount(calculateGlobalUnfundedCommitment(example))}
+                  </td>
                   <td>{formatAmount(example.yourBankCommitment)}</td>
                   <td>{example.isSwinglineLender ? "Y" : "N"}</td>
                   <td>{example.isLCIssuer ? "Y" : "N"}</td>
@@ -94,7 +113,7 @@ const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
                     <td className={classes.deleteCell}>
                       <Button
                         className="deleteButton"
-                        onClick={(event) =>
+                        onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
                           handleDeleteExample(example._id, event)
                         }
                         disabled={loading}
@@ -109,7 +128,9 @@ const FrontingExamplesTable = ({ examples, onDelete, portfolioPage }) => {
           </tbody>
         </table>
       </div>
-      <p className={classes.scrollText}><ImArrowLeft /> Scroll <ImArrowRight /></p>
+      <p className={classes.scrollText}>
+        <ImArrowLeft /> Scroll <ImArrowRight />
+      </p>
     </div>
   );
 };

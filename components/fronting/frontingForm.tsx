@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
 
