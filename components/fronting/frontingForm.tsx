@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
+
+// establish types for the form data
+interface FormData {
+  borrower: string;
+  facility: string;
+  yourBankName: string;
+  globalCommitment: number;
+  globalFundedLoans: number;
+  globalLettersOfCredit: number;
+  yourBankCommitment: number;
+  isLCIssuer: boolean;
+  isSwinglineLender: boolean;
+  isNonAccrual: boolean;
+  swinglineSublimit: number;
+  swinglinesFundedByYourBank: number;
+  lcSublimit: number;
+  lcsIssuedByYourBank: number;
+}
+
+interface FrontingFormProps {
+  onSubmit: (formData: FormData) => void;
+}
 
 // form for the user to entering Fronting examples. Displayed in the pop up Modal component on the Fronting Page.
 // captures data entered by user and ultimately submits to database
 
-const initialFormData = {
+const initialFormData: FormData = {
   borrower: "",
   facility: "",
   yourBankName: "",
@@ -22,13 +44,13 @@ const initialFormData = {
   lcsIssuedByYourBank: 0.0
 };
 
-const FrontingForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState(initialFormData);
+const FrontingForm: React.FC<FrontingFormProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
 
-    let newValue = value;
+    let newValue: string | number | boolean = value;
 
     if (type === "checkbox") {
       newValue = checked;
@@ -42,12 +64,12 @@ const FrontingForm = ({ onSubmit }) => {
     setFormData({ ...formData, [name]: newValue });
   };
 
-  const formatNumberInput = (value) => {
+  const formatNumberInput = (value: string) => {
     // Regex to add comma separators for thousands
     return value.replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(formData);
   };
@@ -93,7 +115,7 @@ const resetFormValues = () => {
                 type="checkbox"
                 id={key}
                 name={key}
-                checked={formData[key]}
+                checked={formData[key as keyof FormData] as boolean}
                 onChange={handleInputChange}
               />
             ) : (
@@ -102,7 +124,7 @@ const resetFormValues = () => {
                   type="text"
                   id={key}
                   name={key}
-                  value={formData[key]}
+                  value={formData[key as keyof FormData] as string | number}
                   onChange={handleInputChange}
                 />
                 {/* rendering formatted values only for boxes that accept numbers, first two input values are for
@@ -110,7 +132,7 @@ const resetFormValues = () => {
                 {index >= 2 && (
                   <span className={classes.formattedValueSpan}>
                     Formatted Value:{" "}
-                    {formatNumberInput(formData[key].toString())}
+                    {formatNumberInput((formData[key as keyof FormData] as number).toString())}
                   </span>
                 )}
               </div>
