@@ -1,7 +1,22 @@
 // quiz questions, answer choices, correct answer, and explanation for correct answer.  This data
 // is used on the Quiz page for rendering quiz questions to the user.
 
-const quizData = {
+export interface AnswerChoices {
+  [key: string]: string;
+}
+
+export interface Question {
+  question: string;
+  answers: AnswerChoices;
+  correct_answer: string;
+  explanation: string;
+}
+
+export interface QuizData {
+  questions: Question[];
+}
+
+export const quizData: QuizData = {
   questions: [
     {
       question:
@@ -133,4 +148,4 @@ const quizData = {
   ],
 };
 
-export default quizData;
+
