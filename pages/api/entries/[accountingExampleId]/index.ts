@@ -1,9 +1,9 @@
 // route: api/entries/[accountingExampleId]
-
+import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from "../../../../lib/db";
-import JournalEntry from "../../../../models/journalEntry";
+import JournalEntry, { JournalEntryDocument } from "../../../../models/journalEntry";
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
 
@@ -12,7 +12,7 @@ const handler = async (req, res) => {
   // Get journal entries for a specific loan account example
   if (req.method === "GET") {
     try {
-      const journalEntries = await JournalEntry.find({
+      const journalEntries: JournalEntryDocument[] = await JournalEntry.find({
         loanAccountingExample: accountingExampleId,
       });
 

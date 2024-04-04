@@ -1,32 +1,23 @@
 // /api/accounting
 // route used for adding new loan accounting examples, getting all loan examples
-
+import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../lib/db";
-import LoanAccountingExample from "../../../models/loanAccountingExample";
-import JournalEntry from "../../../models/journalEntry";
+import LoanAccountingExample, {
+  LoanAccountingExampleDocument,
+} from "../../../models/loanAccountingExample";
+import JournalEntry, {
+  JournalEntryDocument,
+} from "../../../models/journalEntry";
 import { createJournalEntries } from "../../../util/createJournalEntries";
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
   // Add a new Loan Accounting Example
   if (req.method === "POST") {
-    const {
-      borrower,
-      facility,
-      commitment,
-      fundedLoan,
-      lettersOfCredit,
-      accounting,
-      isOrigination,
-      weightedAverageCost,
-      upfrontFee,
-      loanMark,
-    } = req.body;
-
+    // destructure request body
     try {
-      // Create a new Loan Accounting Example
-      const newLoanAccountingExample = new LoanAccountingExample({
+      const {
         borrower,
         facility,
         commitment,
@@ -37,25 +28,38 @@ const handler = async (req, res) => {
         weightedAverageCost,
         upfrontFee,
         loanMark,
-      });
+      } = req.body;
+
+      // Create a new Loan Accounting Example
+      const newLoanAccountingExample: LoanAccountingExampleDocument =
+        new LoanAccountingExample({
+          borrower,
+          facility,
+          commitment,
+          fundedLoan,
+          lettersOfCredit,
+          accounting,
+          isOrigination,
+          weightedAverageCost,
+          upfrontFee,
+          loanMark,
+        });
 
       // Save the new Loan Accounting Example
       await newLoanAccountingExample.save();
       // Create journal entries for the new Loan Accounting Example
       const journalEntriesData = createJournalEntries(req.body);
       // update database with newly created journal entries, update with the loan example Id
-      const createdJournalEntries = await JournalEntry.insertMany(
+      const createdJournalEntries: JournalEntryDocument[] = await JournalEntry.insertMany(
         journalEntriesData.map((entry) => ({
           ...entry,
           loanAccountingExample: newLoanAccountingExample._id,
         }))
       );
-      res
-        .status(201)
-        .json({
-          message: "Loan Accounting Example added successfully",
-          createdJournalEntries,
-        });
+      res.status(201).json({
+        message: "Loan Accounting Example added successfully",
+        createdJournalEntries,
+      });
     } catch (error) {
       console.error("Error adding Loan Accounting Example:", error);
       res.status(500).json({ error: "Internal server error" });

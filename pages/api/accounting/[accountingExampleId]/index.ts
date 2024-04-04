@@ -1,9 +1,9 @@
 // route: api/accounting/[accountingExampleId]
-
+import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from "../../../../lib/db";
-import LoanAccountingExample from "../../../../models/loanAccountingExample";
+import LoanAccountingExample, { LoanAccountingExampleDocument } from "../../../../models/loanAccountingExample";
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
   res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
 
@@ -12,7 +12,7 @@ const handler = async (req, res) => {
   // Delete a specific accounting example
   if (req.method === "DELETE") {
     try {
-      const existingAccountingExample = await LoanAccountingExample.findById(
+      const existingAccountingExample: LoanAccountingExampleDocument | null = await LoanAccountingExample.findById(
         accountingExampleId
       );
 
@@ -28,7 +28,7 @@ const handler = async (req, res) => {
     // Fetch a specific loan accounting example
   } else if (req.method === "GET") {
     try {
-      const existingAccountingExample = await LoanAccountingExample.findById(
+      const existingAccountingExample: LoanAccountingExampleDocument | null = await LoanAccountingExample.findById(
         accountingExampleId
       );
 
