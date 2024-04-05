@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useSWR from "swr";
 import {
   createLoanAccountingExample,
@@ -6,6 +6,9 @@ import {
   deleteLoanAccountingExampleById,
   getJournalEntries,
 } from "../../lib/api";
+import { LoanAccountingExampleDocument } from "../../models/loanAccountingExample";
+import { JournalEntryDocument } from "../../models/journalEntry";
+import { LoanAccountingExampleFormData } from "../../types/types";
 import PageHeader from "../../components/layout/pageHeader";
 import LoanAccountingForm from "../../components/accounting/loanAccountingForm";
 import LoanExamplesTable from "../../components/accounting/loanExamplesTable";
@@ -17,6 +20,7 @@ import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 import AccountingPieChart from "../../components/accounting/accountingPieChart";
 import classes from "./accounting.module.css";
 
+
 // page route: /accounting
 // Accounting Page summary - renders table of loan examples (LoanExamplesTable) and buttons where user can opt to
 // add new examples via a modal form, view the full balance sheet of the examples portfolio (FullBalanceSheet),
@@ -24,20 +28,26 @@ import classes from "./accounting.module.css";
 // The LoanExamplesTable is interactive, so user can click an individual loan example's accounting details via
 // dynamic page routing.
 
-const Accounting = ({ loanAccountingExamples }) => {
-  // state for setting examples as data is retrieved from the database as well as new 
+interface AccountingProps {
+  loanAccountingExamples: LoanAccountingExampleDocument[];
+}
+
+const Accounting: React.FC<AccountingProps> = ({ loanAccountingExamples }) => {
+  // state for setting examples as data is retrieved from the database as well as new
   // examples are created or existing examples are deleted.  Note that getStaticProps is used
   // for server side rendering for the exising examples in the database.
-  const [examples, setExamples] = useState(loanAccountingExamples || {});
+  const [examples, setExamples] = useState<LoanAccountingExampleDocument[]>(
+    loanAccountingExamples || {}
+  );
   // state for setting journal entries as data is retrieved from the database.  note that journal
   // entries are associated with loan examples as well via the models.
-  const [journalEntries, setJournalEntries] = useState([]);
+  const [journalEntries, setJournalEntries] = useState<JournalEntryDocument[]>([]);
   // state for opening / closing the modal containing the LoanAccountingForm for entering loan examples
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // toggles showing / hiding the FullBalanceSheet component
-  const [showBalanceSheet, setShowBalanceSheet] = useState(false);
+  const [showBalanceSheet, setShowBalanceSheet] = useState<boolean>(false);
   // toggles showing / hiding the accountingPieChart component
-  const [showChart, setShowChart] = useState(false);
+  const [showChart, setShowChart] = useState<boolean>(false);
 
   // useSWR hook used for data (examples & journal entries) retrieval
   const { data: updatedExamples, error } = useSWR(
@@ -55,13 +65,13 @@ const Accounting = ({ loanAccountingExamples }) => {
     }
   );
 
- 
   useEffect(() => {
     // sort the examples by borrower name (alphabetical order) and update state
     // so examples are rendered in order
     if (updatedExamples) {
-      const sortedExamples = updatedExamples.loanExamples.sort((a, b) =>
-        a.borrower.localeCompare(b.borrower)
+      const sortedExamples = updatedExamples.loanExamples.sort(
+        (a: LoanAccountingExampleDocument, b: LoanAccountingExampleDocument) =>
+          a.borrower.localeCompare(b.borrower)
       );
       setExamples(sortedExamples);
       setJournalEntries(updatedExamples.journalEntriesData);
@@ -71,31 +81,39 @@ const Accounting = ({ loanAccountingExamples }) => {
   // handle the loanAccountingForm submit (in the pop up modal). Uses
   // imported custom function 'createAccountingExample' to post the
   // example to the database and close the modal.
-  const handleFormSubmit = async (formData) => {
+  const handleFormSubmit = async (formData: LoanAccountingExampleFormData) => {
     try {
       await createLoanAccountingExample(formData);
       // Form submission successful, close the modal
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error submitting form:", error.message);
+      if (error instanceof Error) {
+        console.error("Error submitting form:", error.message);
+      } else {
+        console.error("Uknown Error!");
+      }
     }
   };
 
-  // handle deleting an example from the database when a delete button 
+  // handle deleting an example from the database when a delete button
   // is clicked on a specific example in the LoanExamplesTable component.
-  const handleDeleteExample = async (exampleId) => {
+  const handleDeleteExample = async (exampleId: string) => {
     try {
       // imported custom function to delete specific example from the database
       await deleteLoanAccountingExampleById(exampleId);
       // remove deleted item from examples dataset and reset state
       setExamples(examples.filter((example) => example._id !== exampleId));
     } catch (error) {
-      console.error("Error deleting example:", error.message);
+      if (error instanceof Error) {
+        console.error("Error Deleting Example:", error.message);
+      } else {
+        console.error("Uknown Error!");
+      }
     }
   };
 
   // calculate total unfunded commitments across examples portfolio
-  const totalUnfundedCommitments = examples.reduce((total, example) => {
+  const totalUnfundedCommitments: number = examples.reduce((total, example) => {
     return (
       total +
       (example.commitment - example.fundedLoan - example.lettersOfCredit)
@@ -103,12 +121,12 @@ const Accounting = ({ loanAccountingExamples }) => {
   }, 0);
 
   // calculate total letters of credit across examples portfolio
-  const totalLettersOfCredit = examples.reduce((total, example) => {
+  const totalLettersOfCredit: number = examples.reduce((total, example) => {
     return total + example.lettersOfCredit;
   }, 0);
 
   // Function to calculate totals by accounting methodology
-  const calculateTotalByAccounting = (accounting) => {
+  const calculateTotalByAccounting = (accounting: string) => {
     return examples.reduce((total, example) => {
       if (example.accounting === accounting) {
         return total + example.commitment;
@@ -118,12 +136,12 @@ const Accounting = ({ loanAccountingExamples }) => {
   };
 
   // Calculate total commitments by accounting methodology
-  const totalCommitmentHFI = calculateTotalByAccounting("HFI");
-  const totalCommitmentHFS = calculateTotalByAccounting("HFS");
-  const totalCommitmentFVO = calculateTotalByAccounting("FVO");
+  const totalCommitmentHFI: number = calculateTotalByAccounting("HFI");
+  const totalCommitmentHFS: number = calculateTotalByAccounting("HFS");
+  const totalCommitmentFVO: number = calculateTotalByAccounting("FVO");
 
   // handles button click for showing either chart or balance sheet
-  const handleShowContent = (chart, balanceSheet) => {
+  const handleShowContent = (chart: boolean, balanceSheet: boolean) => {
     setShowChart(chart);
     setShowBalanceSheet(balanceSheet);
   };
@@ -144,7 +162,6 @@ const Accounting = ({ loanAccountingExamples }) => {
         {/* If modal is open (via button click above), show the form */}
         {isModalOpen && (
           <Modal
-            isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             content={<LoanAccountingForm onSubmit={handleFormSubmit} />}
             title="Add Loan Example"
@@ -178,13 +195,9 @@ const Accounting = ({ loanAccountingExamples }) => {
       {/* Toggled by button above to show the full balance sheet and off balance sheet table */}
       {showBalanceSheet && (
         <div className={classes.balanceSheetView}>
-          <h2 className={classes.chartHeader}>
-            Portfolio Balance Sheet
-          </h2>
+          <h2 className={classes.chartHeader}>Portfolio Balance Sheet</h2>
           <FullBalanceSheet journalEntries={journalEntries} />
-          <h2 className={classes.chartHeader}>
-            Portfolio Off Balance Sheet
-          </h2>
+          <h2 className={classes.chartHeader}>Portfolio Off Balance Sheet</h2>
           <OffBalanceSheetTable
             unfundedCommitment={totalUnfundedCommitments}
             lettersOfCredit={totalLettersOfCredit}
@@ -192,10 +205,12 @@ const Accounting = ({ loanAccountingExamples }) => {
           />
         </div>
       )}
-       {/* Toggled by button above to show the pie chart of commitments by accounting methodology */}
+      {/* Toggled by button above to show the pie chart of commitments by accounting methodology */}
       {showChart && (
         <div className={classes.pieChartWrapper}>
-          <h3 className={classes.chartHeader}>Commitments by Accounting Methodology</h3>
+          <h3 className={classes.chartHeader}>
+            Commitments by Accounting Methodology
+          </h3>
           <AccountingPieChart
             totalCommitmentHFI={totalCommitmentHFI}
             totalCommitmentHFS={totalCommitmentHFS}
@@ -213,11 +228,15 @@ export async function getStaticProps() {
 
   try {
     const loanAccountingExamplesJSON = await getLoanAccountingExamples();
-    loanAccountingExamples = loanAccountingExamplesJSON.sort((a, b) =>
+    loanAccountingExamples = loanAccountingExamplesJSON.sort((a: LoanAccountingExampleDocument, b: LoanAccountingExampleDocument) =>
       a.borrower.localeCompare(b.borrower)
     );
   } catch (error) {
-    console.error(error.message);
+    if (error instanceof Error) {
+      console.error(error.message);
+    } else {
+      console.error("Uknown Error!");
+    }
   }
 
   return {

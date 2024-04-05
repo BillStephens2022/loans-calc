@@ -5,7 +5,6 @@ import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
 import Button from "../ui/button";
 import classes from "./frontingExamplesTable.module.css";
-import { LoanAccountingExampleDocument } from "../../models/loanAccountingExample";
 import { FrontingExampleDocument } from "../../models/frontingExample";
 
 // Fronting Examples Table shows a summary of all of the fronting examples on the Fronting page
@@ -53,6 +52,7 @@ const FrontingExamplesTable: React.FC<FrontingExamplesTableProps> = ({
       router.push(`/fronting/${exampleId}`);
     }
   };
+
 
   return (
     <div className={classes.tableWrapper}>

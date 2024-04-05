@@ -1,3 +1,16 @@
+export interface LoanAccountingExampleFormData {
+  borrower: string;
+  facility: string;
+  commitment: number;
+  fundedLoan: number;
+  lettersOfCredit: number;
+  accounting: string;
+  isOrigination: boolean;
+  weightedAverageCost: number;
+  upfrontFee?: number;
+  loanMark: number;
+}
+
 export interface UpdatedFrontingExample {
     borrower: string;
     yourBankName: string;
