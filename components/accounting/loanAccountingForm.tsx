@@ -1,13 +1,17 @@
-import { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { LoanAccountingExampleFormData } from "../../types/types";
 import Button from "../ui/button";
 import classes from "./loanAccountingForm.module.css";
 
 
 // form where user enters an example loan transaction.  Form is shown in the Modal component on the Accounting page.
 // form is ultimately submitted via the API to the MongoDB database using the LoanAccountingExample model.
+interface LoanAccountingFormProps {
+  onSubmit: (formData: LoanAccountingExampleFormData) => void;
+}
 
-const LoanAccountingForm = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
+const LoanAccountingForm: React.FC<LoanAccountingFormProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState<LoanAccountingExampleFormData>({
     borrower: "",
     facility: "",
     commitment: 0.0,
@@ -20,53 +24,86 @@ const LoanAccountingForm = ({ onSubmit }) => {
     loanMark: 0.0,
   });
 
-  const handleInputChange = (event) => {
+  // const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   const { name, value, type } = event.target;
+
+  //   // Parse number values
+  //   let parsedValue: string | number = value;
+
+  //   if (type === "number") {
+  //     parsedValue = parseFloat(value);
+  //   }
+
+  //   //Update state based on field type
+  //   if (type === "radio" && name === "isOrigination") {
+  //     const newValue = value === "true";
+  //     console.log("Is Origination:", newValue);
+  //     setFormData((prevState) => ({ ...prevState, [name]: newValue }));
+  //     // if isOrigination is true, calculate weightedAverageCost based on the upfront fees
+  //     if (newValue) {
+  //       const weightedAverageCost =
+  //         (1 - (formData.upfrontFee?? 0) / formData.commitment) * 100;
+  //       console.log("Weighted Average Cost:", weightedAverageCost);
+  //       setFormData((prevState) => ({
+  //         ...prevState,
+  //         weightedAverageCost: weightedAverageCost,
+  //       }));
+  //     } else {
+  //       // if isOrigination is false, reset weightedAverageCost to default
+  //       setFormData((prevState) => ({
+  //         ...prevState,
+  //         weightedAverageCost: 100.0,
+  //       }));
+  //     }
+  //   } else if (name === "upfrontFee") {
+  //     // Recalculate weightedAverageCost when upfrontFee changes
+  //     const weightedAverageCost = (1 - parsedValue / formData.commitment) * 100;
+  //     console.log("Weighted Average Cost:", weightedAverageCost);
+  //     setFormData((prevState) => ({
+  //       ...prevState,
+  //       upfrontFee: parsedValue, // Update upfrontFee
+  //       weightedAverageCost: weightedAverageCost,
+  //     }));
+  //   } else {
+  //     setFormData((prevState) => ({ ...prevState, [name]: parsedValue }));
+  //   }
+  // };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = event.target;
 
     // Parse number values
-    let parsedValue;
+    let parsedValue: string | number = value;
     if (type === "number") {
       parsedValue = parseFloat(value);
-    } else {
-      parsedValue = value;
     }
 
-    // Update state based on field type
-    if (type === "radio" && name === "isOrigination") {
-      const newValue = value === "true";
-      console.log("Is Origination:", newValue);
-      setFormData((prevState) => ({ ...prevState, [name]: newValue }));
-      // if isOrigination is true, calculate weightedAverageCost based on the upfront fees
-      if (newValue) {
-        const weightedAverageCost =
-          (1 - formData.upfrontFee / formData.commitment) * 100;
-        console.log("Weighted Average Cost:", weightedAverageCost);
-        setFormData((prevState) => ({
-          ...prevState,
-          weightedAverageCost: weightedAverageCost,
-        }));
-      } else {
-        // if isOrigination is false, reset weightedAverageCost to default
-        setFormData((prevState) => ({
-          ...prevState,
-          weightedAverageCost: 100.0,
-        }));
-      }
-    } else if (name === "upfrontFee") {
-      // Recalculate weightedAverageCost when upfrontFee changes
-      const weightedAverageCost = (1 - parsedValue / formData.commitment) * 100;
-      console.log("Weighted Average Cost:", weightedAverageCost);
-      setFormData((prevState) => ({
+    // Update state
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: parsedValue
+    }));
+  };
+
+  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    const newValue = value === "true";
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: newValue
+    }));
+    if (name === "isOrigination") {
+      const weightedAverageCost = newValue
+        ? (1 - (formData.upfrontFee ?? 0)/ formData.commitment) * 100
+        : 100.0;
+      setFormData(prevState => ({
         ...prevState,
-        upfrontFee: parsedValue, // Update upfrontFee
-        weightedAverageCost: weightedAverageCost,
+        weightedAverageCost
       }));
-    } else {
-      setFormData((prevState) => ({ ...prevState, [name]: parsedValue }));
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(formData); // passes formData to the parent component (Accounting Page)
   };
@@ -150,7 +187,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
               name="isOrigination"
               value="false"
               checked={!formData.isOrigination}
-              onChange={handleInputChange}
+              onChange={handleRadioChange}
               className={classes.radioInput}
             />
             Purchase
@@ -161,7 +198,7 @@ const LoanAccountingForm = ({ onSubmit }) => {
               name="isOrigination"
               value="true"
               checked={formData.isOrigination}
-              onChange={handleInputChange}
+              onChange={handleRadioChange}
               className={classes.radioInput}
             />
             Origination
