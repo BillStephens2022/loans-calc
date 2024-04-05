@@ -4,7 +4,7 @@
 
 deployed URL: https://corporate-loans.vercel.app/
 
-An education application covering Corporate Loans built with NextJS/ReactJS and MongoDB. 
+An education application covering Corporate Loans built with NextJS/ReactJS, TypeScript and MongoDB. 
 
 The Learning page covers various loan related topics including types of loan deals, facility types, econocomics (interest/fees), assignments/participations, etc. 
 
