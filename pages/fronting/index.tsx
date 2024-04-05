@@ -11,6 +11,7 @@ import Button from "../../components/ui/button";
 import FrontingExamplesTable from "../../components/fronting/frontingExamplesTable";
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
 import { FrontingExampleDocument } from "../../models/frontingExample";
+import { FrontingExampleFormData } from "../../types/types";
 import classes from "./fronting.module.css";
 
 // page route: /fronting
@@ -52,7 +53,7 @@ const Fronting: React.FC = () => {
   // handle the FrontingForm submit (in the pop up modal). Uses
   // imported custom function 'createFrontingExample' to post the
   // example to the database and close the modal.
-  const handleFormSubmit = async (formData: any) => {
+  const handleFormSubmit = async (formData: FrontingExampleFormData) => {
     try {
       await createFrontingExample(formData);
       // Form submission successful, close the modal

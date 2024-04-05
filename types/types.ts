@@ -11,6 +11,23 @@ export interface LoanAccountingExampleFormData {
   loanMark: number;
 }
 
+export interface FrontingExampleFormData {
+  borrower: string;
+  facility: string;
+  yourBankName: string;
+  globalCommitment: number;
+  globalFundedLoans: number;
+  globalLettersOfCredit: number;
+  yourBankCommitment: number;
+  isLCIssuer: boolean;
+  isSwinglineLender: boolean;
+  isNonAccrual: boolean;
+  swinglineSublimit: number;
+  swinglinesFundedByYourBank: number;
+  lcSublimit: number;
+  lcsIssuedByYourBank: number;
+}
+
 export interface UpdatedFrontingExample {
     borrower: string;
     yourBankName: string;

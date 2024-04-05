@@ -1,33 +1,16 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { FrontingExampleFormData } from "../../types/types";
 import Button from "../ui/button";
 import classes from "./frontingForm.module.css";
 
-// establish types for the form data
-interface FormData {
-  borrower: string;
-  facility: string;
-  yourBankName: string;
-  globalCommitment: number;
-  globalFundedLoans: number;
-  globalLettersOfCredit: number;
-  yourBankCommitment: number;
-  isLCIssuer: boolean;
-  isSwinglineLender: boolean;
-  isNonAccrual: boolean;
-  swinglineSublimit: number;
-  swinglinesFundedByYourBank: number;
-  lcSublimit: number;
-  lcsIssuedByYourBank: number;
-}
-
 interface FrontingFormProps {
-  onSubmit: (formData: FormData) => void;
+  onSubmit: (formData: FrontingExampleFormData) => void;
 }
 
 // form for the user to entering Fronting examples. Displayed in the pop up Modal component on the Fronting Page.
 // captures data entered by user and ultimately submits to database
 
-const initialFormData: FormData = {
+const initialFormData: FrontingExampleFormData = {
   borrower: "",
   facility: "",
   yourBankName: "",
@@ -45,7 +28,7 @@ const initialFormData: FormData = {
 };
 
 const FrontingForm: React.FC<FrontingFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [formData, setFormData] = useState<FrontingExampleFormData>(initialFormData);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
@@ -115,7 +98,7 @@ const resetFormValues = () => {
                 type="checkbox"
                 id={key}
                 name={key}
-                checked={formData[key as keyof FormData] as boolean}
+                checked={formData[key as keyof FrontingExampleFormData] as boolean}
                 onChange={handleInputChange}
               />
             ) : (
@@ -124,7 +107,7 @@ const resetFormValues = () => {
                   type="text"
                   id={key}
                   name={key}
-                  value={formData[key as keyof FormData] as string | number}
+                  value={formData[key as keyof FrontingExampleFormData] as string | number}
                   onChange={handleInputChange}
                 />
                 {/* rendering formatted values only for boxes that accept numbers, first two input values are for
@@ -132,7 +115,7 @@ const resetFormValues = () => {
                 {index >= 2 && (
                   <span className={classes.formattedValueSpan}>
                     Formatted Value:{" "}
-                    {formatNumberInput((formData[key as keyof FormData] as number).toString())}
+                    {formatNumberInput((formData[key as keyof FrontingExampleFormData] as number).toString())}
                   </span>
                 )}
               </div>
