@@ -18,5 +18,10 @@
     "react-icons": "^5.0.1",
     "swr": "^2.2.5"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^20.12.4",
+    "@types/react": "^18.2.74",
+    "typescript": "^5.4.3"
+  }
 }
