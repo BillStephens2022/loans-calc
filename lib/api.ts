@@ -12,7 +12,6 @@ const BASE_URL: string = process.env.NEXT_PUBLIC_BASE_URL || "";
 export const createLoanAccountingExample = async (
   formData: LoanAccountingExampleFormData
 ): Promise<LoanAccountingExampleDocument> => {
-  console.log("form data being submitted to the API: ", formData);
   const response = await fetch(`${BASE_URL}/api/accounting`, {
     method: "POST",
     body: JSON.stringify(formData),

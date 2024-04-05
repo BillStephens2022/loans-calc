@@ -29,7 +29,8 @@ const AccountingExampleDetail: React.FC = () => {
   // state for setting example when example data retrieved from the database
   const [example, setExample] = useState<LoanAccountingExampleDocument | null>(null);
   // state for setting journal entries when examples journal entries are retrieved from the database
-  const [journalEntries, setJournalEntries] = useState<JournalEntryDocument[] | null>([]);
+  const [journalEntries, setJournalEntries] = useState<JournalEntryDocument[]>([]);
+
   // loading state, set to false once data is loaded
   const [loading, setLoading] = useState<boolean>(true);
 
