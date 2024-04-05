@@ -1,14 +1,25 @@
+import React from "react";
+import { JournalEntryDocument } from "../../models/journalEntry";
 import JournalEntryTable from "./journalEntryTable";
 import OffBalanceSheetTable from "./offBalanceSheetTable";
 import BalanceSheetSummary from "./balanceSheetSummary";
 import classes from "./loanDetail.module.css";
 
-
 // renders details for specific loan examples including the Balance Sheet Summary, 
 // the Off Balance Sheet Table, and the Journal Entries table
 // props ultimately come from the LoanAccountingExample and JournalEntry records from database
 
-const LoanDetail = ({
+interface LoanDetailProps {
+  journalEntries: JournalEntryDocument[];
+  lettersOfCredit: number;
+  accounting: string;
+  unfundedCommitment: number;
+}
+
+// Define type for the condition function used in calculateTotal
+type ConditionFunction = (entry: JournalEntryDocument) => boolean;
+
+const LoanDetail: React.FC<LoanDetailProps> = ({
   journalEntries,
   lettersOfCredit,
   accounting,
@@ -16,7 +27,7 @@ const LoanDetail = ({
 }) => {
 
   // calculate total based on condition (i.e. sum all entries where entry is a debit, or entry is to an asset account, etc).
-  const calculateTotal = (journalEntries, condition) =>
+  const calculateTotal = (journalEntries: JournalEntryDocument[], condition: ConditionFunction): number =>
     journalEntries.reduce((total, entry) => (condition(entry) ? total + entry.amount : total), 0);
 
   // Calculate totals for debit and credit columns
