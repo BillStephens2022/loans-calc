@@ -1,3 +1,4 @@
+import React from "react";
 import { formatAmount } from "../../util/formatting";
 import classes from "./offBalanceSheetTable.module.css";
 
@@ -5,7 +6,13 @@ import classes from "./offBalanceSheetTable.module.css";
 // if isPortfolioPage prop is true, it shows the OBS exposure for entire examples portfolio.
 // if isPortfolioPage prop is false, it shows the OBS exposure for a specific loan example
 // isPortfolioPage prop is determined in the page in which it is rendered.
-const OffBalanceSheetTable = ({ unfundedCommitment, lettersOfCredit, isPortfolioPage }) => {
+interface OffBalanceSheetTableProps {
+  unfundedCommitment: number;
+  lettersOfCredit: number;
+  isPortfolioPage: boolean;
+}
+
+const OffBalanceSheetTable: React.FC<OffBalanceSheetTableProps> = ({ unfundedCommitment, lettersOfCredit, isPortfolioPage }) => {
   return (
     <div className={classes.offBalanceSheetTableWrapper}>
     <table className={classes.offBalanceSheet_table}>

@@ -1,17 +1,22 @@
+import React from "react";
+import { JournalEntryDocument } from "../../models/journalEntry";
 import { formatAmount } from "../../util/formatting";
 import classes from "./fullBalanceSheet.module.css";
 
 
 // shows the Full Balance sheet for the sum of all entered examples and their associated journal entries.
+interface FullBalanceSheetProps {
+  journalEntries: JournalEntryDocument[];
+}
 
-const FullBalanceSheet = ({ journalEntries }) => {
+const FullBalanceSheet: React.FC<FullBalanceSheetProps> = ({ journalEntries }) => {
 
   // calculate the balance by summing up the journal entries by category and accounting methodology
-  const sumEntriesByCategory = (journalEntries, category, accounting) => {
+  const sumEntriesByCategory = (journalEntries: JournalEntryDocument[], category:string, accounting?:string) => {
     const categoryTotal = journalEntries.reduce((total, entry) => {
       if (
         entry.category === category &&
-        (!accounting || entry.accounting === accounting)
+        (!accounting || entry.accounting === accounting)  
       ) {
         return total + entry.amount;
       } else {
@@ -23,7 +28,7 @@ const FullBalanceSheet = ({ journalEntries }) => {
   };
 
   // calculate the balance by summing up the journal entries by high level category
-  const sumEntriesByHighLevelCategory = (journalEntries, highLevelCategory) => {
+  const sumEntriesByHighLevelCategory = (journalEntries: JournalEntryDocument[], highLevelCategory: string) => {
     const highLevelCategoryTotal = journalEntries.reduce((total, entry) => {
       if (entry.highLevelCategory === highLevelCategory) {
         return total + entry.amount;

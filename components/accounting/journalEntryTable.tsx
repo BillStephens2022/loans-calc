@@ -1,10 +1,17 @@
+import React from "react";
 import { ImArrowLeft, ImArrowRight } from "react-icons/im";
+import { JournalEntryDocument } from "../../models/journalEntry";
 import { formatAmount } from "../../util/formatting";
 import classes from "./journalEntryTable.module.css";
 
 
+interface JournalEntryTableProps {
+  journalEntries: JournalEntryDocument[];
+  debitTotal: number;
+  creditTotal: number;
+}
 // show table of journal entries retrieved from database
-const JournalEntryTable = ({ journalEntries, debitTotal, creditTotal }) => {
+const JournalEntryTable: React.FC<JournalEntryTableProps> = ({ journalEntries, debitTotal, creditTotal }) => {
 
   return (
     <div>
