@@ -224,7 +224,7 @@ const Accounting: React.FC<AccountingProps> = ({ loanAccountingExamples }) => {
 
 // for serving up table of examples
 export async function getStaticProps() {
-  let loanAccountingExamples = [];
+  let loanAccountingExamples: LoanAccountingExampleDocument[] = [];
 
   try {
     const loanAccountingExamplesJSON = await getLoanAccountingExamples();
