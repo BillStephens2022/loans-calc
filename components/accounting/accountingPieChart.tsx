@@ -1,3 +1,4 @@
+import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
@@ -8,8 +9,13 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+interface AccountingPieChartProps {
+  totalCommitmentHFI: number;
+  totalCommitmentHFS: number;
+  totalCommitmentFVO: number;
+}
 // props are the total commitment amounts by accounting methodology
-const AccountingPieChart = ({ totalCommitmentHFI, totalCommitmentHFS, totalCommitmentFVO }) => {
+const AccountingPieChart: React.FC<AccountingPieChartProps> = ({ totalCommitmentHFI, totalCommitmentHFS, totalCommitmentFVO }) => {
 
   const data = {
     labels: ['HFI Commitments', 'HFS Commitments', 'FVO Commitments'],

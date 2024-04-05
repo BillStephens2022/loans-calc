@@ -1,11 +1,22 @@
+import React from "react";
 import { formatAmount } from "../../util/formatting";
 import classes from "./balanceSheetSummary.module.css";
 
 // Shows a Balance Sheet impact for a specific accounting example
 // summarizes the accounts by high level category / category (i.e. high level 
 // categories like Assets & Liabilities and categores like loan market value, commitment market values, etc)
-
-const BalanceSheetSummary = ({
+interface BalanceSheetSummaryProps {
+  assetsTotal: number;
+  liabilitiesTotal: number;
+  cashTotal: number;
+  loanMarketValueTotal: number;
+  commitmentMarketValueTotal: number;
+  lcMarketValueTotal: number;
+  mtmPnlTotal: number;
+  pnlTotal: number;
+  accounting: string;
+}
+const BalanceSheetSummary: React.FC<BalanceSheetSummaryProps> = ({
   assetsTotal,
   liabilitiesTotal,
   cashTotal,
