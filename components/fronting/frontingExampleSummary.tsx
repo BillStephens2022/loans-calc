@@ -1,32 +1,38 @@
+import React from "react";
 import { ImArrowDown } from "react-icons/im";
+import { UpdatedFrontingExample } from "../../types/types";
 import { formatAmount } from "../../util/formatting";
 import classes from "./frontingExampleSummary.module.css";
 
-
-// Shows several tables summarizing the Fronting Example, shows example details, 
+interface FrontingExampleSummaryProps {
+  example: UpdatedFrontingExample;
+}
+// Shows several tables summarizing the Fronting Example, shows example details,
 // sublimit availability, fronting exposure, and total exposure summaries.
-const FrontingExampleSummary = ({
-  borrower,
-  facility,
-  yourBankName,
-  globalCommitment,
-  globalFundedLoans,
-  globalLettersOfCredit,
-  isLCIssuer,
-  isSwinglineLender,
-  swinglineSublimit,
-  lcSublimit,
-  yourBankCommitment,
-  lcsIssuedByYourBank,
-  swinglinesFundedByYourBank,
-  globalAvailability,
-  yourBankPercentShare,
-  unfundedSwinglineFrontingExposure,
-  fundedSwinglineFrontingExposure,
-  unissuedLCFrontingExposure,
-  issuedLCFrontingExposure,
-  isNonAccrual,
-}) => {
+const FrontingExampleSummary: React.FC<FrontingExampleSummaryProps> = ({ example }) => {
+  const {
+    borrower,
+    facility,
+    yourBankName,
+    globalCommitment,
+    globalFundedLoans,
+    globalLettersOfCredit,
+    isLCIssuer,
+    isSwinglineLender,
+    swinglineSublimit,
+    lcSublimit,
+    yourBankCommitment,
+    lcsIssuedByYourBank,
+    swinglinesFundedByYourBank,
+    globalAvailability,
+    yourBankPercentShare,
+    unfundedSwinglineFrontingExposure,
+    fundedSwinglineFrontingExposure,
+    unissuedLCFrontingExposure,
+    issuedLCFrontingExposure,
+    isNonAccrual,
+  } = example;
+
   return (
     <div className={classes.mainContainer}>
       <h2 className={classes.mainHeaderExample}>Example Summary</h2>
@@ -35,7 +41,7 @@ const FrontingExampleSummary = ({
           <table className={classes.table}>
             <thead>
               <tr className={classes.tableHeaderRoles}>
-                <th colSpan="4">Roles</th>
+                <th colSpan={4}>Roles</th>
               </tr>
             </thead>
             <tbody>
@@ -67,7 +73,7 @@ const FrontingExampleSummary = ({
         <table className={classes.table}>
           <thead>
             <tr className={classes.tableHeader}>
-              <th colSpan="4">Commitment Breakdown</th>
+              <th colSpan={4}>Commitment Breakdown</th>
             </tr>
             <tr className={classes.tableRow_header}>
               <th
@@ -190,7 +196,7 @@ const FrontingExampleSummary = ({
         <table className={classes.table}>
           <thead>
             <tr className={classes.tableHeader}>
-              <th colSpan="4">Fronting Sublimit Activity</th>
+              <th colSpan={4}>Fronting Sublimit Activity</th>
             </tr>
             <tr className={classes.tableRow_header}>
               <th className={classes.tableCell}>Balance Description</th>
@@ -304,7 +310,7 @@ const FrontingExampleSummary = ({
         <table className={classes.table}>
           <thead>
             <tr className={classes.tableHeader}>
-              <th colSpan="4">Fronting Exposure</th>
+              <th colSpan={4}>Fronting Exposure</th>
             </tr>
             <tr className={classes.tableRow_header}>
               <th className={classes.tableCell}>Fronting Type</th>
@@ -398,18 +404,18 @@ const FrontingExampleSummary = ({
         <table className={classes.table}>
           <thead>
             <tr className={classes.tableHeader}>
-              <th colSpan="4">{borrower}</th>
+              <th colSpan={4}>{borrower}</th>
             </tr>
             <tr className={classes.tableHeader}>
-              <th colSpan="4">{facility}</th>
+              <th colSpan={4}>{facility}</th>
             </tr>
             <tr className={classes.tableHeader}>
-              <th colSpan="4">Total Risk</th>
+              <th colSpan={4}>Total Risk</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th colSpan="2" className={classes.tableSubheader}>
+              <th colSpan={2} className={classes.tableSubheader}>
                 Net Exposure (Net of Fronting)
               </th>
             </tr>
@@ -447,7 +453,7 @@ const FrontingExampleSummary = ({
               </td>
             </tr>
             <tr>
-              <th colSpan="2" className={classes.tableSubheader}>
+              <th colSpan={2} className={classes.tableSubheader}>
                 Fronting Exposure
               </th>
             </tr>
@@ -484,7 +490,7 @@ const FrontingExampleSummary = ({
               </td>
             </tr>
             <tr>
-              <th colSpan="2" className={classes.tableSubheader}>
+              <th colSpan={2} className={classes.tableSubheader}>
                 Gross Exposure (Net + Fronting)
               </th>
             </tr>
@@ -548,22 +554,22 @@ const FrontingExampleSummary = ({
           </tbody>
         </table>
         <div className={classes.footnoteDiv}>
-        <p className={classes.footnoteDesc}>
-          <span className={classes.footnote}>(1)</span>Net Commitment + Total
-          Fronting Exposure (all categories)
-        </p>
-        <p className={classes.footnoteDesc}>
-          <span className={classes.footnote}>(2)</span>Net Funded Loans +
-          Fronted Funded Swinglines
-        </p>
-        <p className={classes.footnoteDesc}>
-          <span className={classes.footnote}>(3)</span>Net LC's + Fronted Issued
-          LC's
-        </p>
-        <p className={classes.footnoteDesc}>
-          <span className={classes.footnote}>(4)</span>Net Unfunded Commitment +
-          Fronted Unfunded Swinglines + Fronted Unissed LC's
-        </p>
+          <p className={classes.footnoteDesc}>
+            <span className={classes.footnote}>(1)</span>Net Commitment + Total
+            Fronting Exposure (all categories)
+          </p>
+          <p className={classes.footnoteDesc}>
+            <span className={classes.footnote}>(2)</span>Net Funded Loans +
+            Fronted Funded Swinglines
+          </p>
+          <p className={classes.footnoteDesc}>
+            <span className={classes.footnote}>(3)</span>Net LC's + Fronted
+            Issued LC's
+          </p>
+          <p className={classes.footnoteDesc}>
+            <span className={classes.footnote}>(4)</span>Net Unfunded Commitment
+            + Fronted Unfunded Swinglines + Fronted Unissed LC's
+          </p>
         </div>
       </div>
     </div>
