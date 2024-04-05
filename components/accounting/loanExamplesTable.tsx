@@ -1,31 +1,51 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { GoTrash } from "react-icons/go";
 import { ImArrowLeft, ImArrowRight } from "react-icons/im";
 import { formatAmount } from "../../util/formatting";
+import { LoanAccountingExampleDocument } from "../../models/loanAccountingExample";
 import Button from "../ui/button";
 import classes from "./loanExamplesTable.module.css";
 
 // Loan Examples Table shows a summary of all of the loan examples on the Accounting page (if portfolioPage prop is true)
 // If portfolioPage prop is false, it shows 1 row for a summary of the specific example on the [accountingExampleId] page.
-// also renders a delete button in the table so user can delete a specific example - only shows on 
+// also renders a delete button in the table so user can delete a specific example - only shows on
 // Accounting page where portfolioPage prop is true)
+interface LoanExamplesTableProps {
+  examples: LoanAccountingExampleDocument[];
+  onDelete?: (exampleId: string) => void;
+  portfolioPage: boolean;
+}
 
-const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
+const LoanExamplesTable: React.FC<LoanExamplesTableProps> = ({
+  examples,
+  onDelete,
+  portfolioPage,
+}) => {
   // state used to disable delete button while process is executing
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   // used for routing when a specific loan example is clicked on the table
   const router = useRouter();
 
   // handler for deleting a specific loan accounting example
-  const handleDeleteExample = async (exampleId, event) => {
+  const handleDeleteExample = async (
+    exampleId: string,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     // Stop event propagation to prevent row click event
-    event.stopPropagation(); 
+    event.stopPropagation();
     setLoading(true);
     try {
-      onDelete(exampleId); // Notify parent component that example was deleted
+      // Check if onDelete exists before calling it (onDelete is an optional prop for this component)
+      if (onDelete) {
+        onDelete(exampleId); // Notify parent component that example was deleted
+      }
     } catch (error) {
-      console.error("Error deleting example:", error.message);
+      if (error instanceof Error) {
+        console.error("Error deleting example:", error.message);
+      } else {
+        console.error("Unknown error!");
+      }
     } finally {
       setLoading(false);
     }
@@ -33,24 +53,28 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
 
   // handler for clicking on a row in the table - user will be routed to the [accountingExampleId] page which will show
   // details about the specific loan clicked. Uses the NextJS dynamic routing.
-  const handleRowClick = (exampleId, event) => {
-    if (!event.target.closest("button")) {
+  const handleRowClick = (
+    exampleId: string,
+    event: React.MouseEvent<HTMLTableRowElement, MouseEvent>
+  ) => {
+    const target = event.target as Element;
+    if (!target.closest || !target.closest("button")) {
       router.push(`/accounting/${exampleId}`);
     }
   };
-  
+
   // calculate unfunded commitment
-  const calculateUnfundedCommitment = (example) => {
+  const calculateUnfundedCommitment = (example: LoanAccountingExampleDocument): number => {
     return example.commitment - example.fundedLoan - example.lettersOfCredit;
   };
   // calculate Loan Mark to Market
-  const calculateLoanMTM = (example) => {
+  const calculateLoanMTM = (example: LoanAccountingExampleDocument): number => {
     let loanMTM =
       (example.commitment * (example.loanMark - example.weightedAverageCost)) /
       100;
-      // adjust Loan MTM based on accounting methodology
-      // if HFS, Loan MTM is set to zero if calculated Loan MTM is positive since Lower of Cost or Market accounting applied
-      // if HFI, Loan MTM is set to zero since HFI loans are held at amortized cost and not market to market.
+    // adjust Loan MTM based on accounting methodology
+    // if HFS, Loan MTM is set to zero if calculated Loan MTM is positive since Lower of Cost or Market accounting applied
+    // if HFI, Loan MTM is set to zero since HFI loans are held at amortized cost and not market to market.
     if (
       (example.accounting === "HFS" && loanMTM > 0) ||
       example.accounting === "HFI"
@@ -61,32 +85,32 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
   };
 
   // Function to calculate totals for specified columns
-  const calculateColumnTotal = (column) => {
+  const calculateColumnTotal = (column: keyof LoanAccountingExampleDocument) => {
     return examples.reduce((total, example) => total + example[column], 0);
   };
 
   // Calculate column totals
-  const totalCommitment = calculateColumnTotal("commitment");
-  const totalFundedLoans = calculateColumnTotal("fundedLoan");
-  const totalLettersOfCredit = calculateColumnTotal("lettersOfCredit");
-  const totalUnfundedCommitment = examples.reduce((total, example) => {
+  const totalCommitment: number = calculateColumnTotal("commitment");
+  const totalFundedLoans: number = calculateColumnTotal("fundedLoan");
+  const totalLettersOfCredit: number = calculateColumnTotal("lettersOfCredit");
+  const totalUnfundedCommitment: number = examples.reduce((total, example) => {
     return total + calculateUnfundedCommitment(example);
   }, 0);
-  const totalUpfrontFees = calculateColumnTotal("upfrontFee");
+  const totalUpfrontFees: number = calculateColumnTotal("upfrontFee");
 
-  const totalLoanMTM = examples.reduce((total, example) => {
+  const totalLoanMTM: number = examples.reduce((total, example) => {
     return total + calculateLoanMTM(example);
   }, 0);
 
-  const calculateWeightedAverageMark = () => {
-    const weightedSum = examples.reduce((total, example) => {
+  const calculateWeightedAverageMark = () : number => {
+    const weightedSum: number = examples.reduce((total, example) => {
       return total + example.commitment * example.loanMark;
     }, 0);
-    const totalCommitment = calculateColumnTotal("commitment");
+    const totalCommitment: number = calculateColumnTotal("commitment");
     return weightedSum / totalCommitment;
   };
 
-  const weightedAverageMark = calculateWeightedAverageMark();
+  const weightedAverageMark: number = calculateWeightedAverageMark();
 
   return (
     <div className={classes.tableWrapper}>
@@ -123,7 +147,7 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
                   <td>{formatAmount(example.fundedLoan)}</td>
                   <td>{formatAmount(example.lettersOfCredit)}</td>
                   <td>{formatAmount(calculateUnfundedCommitment(example))}</td>
-                  <td>{formatAmount(example.upfrontFee)}</td>
+                  <td>{formatAmount(example.upfrontFee ?? 0)}</td>
                   <td className={classes.price}>
                     {example.weightedAverageCost.toFixed(4)}
                   </td>
@@ -186,21 +210,22 @@ const LoanExamplesTable = ({ examples, onDelete, portfolioPage }) => {
             </tr>
           </tfoot>
         </table>
+      </div>
+      <p className={classes.scrollText}>
+        <ImArrowLeft /> Scroll <ImArrowRight />
+      </p>
+      {portfolioPage && (
+        <div className={classes.footnoteDiv}>
+          <p className={classes.footnoteDesc}>
+            <span className={classes.footnote}>(1)</span>Weighted Average Cost
+            for Portfolio
+          </p>
+          <p className={classes.footnoteDesc}>
+            <span className={classes.footnote}>(2)</span>Weighted Average Mark
+            for Portfolio
+          </p>
         </div>
-        <p className={classes.scrollText}><ImArrowLeft /> Scroll <ImArrowRight /></p>
-        {portfolioPage && (
-          <div className={classes.footnoteDiv}>
-            <p className={classes.footnoteDesc}>
-              <span className={classes.footnote}>(1)</span>Weighted Average Cost
-              for Portfolio
-            </p>
-            <p className={classes.footnoteDesc}>
-              <span className={classes.footnote}>(2)</span>Weighted Average Mark
-              for Portfolio
-            </p>
-          </div>
-        )}
-      
+      )}
     </div>
   );
 };

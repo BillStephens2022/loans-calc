@@ -25,7 +25,10 @@ const FrontingExamplesTable: React.FC<FrontingExamplesTableProps> = ({
   const router = useRouter();
 
   // handler for deleting a specific fronting example from the database/table
-  const handleDeleteExample = async (exampleId: string, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleDeleteExample = async (
+    exampleId: string,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     // Stop event propagation to prevent row click event - i.e. don't want the page to route to the detailed example page
     // this prevents 'handleRowClick' (defined below) from executing.
     event.stopPropagation();
@@ -46,13 +49,15 @@ const FrontingExamplesTable: React.FC<FrontingExamplesTableProps> = ({
   };
 
   // if user clicks on row, route to the [frontingExampleId] page to view the details for the specific example
-  const handleRowClick = (exampleId: string, event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+  const handleRowClick = (
+    exampleId: string,
+    event: React.MouseEvent<HTMLTableRowElement, MouseEvent>
+  ) => {
     const target = event.target as Element;
     if (!target.closest || !target.closest("button")) {
       router.push(`/fronting/${exampleId}`);
     }
   };
-
 
   return (
     <div className={classes.tableWrapper}>
@@ -79,7 +84,9 @@ const FrontingExamplesTable: React.FC<FrontingExamplesTableProps> = ({
           </thead>
           <tbody>
             {examples.map((example) => {
-              const calculateGlobalUnfundedCommitment = (example: FrontingExampleDocument) => {
+              const calculateGlobalUnfundedCommitment = (
+                example: FrontingExampleDocument
+              ) => {
                 return (
                   example.globalCommitment -
                   example.globalFundedLoans -
@@ -113,9 +120,9 @@ const FrontingExamplesTable: React.FC<FrontingExamplesTableProps> = ({
                     <td className={classes.deleteCell}>
                       <Button
                         className="deleteButton"
-                        onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-                          handleDeleteExample(example._id, event)
-                        }
+                        onClick={(
+                          event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                        ) => handleDeleteExample(example._id, event)}
                         disabled={loading}
                       >
                         <GoTrash />
