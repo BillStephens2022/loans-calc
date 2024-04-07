@@ -3,15 +3,16 @@ import useSWR from "swr";
 import {
   createFrontingExample,
   deleteFrontingExampleById,
+  getFrontingExamples
 } from "../../lib/api";
+import { FrontingExampleDocument } from "../../models/frontingExample";
+import { FrontingExampleFormData } from "../../types/types";
 import PageHeader from "../../components/layout/pageHeader";
 import Modal from "../../components/ui/modal";
 import FrontingForm from "../../components/fronting/frontingForm";
 import Button from "../../components/ui/button";
 import FrontingExamplesTable from "../../components/fronting/frontingExamplesTable";
 import BlinkingInstructions from "../../components/ui/blinkingInstructions";
-import { FrontingExampleDocument } from "../../models/frontingExample";
-import { FrontingExampleFormData } from "../../types/types";
 import classes from "./fronting.module.css";
 
 // page route: /fronting
@@ -20,14 +21,18 @@ import classes from "./fronting.module.css";
 // the user can click on an individual example to see the calculated fronting risk as well as the total
 // risk/exposure for the facility - this is done via NextJS dynamic page routing.
 
-const Fronting: React.FC = () => {
+interface FrontingProps {
+  frontingExamples: FrontingExampleDocument[];
+}
+
+const Fronting: React.FC<FrontingProps> = ({ frontingExamples }) => {
   // state for opening / closing the modal containing the FrontingForm for entering examples
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // state for setting fronting examples as data is retrieved from the database as well as new
   // examples are created or existing examples are deleted.
-  const [frontingExamples, setFrontingExamples] = useState<
+  const [examples, setExamples] = useState<
     FrontingExampleDocument[]
-  >([]);
+  >(frontingExamples || {});
 
   // useSWR hook used for fronting examples data retrieval from the database
   const { data, error } = useSWR<FrontingExampleDocument[]>(
@@ -46,7 +51,7 @@ const Fronting: React.FC = () => {
       const sortedFrontingExamples = data.sort((a, b) =>
         a.borrower.localeCompare(b.borrower)
       );
-      setFrontingExamples(sortedFrontingExamples);
+      setExamples(sortedFrontingExamples);
     }
   }, [data, error]);
 
@@ -73,8 +78,8 @@ const Fronting: React.FC = () => {
       // imported custom function to delete specific fronting example from the database
       await deleteFrontingExampleById(exampleId);
       // remove deleted item from fronting examples dataset and reset state
-      setFrontingExamples(
-        frontingExamples.filter((example) => example._id !== exampleId)
+      setExamples(
+        examples.filter((example) => example._id !== exampleId)
       );
     } catch (error) {
       if (error instanceof Error) {
@@ -110,7 +115,7 @@ const Fronting: React.FC = () => {
       <div className={classes.frontingExamplesTableContainer}>
         {/* Table showing all entered fronting examples from the database */}
         <FrontingExamplesTable
-          examples={frontingExamples}
+          examples={examples}
           onDelete={handleDeleteExample}
           portfolioPage={true}
         />
@@ -118,5 +123,30 @@ const Fronting: React.FC = () => {
     </main>
   );
 };
+
+// for serving up table of examples
+export async function getStaticProps() {
+  let frontingExamples: FrontingExampleDocument[] = [];
+
+  try {
+    const frontingExamplesJSON = await getFrontingExamples();
+    frontingExamples = frontingExamplesJSON.sort((a:FrontingExampleDocument, b: FrontingExampleDocument) =>
+      a.borrower.localeCompare(b.borrower)
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    } else {
+      console.error("Uknown Error!");
+    }
+  }
+
+  return {
+    props: {
+      frontingExamples,
+    },
+    revalidate: 1200, // Re-generate page every 1200 seconds (20 minutes) using loan examples props from the database
+  };
+}
 
 export default Fronting;
